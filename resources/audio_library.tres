@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AudioLibrary" format=3 uid="uid://h1onwhi4s7d8"]
+
+[ext_resource type="Script" uid="uid://dhumwvoq2qfpc" path="res://scripts/audio/music.gd" id="1_xf70o"]
+[ext_resource type="Script" uid="uid://bmxow6jhpxppg" path="res://scripts/audio/audio_library.gd" id="2_c4kn6"]
+[ext_resource type="Script" uid="uid://vamoav5galaq" path="res://scripts/audio/sfx.gd" id="3_geqqb"]
+[ext_resource type="AudioStream" uid="uid://ch2d7y1sa3557" path="res://audio/sfx/fart.mp3" id="4_c4kn6"]
+
+[sub_resource type="Resource" id="Resource_k58g0"]
+script = ExtResource("3_geqqb")
+tag = "fart"
+streams = Array[AudioStream]([ExtResource("4_c4kn6")])
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[resource]
+script = ExtResource("2_c4kn6")
+sound_effects = Array[ExtResource("3_geqqb")]([SubResource("Resource_k58g0")])
+metadata/_custom_type_script = "uid://bmxow6jhpxppg"

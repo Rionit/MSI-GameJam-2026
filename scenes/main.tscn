@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bo6ltlt8a2gxq"]
+
+[ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="2_0wfyh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qaqv0"]
+size = Vector3(6.685547, 1, 7.680664)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qaqv0"]
+size = Vector3(6.6623535, 1, 7.6708984)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gsyc7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0wfyh"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Main" type="Node3D" unique_id=1020647545]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=92616691]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1739576654]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="FirstPersonPlayer" parent="." unique_id=752721606 instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1742363, 0.98418355, -0.060120106)
+speed = 5.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1881650293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5158161, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=605347414]
+shape = SubResource("BoxShape3D_qaqv0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=914819883]
+mesh = SubResource("BoxMesh_qaqv0")
+
+[node name="Interactable" type="StaticBody3D" parent="." unique_id=492735213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7829928, 1.3637811, 0)
+script = ExtResource("2_0wfyh")
+metadata/_custom_type_script = "uid://d1t40y48xkdyr"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable" unique_id=905011403]
+transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
+mesh = SubResource("BoxMesh_gsyc7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=1419580967]
+transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_0wfyh")

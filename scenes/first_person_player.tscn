@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://djfagpi4wf30r"]
+
+[ext_resource type="Script" uid="uid://b266amk8an5ei" path="res://scripts/first_person_player.gd" id="1_0p46v"]
+[ext_resource type="Texture2D" uid="uid://bnk8g7td53uyy" path="res://sprites/dot_hole.png" id="2_o8i6v"]
+[ext_resource type="Shader" uid="uid://cagqp2p777hrv" path="res://shaders/vhs.gdshader" id="4_tp7c1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ofe37"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qaqv0"]
+shader = ExtResource("4_tp7c1")
+shader_parameter/scanlines_1 = 300.0
+shader_parameter/scanlines_2 = 2.0
+shader_parameter/scan_reduction = 0.1
+shader_parameter/vinnette_alpla = 0.499999988824
+shader_parameter/vinnette_inner_radius = 0.0
+shader_parameter/vinnette_outer_radius = 1.0
+
+[node name="FirstPersonPlayer" type="CharacterBody3D" unique_id=752721606]
+collision_mask = 3
+script = ExtResource("1_0p46v")
+speed = 2.5
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=992260533]
+shape = SubResource("CapsuleShape3D_ofe37")
+
+[node name="Camera" type="Node3D" parent="." unique_id=347107271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera" unique_id=1008336844]
+
+[node name="InteractRayCast3D" type="RayCast3D" parent="Camera/Camera3D" unique_id=284567336]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1.5)
+
+[node name="Crosshair" type="TextureRect" parent="." unique_id=1340775454]
+top_level = true
+z_index = 3026
+custom_minimum_size = Vector2(10, 10)
+custom_maximum_size = Vector2(10, 10)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_o8i6v")
+expand_mode = 1
+
+[node name="VHS" type="CanvasLayer" parent="." unique_id=1604721172]
+layer = 10000
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="VHS" unique_id=1280941997]
+z_index = 1000
+material = SubResource("ShaderMaterial_qaqv0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
