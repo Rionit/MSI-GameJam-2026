@@ -106,3 +106,5 @@ render_target_update_mode = 4
 [node name="FirstPersonPlayer" parent="HBoxContainer/SubViewportContainerRight/SubViewport" unique_id=1859700186 instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.11622, 0.98418355, -0.060120106)
 speed = 5.0
+
+[connection signal="interacted" from="Level/Interactable" to="HBoxContainer" method="_on_interactable_interacted"]

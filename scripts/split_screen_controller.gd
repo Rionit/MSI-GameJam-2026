@@ -70,8 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		#return
 
-	# Intercept global mouse motion and feed it directly into the right SubViewport
-	if event is InputEventMouseMotion and main_viewport:
+	if main_viewport:
 		main_viewport.push_input(event)
 
 func _on_test_button_pressed() -> void:
@@ -82,3 +81,7 @@ func _on_test_button_pressed() -> void:
 		split_ratio = 0.2
 	else:
 		split_ratio = 0.5
+
+
+func _on_interactable_interacted(interactable: Interactable) -> void:
+	print("hello there")
