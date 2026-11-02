@@ -4,3 +4,4 @@
 /scripts/testing/*
 /scenes/testing.tscn*
 *.tmp
+*.blend?
