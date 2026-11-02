@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://bhoupc1aclli0" path="res://scripts/split_screen_controller.gd" id="2_sugp2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -26,7 +27,7 @@ size = Vector3(6.6623535, 1, 7.6708984)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0wfyh"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
-[node name="Main" type="Node3D" unique_id=1020647545]
+[node name="Main" type="Node" unique_id=848906251]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=92616691]
 environment = SubResource("Environment_sugp2")
@@ -35,28 +36,69 @@ environment = SubResource("Environment_sugp2")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="FirstPersonPlayer" parent="." unique_id=752721606 instance=ExtResource("1_o5qli")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1742363, 0.98418355, -0.060120106)
-speed = 5.0
+[node name="Level" type="Node3D" parent="." unique_id=1648374199]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1881650293]
+[node name="StaticBody3D" type="StaticBody3D" parent="Level" unique_id=1881650293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5158161, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=605347414]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D" unique_id=605347414]
 shape = SubResource("BoxShape3D_qaqv0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=914819883]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D" unique_id=914819883]
 mesh = SubResource("BoxMesh_qaqv0")
 
-[node name="Interactable" type="StaticBody3D" parent="." unique_id=492735213]
+[node name="Interactable" type="StaticBody3D" parent="Level" unique_id=492735213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7829928, 1.3637811, 0)
 script = ExtResource("2_0wfyh")
 metadata/_custom_type_script = "uid://d1t40y48xkdyr"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable" unique_id=905011403]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Interactable" unique_id=905011403]
 transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
 mesh = SubResource("BoxMesh_gsyc7")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=1419580967]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Interactable" unique_id=1419580967]
 transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_0wfyh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=321357396]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_sugp2")
+split_ratio = 0.195
+
+[node name="SubViewportContainerLeft" type="SubViewportContainer" parent="HBoxContainer" unique_id=1271243271]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.195
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainerLeft" unique_id=1764969003]
+handle_input_locally = false
+size = Vector2i(373, 1080)
+render_target_update_mode = 4
+
+[node name="UnmovablePlayer" parent="HBoxContainer/SubViewportContainerLeft/SubViewport" unique_id=752721606 instance=ExtResource("1_o5qli")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.7163728, 0.98418355, -0.060120106)
+can_move = false
+speed = 5.0
+can_walk = false
+
+[node name="SubViewportContainerRight" type="SubViewportContainer" parent="HBoxContainer" unique_id=493460797]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.805
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainerRight" unique_id=964279091]
+handle_input_locally = false
+size = Vector2i(1543, 1080)
+render_target_update_mode = 4
+
+[node name="FirstPersonPlayer" parent="HBoxContainer/SubViewportContainerRight/SubViewport" unique_id=1859700186 instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1742363, 0.98418355, -0.060120106)
+speed = 5.0
