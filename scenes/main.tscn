@@ -15,13 +15,9 @@ sky_material = SubResource("ProceduralSkyMaterial_o5qli")
 [sub_resource type="Environment" id="Environment_sugp2"]
 background_mode = 2
 sky = SubResource("Sky_0wfyh")
+ssao_enabled = true
+ssil_enabled = true
 glow_enabled = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qaqv0"]
-size = Vector3(9.891113, 1, 7.680664)
-
-[sub_resource type="BoxMesh" id="BoxMesh_qaqv0"]
-size = Vector3(9.860291, 1, 7.6708984)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gsyc7"]
 
@@ -40,17 +36,6 @@ shadow_enabled = true
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Level" unique_id=1881650293]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5158161, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D" unique_id=605347414]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.407959, 0, 0)
-shape = SubResource("BoxShape3D_qaqv0")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D" unique_id=914819883]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.391144, 0, 0)
-mesh = SubResource("BoxMesh_qaqv0")
 
 [node name="Interactable" type="StaticBody3D" parent="Level" unique_id=492735213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0809646, 1.3637811, -4.337609)
@@ -104,7 +89,9 @@ size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="FirstPersonPlayer" parent="HBoxContainer/SubViewportContainerRight/SubViewport" unique_id=1859700186 instance=ExtResource("1_o5qli")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.11622, 0.98418355, -0.060120106)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.547302, 5.1239743, -0.060120106)
 speed = 5.0
 
 [connection signal="interacted" from="Level/Interactable" to="HBoxContainer" method="_on_interactable_interacted"]
+
+[editable path="map"]
