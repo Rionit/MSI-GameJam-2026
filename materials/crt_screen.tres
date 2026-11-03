@@ -1,0 +1,27 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bk5xb1qh5vgx2"]
+
+[ext_resource type="Shader" uid="uid://cagqp2p777hrv" path="res://shaders/vhs.gdshader" id="1_h7dsp"]
+
+[resource]
+shader = ExtResource("1_h7dsp")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(1280, 960)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 5.0000002375
+shader_parameter/roll_variation = 3.43400015985512
+shader_parameter/distort_intensity = 0.20000000298023
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.30000001425
+shader_parameter/aberration = 0.05000004987499995
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 1.0
