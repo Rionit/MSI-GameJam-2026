@@ -40,6 +40,9 @@ func _update_screens() -> void:
 				_deactivate_screen(mesh_instance, pair)
 
 func _activate_screen(mesh_instance: MeshInstance3D, pair: VideoMeshPair) -> void:
+	# 0. Wait a bit before splitscreen starts TODO: this is a bit dirty but whatever
+	await get_tree().create_timer(1.0).timeout
+	
 	# 1. Create the VideoStreamPlayer node and assign the stream
 	var video_player := VideoStreamPlayer.new()
 	video_player.name = "VideoPlayer"

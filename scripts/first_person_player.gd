@@ -45,6 +45,7 @@ const DOT_HOLE = preload("uid://bnk8g7td53uyy")
 @export var camera_limit_direction: Vector3 = Vector3(0, 0, -1)
 
 @export_category("Interaction")
+@export var can_interact: bool = true
 @export var current_interaction: Interactable = null
 @onready var crosshair: TextureRect = $Crosshair
 @onready var interact_ray_cast_3d: RayCast3D = %InteractRayCast3D
@@ -61,6 +62,8 @@ func _ready() -> void:
 	show_mouse(false)
 	
 func _physics_process(delta: float) -> void:
+	crosshair.visible = can_interact
+	
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
 	
@@ -74,7 +77,8 @@ func _physics_process(delta: float) -> void:
 	interact_ray_cast_3d.force_raycast_update()
 	
 	# Interact
-	check_interactions()
+	if can_interact:
+		check_interactions()
 	
 	# Add the gravity.
 	add_gravity(delta)
