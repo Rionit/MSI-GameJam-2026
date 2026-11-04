@@ -18,13 +18,21 @@ func _ready() -> void:
 	pass
 
 func on_screen_connected():
-	split_screen.split_ratio = remap(screen_manager.active_screen_count + 1, 
-									0, screen_manager.pairs.size(),
-									0.0, 1.0)
 	screen_manager.active_screen_count += 1
+	_update_split_ratio()
 
 func on_screen_disconnected():
 	screen_manager.active_screen_count -= 1
-	split_screen.split_ratio = remap(screen_manager.active_screen_count, 
-									0, screen_manager.pairs.size(),
-									0.0, 1.0)
+	_update_split_ratio()
+
+func _update_split_ratio() -> void:
+	var max_screens = screen_manager.pairs.size()
+	
+	if screen_manager.active_screen_count >= max_screens:
+		split_screen.split_ratio = 1.0
+	else:
+		split_screen.split_ratio = remap(
+			screen_manager.active_screen_count, 
+			0, max_screens,
+			0.0, 0.9
+		)

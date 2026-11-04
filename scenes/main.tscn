@@ -86,9 +86,18 @@ crt_shader = ExtResource("6_choun")
 crt_turn_on = ExtResource("11_jbj1t")
 crt_turn_off = ExtResource("12_muem4")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=957341706]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30327964, 2.4453847, -0.11945689)
+[node name="Lights" type="Node3D" parent="." unique_id=1711867263]
+
+[node name="CenterLight" type="OmniLight3D" parent="Lights" unique_id=957341706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0584571, 2.227406, -0.11945689)
+shadow_enabled = true
 omni_range = 15.560613
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights" unique_id=712558740]
+transform = Transform3D(-4.371139e-08, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 1, 3.090862e-08, -3.090862e-08, -24.726822, 8.273178, 1.1940974e-08)
+shadow_enabled = true
+spot_range = 9.72195
+spot_angle = 45.42925
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
