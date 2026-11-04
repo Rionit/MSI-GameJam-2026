@@ -1,27 +1,71 @@
 [gd_scene format=3 uid="uid://bo6ltlt8a2gxq"]
 
 [ext_resource type="PackedScene" uid="uid://b85cvdjn1nrdi" path="res://models/map.blend" id="1_jyhfs"]
+[ext_resource type="Script" uid="uid://ceb4oqhyn0hg" path="res://scripts/game_manager.gd" id="1_muem4"]
 [ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://ch8mjawwdfc7j" path="res://scripts/screen_manager.gd" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://30gbkac6ebgc" path="res://scripts/video_mesh_pair.gd" id="2_o6xl0"]
 [ext_resource type="Script" uid="uid://bhoupc1aclli0" path="res://scripts/split_screen_controller.gd" id="2_sugp2"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_0wfyh"]
-sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+[ext_resource type="VideoStream" uid="uid://dp2irokjycfum" path="res://videos/any_colors.ogv" id="3_tipki"]
+[ext_resource type="VideoStream" uid="uid://ciuup5oxpfcpo" path="res://videos/9x16_math.ogv" id="4_85g3d"]
+[ext_resource type="VideoStream" uid="uid://q08lwb57g8qx" path="res://videos/32x5_eyes.ogv" id="5_choun"]
+[ext_resource type="VideoStream" uid="uid://diilavvwd1onf" path="res://videos/16x9_code.ogv" id="6_a8y0u"]
+[ext_resource type="Material" uid="uid://bk5xb1qh5vgx2" path="res://materials/crt_screen.tres" id="6_choun"]
+[ext_resource type="VideoStream" uid="uid://cwj5dv1pbx4uq" path="res://videos/1x2_painting.ogv" id="7_jkv2x"]
+[ext_resource type="VideoStream" uid="uid://c2ybckp5a51tm" path="res://videos/2x1_war.ogv" id="8_jbj1t"]
+[ext_resource type="VideoStream" uid="uid://bo48c8mhkcltw" path="res://videos/4x3_kubik.ogv" id="9_muem4"]
+[ext_resource type="VideoStream" uid="uid://c2b115am33t5c" path="res://videos/crt-on.ogv" id="11_jbj1t"]
+[ext_resource type="VideoStream" uid="uid://cy7tcpkdqofcu" path="res://videos/crt-off.ogv" id="12_muem4"]
 
 [sub_resource type="Environment" id="Environment_sugp2"]
-background_mode = 2
-sky = SubResource("Sky_0wfyh")
+ambient_light_source = 2
+ambient_light_color = Color(0.017732391, 0.017732391, 0.01773239, 1)
+ssao_enabled = true
+ssil_enabled = true
 glow_enabled = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qaqv0"]
-size = Vector3(9.891113, 1, 7.680664)
+[sub_resource type="Resource" id="Resource_tbgi4"]
+script = ExtResource("2_o6xl0")
+mesh_path = NodePath("../map/1x1_screen")
+video_stream = ExtResource("3_tipki")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
-[sub_resource type="BoxMesh" id="BoxMesh_qaqv0"]
-size = Vector3(9.860291, 1, 7.6708984)
+[sub_resource type="Resource" id="Resource_o6xl0"]
+script = ExtResource("2_o6xl0")
+mesh_path = NodePath("../map/9x16_screen")
+video_stream = ExtResource("4_85g3d")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("2_o6xl0")
+mesh_path = NodePath("../map/32x5_screen")
+video_stream = ExtResource("5_choun")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_2imv7"]
+script = ExtResource("2_o6xl0")
+mesh_path = NodePath("../map/16x9_screen")
+video_stream = ExtResource("6_a8y0u")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_814bv"]
+script = ExtResource("2_o6xl0")
+mesh_path = NodePath("../map/1x2_screen")
+video_stream = ExtResource("7_jkv2x")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_6up7u"]
+script = ExtResource("2_o6xl0")
+mesh_path = NodePath("../map/2x1_screen")
+video_stream = ExtResource("8_jbj1t")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_cfesm"]
+script = ExtResource("2_o6xl0")
+mesh_path = NodePath("../map/4x3_screen")
+video_stream = ExtResource("9_muem4")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
 [sub_resource type="BoxMesh" id="BoxMesh_gsyc7"]
 
@@ -29,28 +73,35 @@ size = Vector3(9.860291, 1, 7.6708984)
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [node name="Main" type="Node" unique_id=848906251]
+script = ExtResource("1_muem4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=92616691]
 environment = SubResource("Environment_sugp2")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1739576654]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+[node name="ScreenManager" type="Node" parent="." unique_id=131894382]
+unique_name_in_owner = true
+script = ExtResource("1_tbgi4")
+pairs = Array[ExtResource("2_o6xl0")]([SubResource("Resource_tbgi4"), SubResource("Resource_o6xl0"), SubResource("Resource_tipki"), SubResource("Resource_2imv7"), SubResource("Resource_814bv"), SubResource("Resource_6up7u"), SubResource("Resource_cfesm")])
+crt_shader = ExtResource("6_choun")
+crt_turn_on = ExtResource("11_jbj1t")
+crt_turn_off = ExtResource("12_muem4")
+
+[node name="Lights" type="Node3D" parent="." unique_id=1711867263]
+
+[node name="CenterLight" type="OmniLight3D" parent="Lights" unique_id=957341706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0584571, 2.227406, -0.11945689)
 shadow_enabled = true
+omni_range = 15.560613
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights" unique_id=712558740]
+transform = Transform3D(-4.371139e-08, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 1, 3.090862e-08, -3.090862e-08, -24.726822, 8.273178, 1.1940974e-08)
+shadow_enabled = true
+spot_range = 9.72195
+spot_angle = 45.42925
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Level" unique_id=1881650293]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5158161, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D" unique_id=605347414]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.407959, 0, 0)
-shape = SubResource("BoxShape3D_qaqv0")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D" unique_id=914819883]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.391144, 0, 0)
-mesh = SubResource("BoxMesh_qaqv0")
 
 [node name="Interactable" type="StaticBody3D" parent="Level" unique_id=492735213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0809646, 1.3637811, -4.337609)
@@ -65,7 +116,8 @@ mesh = SubResource("BoxMesh_gsyc7")
 transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_0wfyh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=321357396]
+[node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -73,38 +125,50 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 script = ExtResource("2_sugp2")
+split_ratio = 0.0
 
-[node name="SubViewportContainerLeft" type="SubViewportContainer" parent="HBoxContainer" unique_id=1271243271]
+[node name="SubViewportContainerLeft" type="SubViewportContainer" parent="SplitScreen" unique_id=1271243271]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.0001
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainerLeft" unique_id=1764969003]
+[node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerLeft" unique_id=1764969003]
 handle_input_locally = false
-size = Vector2i(958, 1080)
+size = Vector2i(2, 1080)
 render_target_update_mode = 4
 
-[node name="UnmovablePlayer" parent="HBoxContainer/SubViewportContainerLeft/SubViewport" unique_id=752721606 instance=ExtResource("1_o5qli")]
+[node name="UnmovablePlayer" parent="SplitScreen/SubViewportContainerLeft/SubViewport" unique_id=752721606 instance=ExtResource("1_o5qli")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, 0)
 can_move = false
 speed = 5.0
 can_walk = false
+can_interact = false
 
-[node name="SubViewportContainerRight" type="SubViewportContainer" parent="HBoxContainer" unique_id=493460797]
+[node name="SubViewportContainerRight" type="SubViewportContainer" parent="SplitScreen" unique_id=493460797]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainerRight" unique_id=964279091]
+[node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerRight" unique_id=964279091]
 handle_input_locally = false
-size = Vector2i(958, 1080)
+size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="FirstPersonPlayer" parent="HBoxContainer/SubViewportContainerRight/SubViewport" unique_id=1859700186 instance=ExtResource("1_o5qli")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.11622, 0.98418355, -0.060120106)
+[node name="FirstPersonPlayer" parent="SplitScreen/SubViewportContainerRight/SubViewport" unique_id=1859700186 instance=ExtResource("1_o5qli")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.547302, 5.1239743, -0.060120106)
 speed = 5.0
 
-[connection signal="interacted" from="Level/Interactable" to="HBoxContainer" method="_on_interactable_interacted"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer" unique_id=1190100453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+light_energy = 0.001
+omni_range = 1.5
+omni_attenuation = 10.0
+
+[connection signal="interacted" from="Level/Interactable" to="SplitScreen" method="_on_interactable_interacted"]
+
+[editable path="map"]
+[editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]

@@ -1,5 +1,6 @@
 @tool
 extends HBoxContainer
+class_name SplitScreen
 
 @onready var viewport_left: SubViewportContainer = $SubViewportContainerLeft
 @onready var viewport_right: SubViewportContainer = $SubViewportContainerRight

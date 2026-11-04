@@ -39,7 +39,13 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:GeneratedScreenBoxes": {
+"node/node_type": "MeshInstance3D"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
@@ -49,7 +55,7 @@ blender/nodes/modifiers=1
 blender/meshes/vertex_colors=1
 blender/meshes/uvs=true
 blender/meshes/normals=true
-blender/meshes/export_geometry_nodes_instances=false
+blender/meshes/export_geometry_nodes_instances=true
 blender/meshes/gpu_instances=false
 blender/meshes/tangents=true
 blender/meshes/skins=2
