@@ -20,6 +20,7 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 // to "vec2 uv = warp(SCREEN_UV);" on line 98.
 uniform bool overlay = false;
 
+uniform float time_offset = 0.0;
 uniform float scanlines_opacity : hint_range(0.0, 1.0) = 0.4;
 uniform float scanlines_width : hint_range(0.0, 0.5) = 0.25;
 uniform float grille_opacity : hint_range(0.0, 1.0) = 0.3;
@@ -100,7 +101,7 @@ void fragment()
 	vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV); // Warp the uv. uv will be used in most cases instead of UV to keep the warping
 	vec2 text_uv = uv;
 	vec2 roll_uv = vec2(0.0);
-	float time = roll ? TIME : 0.0;
+	float time = roll ? (TIME + time_offset) : 0.0;
 	
 
 	// Pixelate the texture based on the given resolution.
@@ -184,14 +185,14 @@ void fragment()
 	if (noise_opacity > 0.0)
 	{
 		// Generate a noise pattern that is very stretched horizontally, and animate it with noise_speed
-		float noise = smoothstep(0.4, 0.5, noise(uv * vec2(2.0, 200.0) + vec2(10.0, (TIME * (noise_speed))) ) );
+		float noise = smoothstep(0.4, 0.5, noise(uv * vec2(2.0, 200.0) + vec2(10.0, ((TIME + time_offset) * (noise_speed))) ) );
 		
 		// We use roll_line (set above) to define how big the noise should be vertically (multiplying cuts off all black parts).
 		// We also add in some basic noise with random() to break up the noise pattern above. The noise is sized according to 
 		// the resolution value set in the inspector. If you don't like this look you can 
 		// change "ceil(uv * resolution) / resolution" to only "uv" to make it less pixelated. Or multiply resolution with som value
 		// greater than 1.0 to make them smaller.
-		roll_line *= noise * scanlines * clamp(random((ceil(uv * resolution) / resolution) + vec2(TIME * 0.8, 0.0)).x + 0.8, 0.0, 1.0);
+		roll_line *= noise * scanlines * clamp(random((ceil(uv * resolution) / resolution) + vec2((TIME + time_offset) * 0.8, 0.0)).x + 0.8, 0.0, 1.0);
 		// Add it to the texture based on noise_opacity
 		text.rgb = clamp(mix(text.rgb, text.rgb + roll_line, noise_opacity), vec3(0.0), vec3(1.0));
 	}
@@ -199,7 +200,7 @@ void fragment()
 	// Apply static noise by generating it over the whole screen in the same way as above
 	if (static_noise_intensity > 0.0)
 	{
-		text.rgb += clamp(random((ceil(uv * resolution) / resolution) + fract(TIME)).x, 0.0, 1.0) * static_noise_intensity;
+		text.rgb += clamp(random((ceil(uv * resolution) / resolution) + fract((TIME + time_offset))).x, 0.0, 1.0) * static_noise_intensity;
 	}
 	
 	// Apply a black border to hide imperfections caused by the warping.

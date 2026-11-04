@@ -14,6 +14,8 @@
 [ext_resource type="VideoStream" uid="uid://cwj5dv1pbx4uq" path="res://videos/1x2_painting.ogv" id="7_jkv2x"]
 [ext_resource type="VideoStream" uid="uid://c2ybckp5a51tm" path="res://videos/2x1_war.ogv" id="8_jbj1t"]
 [ext_resource type="VideoStream" uid="uid://bo48c8mhkcltw" path="res://videos/4x3_kubik.ogv" id="9_muem4"]
+[ext_resource type="VideoStream" uid="uid://c2b115am33t5c" path="res://videos/crt-on.ogv" id="11_jbj1t"]
+[ext_resource type="VideoStream" uid="uid://cy7tcpkdqofcu" path="res://videos/crt-off.ogv" id="12_muem4"]
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 background_mode = 1
@@ -65,55 +67,6 @@ mesh_path = NodePath("../map/4x3_screen")
 video_stream = ExtResource("9_muem4")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_a8y0u"]
-viewport_path = NodePath("map/1x1_screen/ScreenViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkv2x"]
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_a8y0u")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_jbj1t"]
-viewport_path = NodePath("map/1x2_screen/ScreenViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muem4"]
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_jbj1t")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_dp3eg"]
-viewport_path = NodePath("map/2x1_screen/ScreenViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ld40"]
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_dp3eg")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_gqmmt"]
-viewport_path = NodePath("map/4x3_screen/ScreenViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yc10j"]
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_gqmmt")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_jscy8"]
-viewport_path = NodePath("map/9x16_screen/ScreenViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pm3ni"]
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_jscy8")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_y6deb"]
-viewport_path = NodePath("map/16x9_screen/ScreenViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og1vs"]
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_y6deb")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_2wyq8"]
-viewport_path = NodePath("map/32x5_screen/ScreenViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxglm"]
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_2wyq8")
-
 [sub_resource type="BoxMesh" id="BoxMesh_gsyc7"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0wfyh"]
@@ -127,31 +80,11 @@ environment = SubResource("Environment_sugp2")
 [node name="ScreenManager" type="Node" parent="." unique_id=131894382]
 script = ExtResource("1_tbgi4")
 pairs = Array[ExtResource("2_o6xl0")]([SubResource("Resource_tbgi4"), SubResource("Resource_o6xl0"), SubResource("Resource_tipki"), SubResource("Resource_2imv7"), SubResource("Resource_814bv"), SubResource("Resource_6up7u"), SubResource("Resource_cfesm")])
-active_screen_count = 7
 crt_shader = ExtResource("6_choun")
+crt_turn_on = ExtResource("11_jbj1t")
+crt_turn_off = ExtResource("12_muem4")
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
-
-[node name="1x1_screen" parent="map" index="0" unique_id=414006981]
-material_override = SubResource("StandardMaterial3D_jkv2x")
-
-[node name="1x2_screen" parent="map" index="1" unique_id=1873624345]
-material_override = SubResource("StandardMaterial3D_muem4")
-
-[node name="2x1_screen" parent="map" index="2" unique_id=1763163303]
-material_override = SubResource("StandardMaterial3D_0ld40")
-
-[node name="4x3_screen" parent="map" index="3" unique_id=1855434909]
-material_override = SubResource("StandardMaterial3D_yc10j")
-
-[node name="9x16_screen" parent="map" index="4" unique_id=104371006]
-material_override = SubResource("StandardMaterial3D_pm3ni")
-
-[node name="16x9_screen" parent="map" index="5" unique_id=1641881759]
-material_override = SubResource("StandardMaterial3D_og1vs")
-
-[node name="32x5_screen" parent="map" index="6" unique_id=1052921641]
-material_override = SubResource("StandardMaterial3D_vxglm")
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
 

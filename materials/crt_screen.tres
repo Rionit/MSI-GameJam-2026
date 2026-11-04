@@ -5,6 +5,7 @@
 [resource]
 shader = ExtResource("1_h7dsp")
 shader_parameter/overlay = false
+shader_parameter/time_offset = 0.0
 shader_parameter/scanlines_opacity = 0.0
 shader_parameter/scanlines_width = 0.25
 shader_parameter/grille_opacity = 0.0
@@ -14,7 +15,7 @@ shader_parameter/roll = true
 shader_parameter/roll_speed = 1.0
 shader_parameter/roll_size = 5.0000002375
 shader_parameter/roll_variation = 3.43400015985512
-shader_parameter/distort_intensity = 0.20000000298023
+shader_parameter/distort_intensity = 0.10000000475
 shader_parameter/noise_opacity = 0.4
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.30000001425

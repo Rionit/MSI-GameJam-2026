@@ -12,6 +12,8 @@ class_name ScreenManager
 			_update_screens()
 
 @export var crt_shader : ShaderMaterial
+@export var crt_turn_on : VideoStream
+@export var crt_turn_off : VideoStream
 
 func _ready() -> void:
 	# Ensure initial value is clamped and set up screens on start
@@ -35,15 +37,21 @@ func _update_screens() -> void:
 		# If beyond the active count, turn it off (if currently on)
 		else:
 			if mesh_instance.has_node("ScreenViewport"):
-				_deactivate_screen(mesh_instance)
+				_deactivate_screen(mesh_instance, pair)
 
 func _activate_screen(mesh_instance: MeshInstance3D, pair: VideoMeshPair) -> void:
 	# 1. Create the VideoStreamPlayer node and assign the stream
 	var video_player := VideoStreamPlayer.new()
 	video_player.name = "VideoPlayer"
-	video_player.stream = pair.video_stream
+	
+	if crt_turn_on:
+		video_player.stream = crt_turn_on
+		video_player.loop = false
+	else:
+		video_player.stream = pair.video_stream
+		video_player.loop = true
+		
 	video_player.autoplay = true
-	video_player.loop = true
 	video_player.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	
 	# 2. Extract the video resolution dynamically from the player's video texture
@@ -71,8 +79,12 @@ func _activate_screen(mesh_instance: MeshInstance3D, pair: VideoMeshPair) -> voi
 		var mat = crt_shader.duplicate() as ShaderMaterial
 		mat.set_shader_parameter("resolution", Vector2(video_size))
 		
+		# Give each screen a unique random time offset so their scanlines are desynchronized
+		mat.set_shader_parameter("time_offset", randf() * 100.0)
+		
 		var tween = create_tween()
-		tween.tween_method(set_shader_parameter_value.bind("static_noise_intensity", mat), 1.0, 0.3, 0.3)
+		tween.tween_interval(1.0) # wait for crt turn on to finish
+		tween.tween_method(set_shader_parameter_value.bind("static_noise_intensity", mat), 1.0, 0.3, 0.5)
 		tween.parallel().tween_method(set_shader_parameter_value.bind("vignette_intensity", mat), -1.0, 0.4, 0.5)
 		tween.parallel().tween_method(
 			set_shader_parameter_value.bind("resolution", mat), 
@@ -80,7 +92,6 @@ func _activate_screen(mesh_instance: MeshInstance3D, pair: VideoMeshPair) -> voi
 			Vector2(video_size.x, video_size.y), 
 			5.0
 		)
-		
 		
 		color_rect.material = mat
 		viewport.add_child(color_rect)
@@ -98,14 +109,64 @@ func _activate_screen(mesh_instance: MeshInstance3D, pair: VideoMeshPair) -> voi
 	# 6. Apply to mesh
 	mesh_instance.material_override = material
 	
+	# Once the turn-on video finishes, switch to mesh pair video and update viewport/shader size
+	if crt_turn_on:
+		video_player.finished.connect(func() -> void:
+			if not is_instance_valid(video_player):
+				return
+			video_player.stream = pair.video_stream
+			video_player.loop = true
+			video_player.play()
+			
+			# Resize viewport and shader to match the new video stream dimensions
+			_update_viewport_resolution(video_player, viewport)
+		, CONNECT_ONE_SHOT)
+
 	# 7. Play video
 	video_player.play()
+
+func _update_viewport_resolution(video_player: VideoStreamPlayer, viewport: SubViewport) -> void:
+	# Give the video stream one frame to load its texture dimensions after changing streams
+	await get_tree().process_frame
+	if not is_instance_valid(video_player) or not is_instance_valid(viewport):
+		return
+		
+	var new_size := Vector2i(1280, 720)
+	var video_texture := video_player.get_video_texture()
+	if video_texture and video_texture.get_size() != Vector2.ZERO:
+		new_size = Vector2i(video_texture.get_size())
+		
+	viewport.size = new_size
+	
+	var color_rect = viewport.get_node_or_null("CRTFilter") as ColorRect
+	if color_rect and color_rect.material is ShaderMaterial:
+		var mat = color_rect.material as ShaderMaterial
+		mat.set_shader_parameter("resolution", Vector2(new_size))
 
 func set_shader_parameter_value(value, parameter: String, material: ShaderMaterial):
 	material.set_shader_parameter(parameter, value)
 
-func _deactivate_screen(mesh_instance: MeshInstance3D) -> void:
+func _deactivate_screen(mesh_instance: MeshInstance3D, pair: VideoMeshPair = null) -> void:
 	var viewport = mesh_instance.get_node_or_null("ScreenViewport")
-	if viewport:
+	if not viewport:
+		return
+		
+	var video_player = viewport.get_node_or_null("VideoPlayer") as VideoStreamPlayer
+	
+	if crt_turn_off and video_player and video_player.stream != crt_turn_off:
+		video_player.loop = false
+		video_player.stream = crt_turn_off
+		
+		# If turn_off has a different resolution, update viewport size before playing it
+		_update_viewport_resolution(video_player, viewport)
+		video_player.play()
+		
+		video_player.finished.connect(func() -> void:
+			if is_instance_valid(viewport):
+				viewport.queue_free()
+			if is_instance_valid(mesh_instance):
+				mesh_instance.material_override = null
+		, CONNECT_ONE_SHOT)
+	else:
 		viewport.queue_free()
-	mesh_instance.material_override = null
+		mesh_instance.material_override = null
