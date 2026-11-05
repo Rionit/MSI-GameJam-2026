@@ -21,7 +21,7 @@
 [ext_resource type="Material" uid="uid://djo00u2we4r87" path="res://materials/outline.tres" id="16_to470"]
 [ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="17_2d6mp"]
 [ext_resource type="PackedScene" uid="uid://bdx4tfrtagqbx" path="res://models/server_w_laptop.blend" id="19_to470"]
-[ext_resource type="Material" uid="uid://cn2h7fny8gqhy" path="res://materials/outline_laptop.tres" id="20_bjbt1"]
+[ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="20_bjbt1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -87,12 +87,6 @@ material = ExtResource("15_5xvtg")
 [sub_resource type="CameraTexture" id="CameraTexture_nkgdn"]
 camera_feed_id = 1
 which_feed = 1
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_d8lsv"]
-size = Vector3(0.930542, 3.0534668, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2d5gv"]
-size = Vector3(0.7746582, 0.50512695, 0.74658203)
 
 [node name="Main" type="Node" unique_id=848906251]
 script = ExtResource("1_nkgdn")
@@ -190,26 +184,8 @@ light_energy = 4.361
 
 [node name="server_w_laptop" parent="Level" unique_id=1542370153 instance=ExtResource("19_to470")]
 
-[node name="Server Matrix Minigame" type="StaticBody3D" parent="Level" unique_id=1811762919 node_paths=PackedStringArray("mesh_instance")]
-transform = Transform3D(-0.011953227, 0, 0.99992853, 0, 1, 0, -0.99992853, 0, -0.011953227, -15.651253, 4.0412173, -2.2801237)
-script = ExtResource("15_lkqwf")
-outline_material = ExtResource("20_bjbt1")
-mesh_instance = NodePath("server_w_laptop/server/laptop")
-metadata/_custom_type_script = "uid://d1t40y48xkdyr"
-
-[node name="server_w_laptop" parent="Level/Server Matrix Minigame" unique_id=576822356 instance=ExtResource("19_to470")]
-
-[node name="collider" parent="Level/Server Matrix Minigame/server_w_laptop/server" parent_id_path=PackedInt32Array(576822356, 1333220698) index="0" unique_id=1571712063]
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Server Matrix Minigame" unique_id=136703043]
-transform = Transform3D(1.0000213, 0, -1.238659e-07, 0, 1, 0, 1.238659e-07, 0, 1.0000213, -0.034729958, 1.0267334, 0)
-shape = SubResource("BoxShape3D_d8lsv")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Level/Server Matrix Minigame" unique_id=473115687]
-transform = Transform3D(1.0000275, 0, -1.611188e-07, 0, 1, 0, 1.611188e-07, 0, 1.0000275, -0.028171778, 1.4449973, -0.794714)
-shape = SubResource("BoxShape3D_2d5gv")
+[node name="Server Matrix Minigame" parent="Level" unique_id=2068626685 instance=ExtResource("20_bjbt1")]
+transform = Transform3D(-0.011953231, 0, 0.9999285, 0, 1, 0, -0.9999285, 0, -0.011953231, -15.651253, 4.0412173, -2.2801237)
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
@@ -264,5 +240,4 @@ omni_range = 1.5
 omni_attenuation = 10.0
 
 [editable path="map"]
-[editable path="Level/Server Matrix Minigame/server_w_laptop"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]

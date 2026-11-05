@@ -11,6 +11,7 @@ class_name MatrixMinigame
 @export var num_cells_to_select : int
 
 func enter_game() -> void:
+	print("Entering Matrix Minigame")
 	for row in grid:
 		for cell in row:
 			cell.activate()
@@ -51,6 +52,7 @@ func _ready() -> void:
 			else:
 				blocked_cells_in_row[x].append(rand_blocked_cell_y)
 				y += 1
+	self.visible = false
 
 	for x in range(grid_size):
 		grid.append([])
@@ -58,7 +60,7 @@ func _ready() -> void:
 			var cell = cell_scene.instantiate()
 			cell.setup_cell(y in blocked_cells_in_row[x], Vector2i(x, y))
 			add_child(cell)
-			cell.position = Vector3(0, y * 1, x*1)
+			cell.position = Vector3( x*1, y * 1, 0)
 
 			cell.interacted.connect(_on_cell_interacted)
 			cell.deactivate()

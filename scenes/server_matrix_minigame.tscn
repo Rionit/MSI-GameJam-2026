@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ci27p53exo2b1"]
+
+[ext_resource type="Script" uid="uid://vsmlnsfpq43o" path="res://scripts/minigame_server.gd" id="1_qyrgb"]
+[ext_resource type="PackedScene" uid="uid://bdx4tfrtagqbx" path="res://models/server_w_laptop.blend" id="2_itj8a"]
+[ext_resource type="PackedScene" uid="uid://cg16nauw0oot2" path="res://scenes/matrix_minigame.tscn" id="3_4v4og"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjbt1"]
+cull_mode = 1
+shading_mode = 0
+grow = true
+grow_amount = 0.01
+stencil_flags = 2
+stencil_color = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d8lsv"]
+size = Vector3(0.930542, 3.0534668, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2d5gv"]
+size = Vector3(0.7746582, 0.50512695, 0.74658203)
+
+[node name="Server Matrix Minigame" type="StaticBody3D" unique_id=2068626685 node_paths=PackedStringArray("minigame", "colliders", "mesh_instance")]
+transform = Transform3D(-0.011953227, 0, 0.99992853, 0, 1, 0, -0.99992853, 0, -0.011953227, 0, 0, 0)
+script = ExtResource("1_qyrgb")
+minigame = NodePath("server_w_laptop/server/laptop/MatrixMinigame")
+colliders = [NodePath("CollisionShape3D"), NodePath("CollisionShape3D2")]
+outline_material = SubResource("StandardMaterial3D_bjbt1")
+mesh_instance = NodePath("server_w_laptop/server/laptop")
+metadata/_custom_type_script = "uid://vsmlnsfpq43o"
+
+[node name="server_w_laptop" parent="." unique_id=1542370153 instance=ExtResource("2_itj8a")]
+
+[node name="collider" parent="server_w_laptop/server" parent_id_path=PackedInt32Array(1542370153, 1333220698) index="0" unique_id=1571712063]
+collision_layer = 0
+collision_mask = 0
+
+[node name="MatrixMinigame" parent="server_w_laptop/server/laptop" parent_id_path=PackedInt32Array(1542370153, 991571895) index="0" unique_id=2015886342 instance=ExtResource("3_4v4og")]
+transform = Transform3D(-0.04999884, 0.00034906302, -4.3711417e-09, 0.0003490634, 0.049998783, 0, 4.3710373e-09, -3.051606e-11, -0.05000003, 0.37827992, 0.14594412, 0.020271301)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=633658670]
+transform = Transform3D(1.0000213, 0, -1.238659e-07, 0, 1, 0, 1.238659e-07, 0, 1.0000213, -0.034729958, 1.0267334, 0)
+shape = SubResource("BoxShape3D_d8lsv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=2030711319]
+transform = Transform3D(1.0000275, 0, -1.611188e-07, 0, 1, 0, 1.611188e-07, 0, 1.0000275, -0.028171778, 1.4449973, -0.794714)
+shape = SubResource("BoxShape3D_2d5gv")
+
+[editable path="server_w_laptop"]
