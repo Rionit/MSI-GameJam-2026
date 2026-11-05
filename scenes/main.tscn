@@ -17,6 +17,7 @@
 [ext_resource type="VideoStream" uid="uid://bo48c8mhkcltw" path="res://videos/4x3_kubik.ogv" id="9_muem4"]
 [ext_resource type="VideoStream" uid="uid://c2b115am33t5c" path="res://videos/crt-on.ogv" id="11_jbj1t"]
 [ext_resource type="VideoStream" uid="uid://cy7tcpkdqofcu" path="res://videos/crt-off.ogv" id="12_muem4"]
+[ext_resource type="Script" uid="uid://c7qvdd4m518kg" path="res://scripts/minigame_viewport.gd" id="15_dp3eg"]
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 ambient_light_source = 2
@@ -67,6 +68,9 @@ mesh_path = NodePath("../map/4x3_screen")
 video_stream = ExtResource("9_muem4")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_gsyc7"]
+radius = 0.92199135
+
 [sub_resource type="BoxMesh" id="BoxMesh_gsyc7"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0wfyh"]
@@ -100,6 +104,36 @@ spot_range = 9.72195
 spot_angle = 45.42925
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
+
+[node name="MinigameViewport" type="SubViewport" parent="map/server_rack/server_laptop/server_laptop_screen" parent_id_path=PackedInt32Array(648918426, 1288431242) index="0" unique_id=1795838499]
+transparent_bg = true
+size = Vector2i(1280, 720)
+script = ExtResource("15_dp3eg")
+
+[node name="Minigame" type="Control" parent="map/server_rack/server_laptop/server_laptop_screen/MinigameViewport" unique_id=1057472893]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MinigameUI" type="ColorRect" parent="map/server_rack/server_laptop/server_laptop_screen/MinigameViewport/Minigame" unique_id=1809176812]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 100.0
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Interactable" type="StaticBody3D" parent="map/server_rack/server_laptop/server_laptop_screen" parent_id_path=PackedInt32Array(648918426, 1288431242) index="1" unique_id=1200072151 node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("2_0wfyh")
+mesh_instance = NodePath("..")
+metadata/_custom_type_script = "uid://d1t40y48xkdyr"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/server_rack/server_laptop/server_laptop_screen/Interactable" unique_id=986947791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23501675, 0, 0)
+shape = SubResource("SphereShape3D_gsyc7")
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
 
