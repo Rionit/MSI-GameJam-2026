@@ -17,9 +17,15 @@
 [ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="15_lkqwf"]
 [ext_resource type="PackedScene" uid="uid://cg16nauw0oot2" path="res://scenes/matrix_minigame.tscn" id="16_ainhg"]
 [ext_resource type="Script" uid="uid://bhoupc1aclli0" path="res://scripts/split_screen_controller.gd" id="16_itxy7"]
+[ext_resource type="Material" uid="uid://d0wi81y20ldid" path="res://materials/outline.tres" id="16_to470"]
 [ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="17_2d6mp"]
-[ext_resource type="PackedScene" uid="uid://bdx4tfrtagqbx" path="res://models/server_w_laptop.blend" id="19_to470"]
+[ext_resource type="Script" uid="uid://vsmlnsfpq43o" path="res://scripts/minigame_server.gd" id="18_to470"]
+[ext_resource type="PackedScene" uid="uid://doagyqw3trifm" path="res://models/server_w_breakers.blend" id="19_bjbt1"]
+[ext_resource type="Script" uid="uid://cq82pq61itemp" path="res://scripts/minigames/breakers/breaker.gd" id="20_aqtfj"]
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="20_bjbt1"]
+[ext_resource type="Material" uid="uid://bbptyvtgk0cd4" path="res://materials/emissive_red.tres" id="21_vusky"]
+[ext_resource type="Material" uid="uid://dkmwl6wuwbb60" path="res://materials/emissive_green.tres" id="22_ytn4r"]
+[ext_resource type="Script" uid="uid://chk8b8otvioxh" path="res://scripts/minigames/breakers/breakers_minigame.gd" id="24_5atrm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -147,6 +153,12 @@ material = SubResource("StandardMaterial3D_to470")
 camera_feed_id = 1
 which_feed = 1
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_d8lsv"]
+size = Vector3(0.060546875, 0.06542969, 0.1171875)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2d5gv"]
+size = Vector3(0.7753906, 0.31054688, 0.2602539)
+
 [node name="Main" type="Node" unique_id=848906251]
 script = ExtResource("1_nkgdn")
 
@@ -241,10 +253,115 @@ light_energy = 4.361
 transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -97.84169, 12.776395, 4.6025653)
 light_energy = 4.361
 
-[node name="server_w_laptop" parent="Level" unique_id=1542370153 instance=ExtResource("19_to470")]
-
 [node name="Server Matrix Minigame" parent="Level" unique_id=2068626685 instance=ExtResource("20_bjbt1")]
 transform = Transform3D(-0.011953227, 0, 0.99992853, 0, 1, 0, -0.99992853, 0, -0.011953227, -15.59583, 4, -1.8240677)
+
+[node name="MinigameServer" type="StaticBody3D" parent="Level" unique_id=348392461 node_paths=PackedStringArray("minigame", "collider")]
+collision_mask = 0
+script = ExtResource("18_to470")
+minigame = NodePath("BreakersMinigame")
+collider = NodePath("CollisionShape3D")
+metadata/_custom_type_script = "uid://vsmlnsfpq43o"
+
+[node name="server_w_breakers" parent="Level/MinigameServer" unique_id=1785680752 instance=ExtResource("19_bjbt1")]
+
+[node name="Breaker" type="StaticBody3D" parent="Level/MinigameServer/server_w_breakers/server/breaker" parent_id_path=PackedInt32Array(1785680752, 294167358) index="1" unique_id=1277257827 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+script = ExtResource("20_aqtfj")
+flip = NodePath("../toggle")
+collider = NodePath("CollisionShape3D")
+breaker_mesh = NodePath("..")
+default_material = ExtResource("21_vusky")
+flipped_material = ExtResource("22_ytn4r")
+outline_material = ExtResource("16_to470")
+mesh_instance = NodePath("../toggle")
+metadata/_custom_type_script = "uid://cq82pq61itemp"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MinigameServer/server_w_breakers/server/breaker/Breaker" unique_id=945114019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
+shape = SubResource("BoxShape3D_d8lsv")
+
+[node name="Breaker" type="StaticBody3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_001" parent_id_path=PackedInt32Array(1785680752, 1233702814) index="1" unique_id=2039220862 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+script = ExtResource("20_aqtfj")
+flip = NodePath("../toggle_001")
+collider = NodePath("CollisionShape3D")
+breaker_mesh = NodePath("..")
+default_material = ExtResource("21_vusky")
+flipped_material = ExtResource("22_ytn4r")
+outline_material = ExtResource("16_to470")
+mesh_instance = NodePath("../toggle_001")
+metadata/_custom_type_script = "uid://cq82pq61itemp"
+
+[node name="CollisionShape3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_001/Breaker" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
+shape = SubResource("BoxShape3D_d8lsv")
+
+[node name="Breaker" type="StaticBody3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_002" parent_id_path=PackedInt32Array(1785680752, 1192425551) index="1" unique_id=1790178730 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+script = ExtResource("20_aqtfj")
+flip = NodePath("../toggle_002")
+collider = NodePath("CollisionShape3D")
+breaker_mesh = NodePath("..")
+default_material = ExtResource("21_vusky")
+flipped_material = ExtResource("22_ytn4r")
+outline_material = ExtResource("16_to470")
+mesh_instance = NodePath("../toggle_002")
+metadata/_custom_type_script = "uid://cq82pq61itemp"
+
+[node name="CollisionShape3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_002/Breaker" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
+shape = SubResource("BoxShape3D_d8lsv")
+
+[node name="Breaker" type="StaticBody3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_003" parent_id_path=PackedInt32Array(1785680752, 834603244) index="1" unique_id=1919240621 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+script = ExtResource("20_aqtfj")
+flip = NodePath("../toggle_003")
+collider = NodePath("CollisionShape3D")
+breaker_mesh = NodePath("..")
+default_material = ExtResource("21_vusky")
+flipped_material = ExtResource("22_ytn4r")
+outline_material = ExtResource("16_to470")
+mesh_instance = NodePath("../toggle_003")
+metadata/_custom_type_script = "uid://cq82pq61itemp"
+
+[node name="CollisionShape3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_003/Breaker" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
+shape = SubResource("BoxShape3D_d8lsv")
+
+[node name="Breaker" type="StaticBody3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_004" parent_id_path=PackedInt32Array(1785680752, 1745544234) index="1" unique_id=686610885 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+script = ExtResource("20_aqtfj")
+flip = NodePath("../toggle_004")
+collider = NodePath("CollisionShape3D")
+breaker_mesh = NodePath("..")
+default_material = ExtResource("21_vusky")
+flipped_material = ExtResource("22_ytn4r")
+outline_material = ExtResource("16_to470")
+mesh_instance = NodePath("../toggle_004")
+metadata/_custom_type_script = "uid://cq82pq61itemp"
+
+[node name="CollisionShape3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_004/Breaker" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
+shape = SubResource("BoxShape3D_d8lsv")
+
+[node name="Breaker" type="StaticBody3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_005" parent_id_path=PackedInt32Array(1785680752, 1051890724) index="1" unique_id=1056793361 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+script = ExtResource("20_aqtfj")
+flip = NodePath("../toggle_005")
+collider = NodePath("CollisionShape3D")
+breaker_mesh = NodePath("..")
+default_material = ExtResource("21_vusky")
+flipped_material = ExtResource("22_ytn4r")
+outline_material = ExtResource("16_to470")
+mesh_instance = NodePath("../toggle_005")
+metadata/_custom_type_script = "uid://cq82pq61itemp"
+
+[node name="CollisionShape3D" parent="Level/MinigameServer/server_w_breakers/server/breaker_005/Breaker" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
+shape = SubResource("BoxShape3D_d8lsv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MinigameServer" unique_id=2005234387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.040940613, 1.3324436, -0.557055)
+shape = SubResource("BoxShape3D_2d5gv")
+
+[node name="BreakersMinigame" type="Node3D" parent="Level/MinigameServer" unique_id=1119823974]
+script = ExtResource("24_5atrm")
+metadata/_custom_type_script = "uid://chk8b8otvioxh"
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
@@ -299,4 +416,5 @@ omni_range = 1.5
 omni_attenuation = 10.0
 
 [editable path="map"]
+[editable path="Level/MinigameServer/server_w_breakers"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]
