@@ -13,4 +13,4 @@ func enter_game() -> void:
 
 ## Called when the player exits the minigame.
 func exit_game() -> void:
-	minigame_completed.emit(self)
+	pass

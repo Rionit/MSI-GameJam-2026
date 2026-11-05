@@ -5,3 +5,4 @@
 /scenes/testing.tscn*
 *.tmp
 *.blend?
+.vscode*

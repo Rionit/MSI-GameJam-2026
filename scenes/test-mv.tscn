@@ -14,13 +14,14 @@
 [ext_resource type="VideoStream" uid="uid://c2b115am33t5c" path="res://videos/crt-on.ogv" id="12_4pgbm"]
 [ext_resource type="VideoStream" uid="uid://cy7tcpkdqofcu" path="res://videos/crt-off.ogv" id="13_73sxj"]
 [ext_resource type="PackedScene" uid="uid://b85cvdjn1nrdi" path="res://models/map.blend" id="14_ie23h"]
-[ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="15_0eyxt"]
 [ext_resource type="Material" uid="uid://byk8wue3sc6im" path="res://materials/matrix_cell_directly_selected.tres" id="15_5xvtg"]
-[ext_resource type="Material" uid="uid://djo00u2we4r87" path="res://materials/outline.tres" id="16_ainhg"]
+[ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="15_lkqwf"]
+[ext_resource type="PackedScene" uid="uid://cg16nauw0oot2" path="res://scenes/matrix_minigame.tscn" id="16_ainhg"]
 [ext_resource type="Script" uid="uid://bhoupc1aclli0" path="res://scripts/split_screen_controller.gd" id="16_itxy7"]
+[ext_resource type="Material" uid="uid://djo00u2we4r87" path="res://materials/outline.tres" id="16_to470"]
 [ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="17_2d6mp"]
-[ext_resource type="Script" uid="uid://cwhl7o8pqe465" path="res://scripts/minigames/matrix/matrix_minigame.gd" id="18_to470"]
-[ext_resource type="PackedScene" uid="uid://dcsn2wqnkqdnc" path="res://scenes/matrix_cell.tscn" id="19_bjbt1"]
+[ext_resource type="PackedScene" uid="uid://bdx4tfrtagqbx" path="res://models/server_w_laptop.blend" id="19_to470"]
+[ext_resource type="Material" uid="uid://cn2h7fny8gqhy" path="res://materials/outline_laptop.tres" id="20_bjbt1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -87,8 +88,11 @@ material = ExtResource("15_5xvtg")
 camera_feed_id = 1
 which_feed = 1
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0wfyh"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_d8lsv"]
+size = Vector3(0.930542, 3.0534668, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2d5gv"]
+size = Vector3(0.7746582, 0.50512695, 0.74658203)
 
 [node name="Main" type="Node" unique_id=848906251]
 script = ExtResource("1_nkgdn")
@@ -119,6 +123,12 @@ spot_angle = 45.42925
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("14_ie23h")]
 
+[node name="Matrix minigame server" type="StaticBody3D" parent="map" unique_id=1811772644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.931195, 3.9014983, -2.1415503)
+script = ExtResource("15_lkqwf")
+outline_material = ExtResource("16_to470")
+metadata/_custom_type_script = "uid://d1t40y48xkdyr"
+
 [node name="Test3DIn2D" type="Node3D" parent="map" unique_id=2131711081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.009932, 5.202424, 0)
 
@@ -135,30 +145,71 @@ region_rect = Rect2(0, 0, 2000, 2000)
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
 
-[node name="Interactable" type="StaticBody3D" parent="Level" unique_id=492735213 node_paths=PackedStringArray("mesh_instance")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -17.379637, 5.2142487, 1.9466157)
-script = ExtResource("15_0eyxt")
-outline_material = ExtResource("16_ainhg")
-mesh_instance = NodePath("MeshInstance3D")
-metadata/_custom_type_script = "uid://d1t40y48xkdyr"
+[node name="SpotLight3D10" type="SpotLight3D" parent="Level" unique_id=1952950722]
+transform = Transform3D(1, 0, 0, 0, -0.025714234, 0.9996694, 0, -0.9996694, -0.025714234, -16.306875, 8.130662, -2.3432925)
+light_energy = 4.361
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Interactable" unique_id=905011403]
-transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
-mesh = SubResource("BoxMesh_gsyc7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Interactable" unique_id=1419580967]
-transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_0wfyh")
-
-[node name="MatrixMinigame" type="Node3D" parent="Level" unique_id=433681406]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -15.391636, 4.619757, 1.4702425)
-script = ExtResource("18_to470")
-cell_scene = ExtResource("19_bjbt1")
-metadata/_custom_type_script = "uid://cwhl7o8pqe465"
+[node name="MatrixMinigame" parent="Level" unique_id=2015886342 instance=ExtResource("16_ainhg")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -15.391636, 5.1039667, 1.3153844)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Level" unique_id=1319000771]
 transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -15.943109, 7.86499, 1.6025653)
 light_energy = 4.361
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Level" unique_id=163236647]
+transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -27.4211, 7.86499, 1.6025653)
+light_energy = 4.361
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Level" unique_id=635112769]
+transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -35.4211, 7.86499, 1.6025653)
+light_energy = 4.361
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Level" unique_id=630018295]
+transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -45.4211, 7.86499, 1.6025653)
+light_energy = 4.361
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Level" unique_id=289929892]
+transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -57.84169, 12.776395, 1.6025653)
+light_energy = 4.361
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="Level" unique_id=1926446100]
+transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -67.84169, 12.776395, 1.6025653)
+light_energy = 4.361
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="Level" unique_id=702883768]
+transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -78.84169, 12.776395, 1.6025653)
+light_energy = 4.361
+
+[node name="SpotLight3D8" type="SpotLight3D" parent="Level" unique_id=773420909]
+transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -90.84169, 12.776395, 1.6025653)
+light_energy = 4.361
+
+[node name="SpotLight3D9" type="SpotLight3D" parent="Level" unique_id=1499807044]
+transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -97.84169, 12.776395, 4.6025653)
+light_energy = 4.361
+
+[node name="server_w_laptop" parent="Level" unique_id=1542370153 instance=ExtResource("19_to470")]
+
+[node name="Server Matrix Minigame" type="StaticBody3D" parent="Level" unique_id=1811762919 node_paths=PackedStringArray("mesh_instance")]
+transform = Transform3D(-0.011953227, 0, 0.99992853, 0, 1, 0, -0.99992853, 0, -0.011953227, -15.651253, 4.0412173, -2.2801237)
+script = ExtResource("15_lkqwf")
+outline_material = ExtResource("20_bjbt1")
+mesh_instance = NodePath("server_w_laptop/server/laptop")
+metadata/_custom_type_script = "uid://d1t40y48xkdyr"
+
+[node name="server_w_laptop" parent="Level/Server Matrix Minigame" unique_id=576822356 instance=ExtResource("19_to470")]
+
+[node name="collider" parent="Level/Server Matrix Minigame/server_w_laptop/server" parent_id_path=PackedInt32Array(576822356, 1333220698) index="0" unique_id=1571712063]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Server Matrix Minigame" unique_id=136703043]
+transform = Transform3D(1.0000213, 0, -1.238659e-07, 0, 1, 0, 1.238659e-07, 0, 1.0000213, -0.034729958, 1.0267334, 0)
+shape = SubResource("BoxShape3D_d8lsv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Level/Server Matrix Minigame" unique_id=473115687]
+transform = Transform3D(1.0000275, 0, -1.611188e-07, 0, 1, 0, 1.611188e-07, 0, 1.0000275, -0.028171778, 1.4449973, -0.794714)
+shape = SubResource("BoxShape3D_2d5gv")
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
@@ -212,7 +263,6 @@ light_energy = 0.001
 omni_range = 1.5
 omni_attenuation = 10.0
 
-[connection signal="interacted" from="Level/Interactable" to="SplitScreen" method="_on_interactable_interacted"]
-
 [editable path="map"]
+[editable path="Level/Server Matrix Minigame/server_w_laptop"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]

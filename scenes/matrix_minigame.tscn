@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cg16nauw0oot2"]
+
+[ext_resource type="Script" uid="uid://cwhl7o8pqe465" path="res://scripts/minigames/matrix/matrix_minigame.gd" id="1_iv7im"]
+[ext_resource type="PackedScene" uid="uid://dcsn2wqnkqdnc" path="res://scenes/matrix_cell.tscn" id="2_6s2g5"]
+
+[node name="MatrixMinigame" type="Node3D" unique_id=2015886342]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+script = ExtResource("1_iv7im")
+cell_scene = ExtResource("2_6s2g5")
+metadata/_custom_type_script = "uid://cwhl7o8pqe465"
