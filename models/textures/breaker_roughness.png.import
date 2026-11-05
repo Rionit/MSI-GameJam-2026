@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c60f6nx84eb3f"
-path.s3tc="res://.godot/imported/Image_0.001.png-70ab71508d9dab81c2370012d62d36c3.s3tc.ctex"
+uid="uid://dlgixrsx0cn14"
+path.s3tc="res://.godot/imported/breaker_roughness.png-deedcf7a51357ac3f26f6fa643393b1d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/textures/Image_0.001.png"
-dest_files=["res://.godot/imported/Image_0.001.png-70ab71508d9dab81c2370012d62d36c3.s3tc.ctex"]
+source_file="res://models/textures/breaker_roughness.png"
+dest_files=["res://.godot/imported/breaker_roughness.png-deedcf7a51357ac3f26f6fa643393b1d.s3tc.ctex"]
 
 [params]
 
