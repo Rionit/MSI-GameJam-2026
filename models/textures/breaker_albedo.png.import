@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxjes7kgjrwoc"
-path.s3tc="res://.godot/imported/Image_2.001.png-42efb16286b66810869abe8d5d2260e5.s3tc.ctex"
+uid="uid://4o3cpp3ir78u"
+path.s3tc="res://.godot/imported/breaker_albedo.png-b63f7c9226a5ad94ef2cb0ac5bb56ef8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/textures/Image_2.001.png"
-dest_files=["res://.godot/imported/Image_2.001.png-42efb16286b66810869abe8d5d2260e5.s3tc.ctex"]
+source_file="res://models/textures/breaker_albedo.png"
+dest_files=["res://.godot/imported/breaker_albedo.png-b63f7c9226a5ad94ef2cb0ac5bb56ef8.s3tc.ctex"]
 
 [params]
 
@@ -23,12 +23,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://models/textures/Image_2.001.png"
+roughness/mode=0
+roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
