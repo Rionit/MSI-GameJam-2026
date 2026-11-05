@@ -1,0 +1,218 @@
+[gd_scene format=3 uid="uid://duw4y78re586s"]
+
+[ext_resource type="Script" uid="uid://ceb4oqhyn0hg" path="res://scripts/game_manager.gd" id="1_nkgdn"]
+[ext_resource type="Script" uid="uid://ch8mjawwdfc7j" path="res://scripts/screen_manager.gd" id="2_ainhg"]
+[ext_resource type="Script" uid="uid://30gbkac6ebgc" path="res://scripts/video_mesh_pair.gd" id="3_5xvtg"]
+[ext_resource type="VideoStream" uid="uid://dp2irokjycfum" path="res://videos/any_colors.ogv" id="4_lkqwf"]
+[ext_resource type="VideoStream" uid="uid://ciuup5oxpfcpo" path="res://videos/9x16_math.ogv" id="5_to470"]
+[ext_resource type="VideoStream" uid="uid://q08lwb57g8qx" path="res://videos/32x5_eyes.ogv" id="6_bjbt1"]
+[ext_resource type="VideoStream" uid="uid://diilavvwd1onf" path="res://videos/16x9_code.ogv" id="7_aqtfj"]
+[ext_resource type="VideoStream" uid="uid://cwj5dv1pbx4uq" path="res://videos/1x2_painting.ogv" id="8_vusky"]
+[ext_resource type="VideoStream" uid="uid://c2ybckp5a51tm" path="res://videos/2x1_war.ogv" id="9_ytn4r"]
+[ext_resource type="VideoStream" uid="uid://bo48c8mhkcltw" path="res://videos/4x3_kubik.ogv" id="10_5atrm"]
+[ext_resource type="Material" uid="uid://bk5xb1qh5vgx2" path="res://materials/crt_screen.tres" id="11_7dy28"]
+[ext_resource type="VideoStream" uid="uid://c2b115am33t5c" path="res://videos/crt-on.ogv" id="12_4pgbm"]
+[ext_resource type="VideoStream" uid="uid://cy7tcpkdqofcu" path="res://videos/crt-off.ogv" id="13_73sxj"]
+[ext_resource type="PackedScene" uid="uid://b85cvdjn1nrdi" path="res://models/map.blend" id="14_ie23h"]
+[ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="15_0eyxt"]
+[ext_resource type="Material" uid="uid://byk8wue3sc6im" path="res://materials/matrix_cell_directly_selected.tres" id="15_5xvtg"]
+[ext_resource type="Material" uid="uid://djo00u2we4r87" path="res://materials/outline.tres" id="16_ainhg"]
+[ext_resource type="Script" uid="uid://bhoupc1aclli0" path="res://scripts/split_screen_controller.gd" id="16_itxy7"]
+[ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="17_2d6mp"]
+[ext_resource type="Script" uid="uid://cwhl7o8pqe465" path="res://scripts/minigames/matrix/matrix_minigame.gd" id="18_to470"]
+[ext_resource type="PackedScene" uid="uid://dcsn2wqnkqdnc" path="res://scenes/matrix_cell.tscn" id="19_bjbt1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+ambient_light_source = 2
+ambient_light_color = Color(0.017732391, 0.017732391, 0.01773239, 1)
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_tbgi4"]
+script = ExtResource("3_5xvtg")
+mesh_path = NodePath("../map/1x1_screen")
+video_stream = ExtResource("4_lkqwf")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_o6xl0"]
+script = ExtResource("3_5xvtg")
+mesh_path = NodePath("../map/9x16_screen")
+video_stream = ExtResource("5_to470")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("3_5xvtg")
+mesh_path = NodePath("../map/32x5_screen")
+video_stream = ExtResource("6_bjbt1")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_2imv7"]
+script = ExtResource("3_5xvtg")
+mesh_path = NodePath("../map/16x9_screen")
+video_stream = ExtResource("7_aqtfj")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_814bv"]
+script = ExtResource("3_5xvtg")
+mesh_path = NodePath("../map/1x2_screen")
+video_stream = ExtResource("8_vusky")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_6up7u"]
+script = ExtResource("3_5xvtg")
+mesh_path = NodePath("../map/2x1_screen")
+video_stream = ExtResource("9_ytn4r")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_cfesm"]
+script = ExtResource("3_5xvtg")
+mesh_path = NodePath("../map/4x3_screen")
+video_stream = ExtResource("10_5atrm")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="BoxMesh" id="BoxMesh_gsyc7"]
+material = ExtResource("15_5xvtg")
+
+[sub_resource type="CameraTexture" id="CameraTexture_nkgdn"]
+camera_feed_id = 1
+which_feed = 1
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0wfyh"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Main" type="Node" unique_id=848906251]
+script = ExtResource("1_nkgdn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=92616691]
+environment = SubResource("Environment_sugp2")
+
+[node name="ScreenManager" type="Node" parent="." unique_id=131894382]
+unique_name_in_owner = true
+script = ExtResource("2_ainhg")
+pairs = Array[ExtResource("3_5xvtg")]([SubResource("Resource_tbgi4"), SubResource("Resource_o6xl0"), SubResource("Resource_tipki"), SubResource("Resource_2imv7"), SubResource("Resource_814bv"), SubResource("Resource_6up7u"), SubResource("Resource_cfesm")])
+crt_shader = ExtResource("11_7dy28")
+crt_turn_on = ExtResource("12_4pgbm")
+crt_turn_off = ExtResource("13_73sxj")
+
+[node name="Lights" type="Node3D" parent="." unique_id=1711867263]
+
+[node name="CenterLight" type="OmniLight3D" parent="Lights" unique_id=957341706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0584571, 2.227406, -0.11945689)
+shadow_enabled = true
+omni_range = 15.560613
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights" unique_id=712558740]
+transform = Transform3D(-4.371139e-08, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 1, 3.090862e-08, -3.090862e-08, -24.726822, 8.273178, 1.1940974e-08)
+shadow_enabled = true
+spot_range = 9.72195
+spot_angle = 45.42925
+
+[node name="map" parent="." unique_id=648918426 instance=ExtResource("14_ie23h")]
+
+[node name="Test3DIn2D" type="Node3D" parent="map" unique_id=2131711081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.009932, 5.202424, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map/Test3DIn2D" unique_id=783060692]
+transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
+mesh = SubResource("BoxMesh_gsyc7")
+
+[node name="Sprite3D" type="Sprite3D" parent="map/Test3DIn2D" unique_id=496199980]
+transform = Transform3D(0.038816087, 0, 0.9992464, 0, 1, 0, -0.9992464, 0, 0.038816087, 0.2446785, 0.10446596, 0)
+pixel_size = 0.0001
+texture = SubResource("CameraTexture_nkgdn")
+region_enabled = true
+region_rect = Rect2(0, 0, 2000, 2000)
+
+[node name="Level" type="Node3D" parent="." unique_id=1648374199]
+
+[node name="Interactable" type="StaticBody3D" parent="Level" unique_id=492735213 node_paths=PackedStringArray("mesh_instance")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -17.379637, 5.2142487, 1.9466157)
+script = ExtResource("15_0eyxt")
+outline_material = ExtResource("16_ainhg")
+mesh_instance = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://d1t40y48xkdyr"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Interactable" unique_id=905011403]
+transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
+mesh = SubResource("BoxMesh_gsyc7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Interactable" unique_id=1419580967]
+transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_0wfyh")
+
+[node name="MatrixMinigame" type="Node3D" parent="Level" unique_id=433681406]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -15.391636, 4.619757, 1.4702425)
+script = ExtResource("18_to470")
+cell_scene = ExtResource("19_bjbt1")
+metadata/_custom_type_script = "uid://cwhl7o8pqe465"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Level" unique_id=1319000771]
+transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -15.943109, 7.86499, 1.6025653)
+light_energy = 4.361
+
+[node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+script = ExtResource("16_itxy7")
+split_ratio = 0.0
+
+[node name="SubViewportContainerLeft" type="SubViewportContainer" parent="SplitScreen" unique_id=1271243271]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0001
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerLeft" unique_id=1764969003]
+handle_input_locally = false
+size = Vector2i(2, 1080)
+render_target_update_mode = 4
+
+[node name="UnmovablePlayer" parent="SplitScreen/SubViewportContainerLeft/SubViewport" unique_id=752721606 instance=ExtResource("17_2d6mp")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, 0)
+can_move = false
+speed = 5.0
+can_walk = false
+can_interact = false
+
+[node name="SubViewportContainerRight" type="SubViewportContainer" parent="SplitScreen" unique_id=493460797]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerRight" unique_id=964279091]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="FirstPersonPlayer" parent="SplitScreen/SubViewportContainerRight/SubViewport" unique_id=1859700186 instance=ExtResource("17_2d6mp")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.547302, 5.1239743, -0.060120106)
+speed = 5.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer" unique_id=1190100453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+light_energy = 0.001
+omni_range = 1.5
+omni_attenuation = 10.0
+
+[connection signal="interacted" from="Level/Interactable" to="SplitScreen" method="_on_interactable_interacted"]
+
+[editable path="map"]
+[editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]

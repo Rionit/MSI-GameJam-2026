@@ -71,8 +71,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		#return
 
-	if main_viewport:
-		main_viewport.push_input(event)
+	#if main_viewport:
+	#	main_viewport.push_input(event)
 
 func _on_test_button_pressed() -> void:
 	# Cycles between 0.5, 0.8, and 0.2 for quick testing
