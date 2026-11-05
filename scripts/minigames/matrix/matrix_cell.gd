@@ -15,6 +15,12 @@ class_name MatrixCell
 var blocked : bool = false
 var selected : bool = false
 
+func activate():
+	collider.disabled = blocked || (!selected && num_selected > 0)
+
+func deactivate():
+	collider.disabled = true
+
 ## Number of times this cell has been selected (directly or indirectly). Used to determine when to reset the cell's material to normal.
 var num_selected : int = 0 
 

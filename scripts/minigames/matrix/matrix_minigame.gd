@@ -10,6 +10,17 @@ class_name MatrixMinigame
 
 @export var num_cells_to_select : int
 
+func enter_game() -> void:
+	for row in grid:
+		for cell in row:
+			cell.activate()
+	self.visible = true
+
+func exit_game() -> void:
+	for row in grid:
+		for cell in row:
+			cell.deactivate()
+	self.visible = false
 
 func _ready() -> void:
 
@@ -50,7 +61,8 @@ func _ready() -> void:
 			cell.position = Vector3(0, y * 1, x*1)
 
 			cell.interacted.connect(_on_cell_interacted)
-			
+			cell.deactivate()
+
 			grid[x].append(cell)
 
 func _on_cell_interacted(cell: Interactable) -> void:
