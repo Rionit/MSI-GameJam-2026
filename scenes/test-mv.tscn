@@ -88,6 +88,14 @@ material = ExtResource("15_5xvtg")
 camera_feed_id = 1
 which_feed = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjbt1"]
+cull_mode = 1
+shading_mode = 0
+grow = true
+grow_amount = 0.05
+stencil_flags = 2
+stencil_color = Color(1, 1, 1, 1)
+
 [node name="Main" type="Node" unique_id=848906251]
 script = ExtResource("1_nkgdn")
 
@@ -186,6 +194,7 @@ light_energy = 4.361
 
 [node name="Server Matrix Minigame" parent="Level" unique_id=2068626685 instance=ExtResource("20_bjbt1")]
 transform = Transform3D(-0.011953231, 0, 0.9999285, 0, 1, 0, -0.9999285, 0, -0.011953231, -15.651253, 4.0412173, -2.2801237)
+outline_material = SubResource("StandardMaterial3D_bjbt1")
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true

@@ -8,7 +8,7 @@
 cull_mode = 1
 shading_mode = 0
 grow = true
-grow_amount = 0.01
+grow_amount = 0.05
 stencil_flags = 2
 stencil_color = Color(1, 1, 1, 1)
 
@@ -24,16 +24,16 @@ script = ExtResource("1_qyrgb")
 minigame = NodePath("server_w_laptop/server/laptop/MatrixMinigame")
 colliders = [NodePath("CollisionShape3D"), NodePath("CollisionShape3D2")]
 outline_material = SubResource("StandardMaterial3D_bjbt1")
-mesh_instance = NodePath("server_w_laptop/server/laptop")
+mesh_instance = NodePath("server_w_laptop/server/outline_mesh")
 metadata/_custom_type_script = "uid://vsmlnsfpq43o"
 
 [node name="server_w_laptop" parent="." unique_id=1542370153 instance=ExtResource("2_itj8a")]
 
-[node name="collider" parent="server_w_laptop/server" parent_id_path=PackedInt32Array(1542370153, 1333220698) index="0" unique_id=1571712063]
+[node name="collider" parent="server_w_laptop/server" parent_id_path=PackedInt32Array(1542370153, 505732327) index="0" unique_id=933052427]
 collision_layer = 0
 collision_mask = 0
 
-[node name="MatrixMinigame" parent="server_w_laptop/server/laptop" parent_id_path=PackedInt32Array(1542370153, 991571895) index="0" unique_id=2015886342 instance=ExtResource("3_4v4og")]
+[node name="MatrixMinigame" parent="server_w_laptop/server/laptop" parent_id_path=PackedInt32Array(1542370153, 860452345) index="0" unique_id=2015886342 instance=ExtResource("3_4v4og")]
 transform = Transform3D(-0.04999884, 0.00034906302, -4.3711417e-09, 0.0003490634, 0.049998783, 0, 4.3710373e-09, -3.051606e-11, -0.05000003, 0.37827992, 0.14594412, 0.020271301)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=633658670]
