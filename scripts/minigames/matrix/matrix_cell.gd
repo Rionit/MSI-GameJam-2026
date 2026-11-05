@@ -4,10 +4,10 @@ class_name MatrixCell
 
 @export var collider : CollisionShape3D
 
-@export var normal_material : Material = preload("res://materials/matrix_cell_normal.tres")
-@export var blocked_material : Material = preload("res://materials/matrix_cell_blocked.tres")
-@export var directly_selected_material : Material = preload("res://materials/matrix_cell_directly_selected.tres")
-@export var indirectly_selected_material : Material = preload("res://materials/matrix_cell_indirectly_selected_3d.tres")
+@export var normal_material : Material = preload("uid://b10ebpa8i8ioo")
+@export var blocked_material : Material = preload("uid://bbptyvtgk0cd4")
+@export var directly_selected_material : Material = preload("uid://dfiheunguoabh")
+@export var indirectly_selected_material : Material = preload("uid://dkmwl6wuwbb60")
 
 @export var grid_position : Vector2i = Vector2i(0, 0)
 

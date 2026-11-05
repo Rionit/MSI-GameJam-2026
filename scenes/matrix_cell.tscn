@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcsn2wqnkqdnc"]
 
 [ext_resource type="Script" uid="uid://imcxhrjsnafq" path="res://scripts/minigames/matrix/matrix_cell.gd" id="1_s042x"]
-[ext_resource type="Material" uid="uid://djo00u2we4r87" path="res://materials/outline.tres" id="2_h7e1o"]
+[ext_resource type="Material" uid="uid://d0wi81y20ldid" path="res://materials/outline.tres" id="2_h7e1o"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2d5gv"]
 

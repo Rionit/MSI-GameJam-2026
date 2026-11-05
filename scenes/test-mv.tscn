@@ -14,11 +14,9 @@
 [ext_resource type="VideoStream" uid="uid://c2b115am33t5c" path="res://videos/crt-on.ogv" id="12_4pgbm"]
 [ext_resource type="VideoStream" uid="uid://cy7tcpkdqofcu" path="res://videos/crt-off.ogv" id="13_73sxj"]
 [ext_resource type="PackedScene" uid="uid://b85cvdjn1nrdi" path="res://models/map.blend" id="14_ie23h"]
-[ext_resource type="Material" uid="uid://byk8wue3sc6im" path="res://materials/matrix_cell_directly_selected.tres" id="15_5xvtg"]
 [ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="15_lkqwf"]
 [ext_resource type="PackedScene" uid="uid://cg16nauw0oot2" path="res://scenes/matrix_minigame.tscn" id="16_ainhg"]
 [ext_resource type="Script" uid="uid://bhoupc1aclli0" path="res://scripts/split_screen_controller.gd" id="16_itxy7"]
-[ext_resource type="Material" uid="uid://djo00u2we4r87" path="res://materials/outline.tres" id="16_to470"]
 [ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="17_2d6mp"]
 [ext_resource type="PackedScene" uid="uid://bdx4tfrtagqbx" path="res://models/server_w_laptop.blend" id="19_to470"]
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="20_bjbt1"]
@@ -81,20 +79,73 @@ mesh_path = NodePath("../map/4x3_screen")
 video_stream = ExtResource("10_5atrm")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
+[sub_resource type="Shader" id="Shader_j43w1"]
+code = "shader_type spatial;
+render_mode blend_premul_alpha, unshaded, ambient_light_disabled;
+
+uniform sampler2D depth_texture : hint_depth_texture;
+uniform int step_count : hint_range(3, 15, 2) = 3; // 2 samples per step
+uniform float thickness : hint_range(1.0, 16.0, 0.1) = 3.0;
+uniform vec3 edge_color : source_color = vec3(0.);
+uniform float fade_start : hint_range(1.0, 1000.0, 0.1) = 100.0;
+uniform float fade_length : hint_range(1.0, 1000.0, 0.1) = 200.0;
+
+void fragment() {
+	// Setup step parameters
+	vec2 step_length = 1.0 / VIEWPORT_SIZE * thickness;
+	float step_angle = TAU / float(step_count);
+	// Per-pixel jitter to reduce patterning
+	float start_angle = fract(sin(dot(SCREEN_UV, vec2(12.9898, 78.233))) * 43758.5453) * TAU;
+	vec2 dir = vec2(cos(start_angle), sin(start_angle));
+	// step rotation matrix
+	mat2 rot = mat2(
+		vec2(cos(step_angle), -sin(step_angle)),
+		vec2(sin(step_angle),  cos(step_angle)));
+	vec3 avg_dx = vec3(0.0);
+	vec3 avg_dy = vec3(0.0);
+	// save closest pixel to uniformly fade line.
+	float min_z = 1e6;
+	// Sample and average derivatives for all pairs
+	for (int i = 0; i < step_count; i++) {
+		vec2 uv1 = SCREEN_UV + dir * step_length;
+		vec2 uv2 = SCREEN_UV - dir * step_length;
+		float d1 = texture(depth_texture, uv1).r;
+		float d2 = texture(depth_texture, uv2).r;
+		vec4 up1 = INV_PROJECTION_MATRIX * vec4(uv1 * 2.0 - 1.0, d1, 1.0);
+		vec4 up2 = INV_PROJECTION_MATRIX * vec4(uv2 * 2.0 - 1.0, d2, 1.0);
+		vec3 p1 = up1.xyz / up1.w;
+		vec3 p2 = up2.xyz / up2.w;
+		min_z = min(min_z, min(-p1.z, -p2.z));
+		vec3 diff = p1 - p2;
+		avg_dx += diff * dir.x;
+		avg_dy += diff * dir.y;
+
+		dir = rot * dir; // rotate direction for next step
+	}
+	// fade outline width with distance
+	float distance_fade = 1e-4 + smoothstep(fade_start + fade_length, fade_start, min_z);
+
+	// Edge mask
+	float edge = 1.0 - smoothstep(0.1, 0.15, dot(normalize(cross(avg_dy, avg_dx)), VIEW));
+
+	// Small vignette at screen edges
+	edge *= smoothstep(0.00, 0.015 * thickness,
+		1.0 - max(abs(SCREEN_UV.x - 0.5), abs(SCREEN_UV.y - 0.5)) * 2.0);
+
+	// blend_premul_alpha avoids need to sample screentexture.
+	ALBEDO = edge_color * edge;
+	ALPHA = edge * distance_fade;
+}"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to470"]
+albedo_color = Color(0, 0.39215687, 0, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_gsyc7"]
-material = ExtResource("15_5xvtg")
+material = SubResource("StandardMaterial3D_to470")
 
 [sub_resource type="CameraTexture" id="CameraTexture_nkgdn"]
 camera_feed_id = 1
 which_feed = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjbt1"]
-cull_mode = 1
-shading_mode = 0
-grow = true
-grow_amount = 0.05
-stencil_flags = 2
-stencil_color = Color(1, 1, 1, 1)
 
 [node name="Main" type="Node" unique_id=848906251]
 script = ExtResource("1_nkgdn")
@@ -128,7 +179,7 @@ spot_angle = 45.42925
 [node name="Matrix minigame server" type="StaticBody3D" parent="map" unique_id=1811772644]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.931195, 3.9014983, -2.1415503)
 script = ExtResource("15_lkqwf")
-outline_material = ExtResource("16_to470")
+outline_material = SubResource("Shader_j43w1")
 metadata/_custom_type_script = "uid://d1t40y48xkdyr"
 
 [node name="Test3DIn2D" type="Node3D" parent="map" unique_id=2131711081]
@@ -193,8 +244,7 @@ light_energy = 4.361
 [node name="server_w_laptop" parent="Level" unique_id=1542370153 instance=ExtResource("19_to470")]
 
 [node name="Server Matrix Minigame" parent="Level" unique_id=2068626685 instance=ExtResource("20_bjbt1")]
-transform = Transform3D(-0.011953231, 0, 0.9999285, 0, 1, 0, -0.9999285, 0, -0.011953231, -15.651253, 4.0412173, -2.2801237)
-outline_material = SubResource("StandardMaterial3D_bjbt1")
+transform = Transform3D(-0.011953227, 0, 0.99992853, 0, 1, 0, -0.99992853, 0, -0.011953227, -15.59583, 4, -1.8240677)
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
