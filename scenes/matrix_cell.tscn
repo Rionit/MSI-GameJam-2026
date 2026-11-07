@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dcsn2wqnkqdnc"]
+
+[ext_resource type="Script" uid="uid://imcxhrjsnafq" path="res://scripts/minigames/matrix/matrix_cell.gd" id="1_s042x"]
+[ext_resource type="Material" uid="uid://d0wi81y20ldid" path="res://materials/outline.tres" id="2_h7e1o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2d5gv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2d5gv"]
+
+[node name="MatrixCell" type="StaticBody3D" unique_id=2098346117 node_paths=PackedStringArray("collider", "mesh_instance")]
+script = ExtResource("1_s042x")
+collider = NodePath("CollisionShape3D")
+outline_material = ExtResource("2_h7e1o")
+mesh_instance = NodePath("Mesh")
+metadata/_custom_type_script = "uid://imcxhrjsnafq"
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=332884915]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_2d5gv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1813925872]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_2d5gv")
