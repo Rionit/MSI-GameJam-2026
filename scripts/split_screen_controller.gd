@@ -2,6 +2,8 @@
 extends HBoxContainer
 class_name SplitScreen
 
+signal on_tween_finished
+
 @onready var viewport_left: SubViewportContainer = $SubViewportContainerLeft
 @onready var viewport_right: SubViewportContainer = $SubViewportContainerRight
 
@@ -57,6 +59,7 @@ func _animate_split_to(target_value: float) -> void:
 	_tween.set_trans(tween_trans)
 	_tween.set_ease(tween_ease)
 	_tween.tween_method(_update_split, current_ratio, target_value, tween_length)
+	_tween.finished.connect(func(): on_tween_finished.emit())
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
@@ -70,9 +73,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		#else:
 			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		#return
-
+	if main_viewport and event is InputEventMouseMotion:
+		main_viewport.push_input(event)
 	#if main_viewport:
-	#	main_viewport.push_input(event)
+		#main_viewport.push_input(event)
 
 func _on_test_button_pressed() -> void:
 	# Cycles between 0.5, 0.8, and 0.2 for quick testing
