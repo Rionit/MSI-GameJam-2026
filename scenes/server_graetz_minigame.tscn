@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://5evwqliikc7y" path="res://models/textures/server_rack_albedo.png" id="4_cjpoh"]
 [ext_resource type="Script" uid="uid://c1e1tlxg12ycp" path="res://scripts/minigames/graetz/graetz_minigame.gd" id="5_hn082"]
 [ext_resource type="PackedScene" uid="uid://rdn1imq1yu50" path="res://scenes/graetz_signal.tscn" id="6_looq2"]
-[ext_resource type="Material" uid="uid://dfiheunguoabh" path="res://materials/emissive_dark_green.tres" id="7_7iqk0"]
+[ext_resource type="Material" uid="uid://dkmwl6wuwbb60" path="res://materials/emissive_green.tres" id="7_i1kx8"]
 [ext_resource type="Material" uid="uid://bbptyvtgk0cd4" path="res://materials/emissive_red.tres" id="8_4fixx"]
 [ext_resource type="PackedScene" uid="uid://cooa5oaygu53p" path="res://scenes/graetz_diode.tscn" id="9_m8dj0"]
 [ext_resource type="Script" uid="uid://5o7b8hj48mfw" path="res://scripts/minigames/graetz/graetz_junction.gd" id="10_3v5hd"]
@@ -87,6 +87,10 @@ points = PackedVector3Array(0.41718346, 1.5667748, 0.48863226, -0.44042528, 1.56
 radius = 0.025
 height = 0.05
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2d5gv"]
+radius = 0.025
+height = 0.1
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_2d5gv"]
 top_radius = 0.025
 bottom_radius = 0.025
@@ -124,6 +128,9 @@ size = Vector2(0.2, 0.01)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2d5gv"]
 size = Vector2(0.18, 0.01)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i1kx8"]
+size = Vector2(0.15, 0.01)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ie23h"]
 size = Vector2(0.3, 0.01)
@@ -166,16 +173,17 @@ metadata/extras = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="server_w_breakers/server/collider" unique_id=1055320656]
 shape = SubResource("ConvexPolygonShape3D_kmatw")
 
-[node name="GraetzMinigame" type="Node3D" parent="." unique_id=1122441378 node_paths=PackedStringArray("ac_upper_pin_junction", "ac_lower_pin_junction", "dc_plus_pin_junction", "dc_minus_pin_junction", "test_button", "upper_left_diode", "upper_right_diode", "lower_left_diode", "lower_right_diode")]
+[node name="GraetzMinigame" type="Node3D" parent="." unique_id=1122441378 node_paths=PackedStringArray("ac_upper_pin_junction", "ac_lower_pin_junction", "dc_plus_pin_junction", "dc_minus_pin_junction", "success_visualizer", "test_button", "upper_left_diode", "upper_right_diode", "lower_left_diode", "lower_right_diode")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14234352)
 script = ExtResource("5_hn082")
-ac_upper_pin_junction = [NodePath("Pins/ACUpper"), NodePath("Junctions/JunctionLeft")]
-ac_lower_pin_junction = [NodePath("Pins/ACLower"), NodePath("Junctions/JunctionRight")]
+ac_upper_pin_junction = [NodePath("Pins/ACUpper"), NodePath("Junctions/JunctionLeft"), NodePath("Pins/ACUpper/PathFromJunction/PathPt1")]
+ac_lower_pin_junction = [NodePath("Pins/ACLower"), NodePath("Junctions/JunctionRight"), NodePath("Pins/ACLower/PathFromJunction/PathPt1"), NodePath("Pins/ACLower/PathFromJunction/PathPt2"), NodePath("Pins/ACLower/PathFromJunction/PathPt3")]
 dc_plus_pin_junction = [NodePath("Pins/DC+"), NodePath("Junctions/JunctionUp")]
 dc_minus_pin_junction = [NodePath("Pins/DC-"), NodePath("Junctions/JunctionDown")]
+success_visualizer = NodePath("Junctions/SuccessVisualizer")
 test_button = NodePath("TestButton")
 signal_scene = ExtResource("6_looq2")
-success_material = ExtResource("7_7iqk0")
+success_material = ExtResource("7_i1kx8")
 failure_material = ExtResource("8_4fixx")
 upper_left_diode = NodePath("GraetzDiodeUL")
 upper_right_diode = NodePath("GraetzDiodeUR")
@@ -210,7 +218,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.159853, 0)
 
 [node name="JunctionUp" type="Node3D" parent="GraetzMinigame/Junctions" unique_id=1266708714]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26859188, -0.45)
-visible = false
 script = ExtResource("10_3v5hd")
 metadata/_custom_type_script = "uid://5o7b8hj48mfw"
 
@@ -241,6 +248,10 @@ metadata/_custom_type_script = "uid://5o7b8hj48mfw"
 [node name="JunctionRight" type="MeshInstance3D" parent="GraetzMinigame/Junctions/JunctionRight" unique_id=1264389077]
 mesh = SubResource("SphereMesh_2d5gv")
 
+[node name="SuccessVisualizer" type="MeshInstance3D" parent="GraetzMinigame/Junctions" unique_id=2096434491]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.15769193, 0.3588599, -0.3671354)
+mesh = SubResource("CapsuleMesh_2d5gv")
+
 [node name="Pins" type="Node3D" parent="GraetzMinigame" unique_id=451469808]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2008102, 0)
 
@@ -248,17 +259,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2008102, 0)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.30478588, 0, -0.41194052)
 mesh = SubResource("CylinderMesh_2d5gv")
 
+[node name="PathFromJunction" type="Node3D" parent="GraetzMinigame/Pins/ACLower" unique_id=1590172495]
+
+[node name="PathPt1" type="Node3D" parent="GraetzMinigame/Pins/ACLower/PathFromJunction" unique_id=412780045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14996536, 0.053953826, 0)
+
+[node name="PathPt2" type="Node3D" parent="GraetzMinigame/Pins/ACLower/PathFromJunction" unique_id=1472211488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14996536, 0.053953826, -0.024735212)
+
+[node name="PathPt3" type="Node3D" parent="GraetzMinigame/Pins/ACLower/PathFromJunction" unique_id=1562820723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42924243, 0.053953826, -0.024735212)
+
 [node name="ACUpper" type="MeshInstance3D" parent="GraetzMinigame/Pins" unique_id=1130234062]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.30478588, 0.27667534, -0.41194052)
 mesh = SubResource("CylinderMesh_2d5gv")
+
+[node name="PathFromJunction" type="Node3D" parent="GraetzMinigame/Pins/ACUpper" unique_id=45750425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03710556, 0)
+
+[node name="PathPt1" type="Node3D" parent="GraetzMinigame/Pins/ACUpper/PathFromJunction" unique_id=402281675]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004488021, 0, -0.16078532)
 
 [node name="DC+" type="MeshInstance3D" parent="GraetzMinigame/Pins" unique_id=655747487]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.29091933, 0.23422968, -0.41194052)
 mesh = SubResource("CylinderMesh_2d5gv")
 
+[node name="PathFromJunction" type="Node3D" parent="GraetzMinigame/Pins/DC+" unique_id=990057928]
+
 [node name="DC-" type="MeshInstance3D" parent="GraetzMinigame/Pins" unique_id=380538185]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.29091933, -0.0047813654, -0.41194052)
 mesh = SubResource("CylinderMesh_2d5gv")
+
+[node name="PathFromJunction" type="Node3D" parent="GraetzMinigame/Pins/DC-" unique_id=1752995652]
 
 [node name="ACText" type="MeshInstance3D" parent="GraetzMinigame/Pins" unique_id=949467917]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.25897813, 0.17695129, -0.35162455)
@@ -308,8 +340,8 @@ transform = Transform3D(0.67202765, -2.9375265e-08, 0.6720278, -0.6720277, -1.21
 mesh = SubResource("PlaneMesh_2d5gv")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="GraetzMinigame/ConnectionsDebug" unique_id=538958820]
-transform = Transform3D(-2.9802322e-08, -2.9375265e-08, 0.9503907, -0.9503906, 1.2167626e-08, -2.9802322e-08, -1.2167633e-08, -0.9503909, -2.9375268e-08, -0.12425414, 1.2158076, -0.46051085)
-mesh = SubResource("PlaneMesh_2d5gv")
+transform = Transform3D(-2.9802322e-08, -2.9375265e-08, 0.9503907, -0.9503906, 1.2167626e-08, -2.9802322e-08, -1.2167633e-08, -0.9503909, -2.9375268e-08, -0.12425414, 1.2412304, -0.46051085)
+mesh = SubResource("PlaneMesh_i1kx8")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="GraetzMinigame/ConnectionsDebug" unique_id=737398317]
 transform = Transform3D(0.9503905, -1.2167627e-08, -1.17405765e-08, 1.1740571e-08, -2.9375256e-08, 0.9503906, -1.2167632e-08, -0.9503909, -2.9375265e-08, 0.015637144, 1.1721284, -0.46051085)

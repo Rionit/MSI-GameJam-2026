@@ -13,7 +13,6 @@ func _ready() -> void:
 func on_interacted(interactable: Interactable) -> void:
 	print("Interacted with minigame server: " + str(minigame))
 	minigame.enter_game()
-
 	collider.disabled = true
 
 func on_minigame_completed(minigame: Minigame) -> void:

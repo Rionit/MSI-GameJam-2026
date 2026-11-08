@@ -3,3 +3,5 @@ class_name GraetzPinJunction
 
 var junction : GraetzJunction
 var pin : Node3D
+
+var path_points : Array[Vector3] = []
