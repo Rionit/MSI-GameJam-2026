@@ -179,20 +179,17 @@ func show_mouse(mouse_visiblity: bool):
 func move_camera(delta: float):
 	print("Moving camera!")
 	if use_camera_limit:
-		# Accumulate rotation locally on the camera pivot (Yaw and Pitch) - use += for correct direction
+		# Accumulate rotation locally on the camera pivot (Yaw and Pitch)
 		camera_pivot.rotation.y += _mouse_motion.x
 		camera_pivot.rotation.x += _mouse_motion.y
 		
-		# Compute target yaw and pitch from the custom direction vector
 		var target_dir = camera_limit_direction.normalized()
 		var target_yaw = atan2(-target_dir.x, -target_dir.z)
 		var target_pitch = asin(clamp(target_dir.y, -1.0, 1.0))
 		
-		# Calculate offset from the target direction
 		var yaw_offset = camera_pivot.rotation.y - target_yaw
 		var pitch_offset = camera_pivot.rotation.x - target_pitch
 		
-		# Limit camera to a circular cone constraint around the custom direction
 		var max_rad = deg_to_rad(camera_limit_angle)
 		var view_offset = Vector2(yaw_offset, pitch_offset)
 		if view_offset.length() > max_rad:
@@ -200,20 +197,22 @@ func move_camera(delta: float):
 			camera_pivot.rotation.y = target_yaw + view_offset.x
 			camera_pivot.rotation.x = target_pitch + view_offset.y
 			
-		# Enforce pitch boundaries
 		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -deg_to_rad(90), deg_to_rad(90))
 	else:
-		# Smoothly reset local camera yaw when limit is disabled
-		#if camera_pivot.get_parent() == self:
-		camera_pivot.rotation.y = move_toward(camera_pivot.rotation.y, 0.0, delta * 10.0)
-		
-		# Rotate character body (Y axis) and camera (X axis)
-		
 		if camera_pivot.get_parent() == self:
+			# Normal gameplay: rotate player body (Y) and camera pivot (X)
 			rotate_y(_mouse_motion.x)
+			camera_pivot.rotate_x(_mouse_motion.y)
+		else:
+			# Minigame view: rotate yaw on Y and pitch cleanly on local right axis
+			camera_pivot.rotate_y(_mouse_motion.x)
+			camera_pivot.rotate_object_local(Vector3.RIGHT, _mouse_motion.y)
+			
+			# Prevent any unintended roll/tilt drift
+			var rot = camera_pivot.rotation
+			rot.z = 0.0
+			camera_pivot.rotation = rot
 		
-		#camera_pivot.rotate_y(_mouse_motion.x)
-		camera_pivot.rotate_x(_mouse_motion.y)
 		camera_pivot.rotation_degrees.x = clamp(camera_pivot.rotation_degrees.x, -90, 90)
 	
 	_mouse_motion = Vector2.ZERO
