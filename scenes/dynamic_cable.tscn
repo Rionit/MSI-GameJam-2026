@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cam6bui7q7dvn"]
+
+[ext_resource type="Script" uid="uid://b1nopq4k63c5d" path="res://scripts/dynamic_cable.gd" id="1_6ciqk"]
+
+[node name="DynamicCable" type="Node3D" unique_id=1096061369]
+script = ExtResource("1_6ciqk")
+cable_collision_layer = 4
+cable_collision_mask = 3
+
+[node name="Anchor" type="StaticBody3D" parent="." unique_id=624647733]
+
+[node name="LinkContainer" type="Node3D" parent="." unique_id=1857141049]
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="." unique_id=420506931]
