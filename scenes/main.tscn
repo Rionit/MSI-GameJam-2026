@@ -75,7 +75,7 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 
 [node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("doors")]
 script = ExtResource("1_muem4")
-doors = [NodePath("Doors/sliding_door_start"), NodePath("Doors/sliding_door"), NodePath("Doors/sliding_door_last")]
+doors = [NodePath(""), NodePath(""), NodePath("")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=92616691]
 environment = SubResource("Environment_sugp2")
@@ -172,14 +172,23 @@ omni_attenuation = 10.0
 
 [node name="Doors" type="Node3D" parent="." unique_id=299790110]
 
-[node name="sliding_door_start" parent="Doors" unique_id=1914055593 instance=ExtResource("18_dp3eg")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -99.33677, 9.5, -9.5)
+[node name="sliding_door_closed" parent="Doors" unique_id=1044989165 instance=ExtResource("18_dp3eg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -120.773346, 9.5, -44.76178)
 
-[node name="sliding_door" parent="Doors" unique_id=1121385281 instance=ExtResource("18_dp3eg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.83147, 9.5, 0)
+[node name="sliding_door_1" parent="Doors" unique_id=1914055593 instance=ExtResource("18_dp3eg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -108.900116, 9.5, -44.76178)
 
-[node name="sliding_door_last" parent="Doors" unique_id=108000251 instance=ExtResource("18_dp3eg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.57954, 9.5, 0)
+[node name="sliding_door_2" parent="Doors" unique_id=2073990098 instance=ExtResource("18_dp3eg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -99.33677, 9.5, -35.195328)
+
+[node name="sliding_door_3" parent="Doors" unique_id=198158012 instance=ExtResource("18_dp3eg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -99.33677, 9.5, -9.566413)
+
+[node name="sliding_door_4" parent="Doors" unique_id=1121385281 instance=ExtResource("18_dp3eg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.774376, 9.5, 0)
+
+[node name="sliding_door_5" parent="Doors" unique_id=108000251 instance=ExtResource("18_dp3eg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.61906, 9.5, 0)
 
 [connection signal="interacted" from="Level/Interactable" to="SplitScreen" method="_on_interactable_interacted"]
 
