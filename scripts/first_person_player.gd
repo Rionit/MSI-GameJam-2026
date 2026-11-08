@@ -34,7 +34,7 @@ const DOT_HOLE = preload("uid://bnk8g7td53uyy")
 @export_category("Camera")
 ##Camera sensiblity
 @export var camera_sensitivty: float = 0.01
-@onready var camera_pivot: Node3D = $Camera
+@export var camera_pivot: Node3D 
 
 @export_category("Camera Limits")
 ## Enable to restrict camera view rotation to a cone
@@ -54,6 +54,7 @@ var _current_speed: float
 var _current_fall_multiplier: float
 var _mouse_motion: Vector2
 
+var current_minigame_server: MinigameServer = null
 
 func _ready() -> void:
 	add_to_group("player")
@@ -127,6 +128,9 @@ func _input(event: InputEvent) -> void:
 	#Show or Hide mouse
 	if event.is_action_pressed("escape"):
 		show_mouse(Input.mouse_mode == Input.MOUSE_MODE_CAPTURED)
+	
+	if event.is_action_pressed("exit_minigame") and current_minigame_server:
+		current_minigame_server.on_minigame_exited()
 
 	#Run
 	if event.is_action_pressed("run"):
@@ -173,6 +177,7 @@ func show_mouse(mouse_visiblity: bool):
 	pass
 
 func move_camera(delta: float):
+	print("Moving camera!")
 	if use_camera_limit:
 		# Accumulate rotation locally on the camera pivot (Yaw and Pitch) - use += for correct direction
 		camera_pivot.rotation.y += _mouse_motion.x
@@ -199,10 +204,15 @@ func move_camera(delta: float):
 		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -deg_to_rad(90), deg_to_rad(90))
 	else:
 		# Smoothly reset local camera yaw when limit is disabled
+		#if camera_pivot.get_parent() == self:
 		camera_pivot.rotation.y = move_toward(camera_pivot.rotation.y, 0.0, delta * 10.0)
 		
 		# Rotate character body (Y axis) and camera (X axis)
-		rotate_y(_mouse_motion.x)
+		
+		if camera_pivot.get_parent() == self:
+			rotate_y(_mouse_motion.x)
+		
+		#camera_pivot.rotate_y(_mouse_motion.x)
 		camera_pivot.rotate_x(_mouse_motion.y)
 		camera_pivot.rotation_degrees.x = clamp(camera_pivot.rotation_degrees.x, -90, 90)
 	

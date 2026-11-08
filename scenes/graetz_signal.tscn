@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://rdn1imq1yu50"]
+
+[ext_resource type="Script" uid="uid://rf407ixfhcnl" path="res://scripts/minigames/graetz/graetz_signal.gd" id="1_signal"]
+[ext_resource type="PackedScene" uid="uid://6vgxd7gu3nd3" path="res://scenes/graetz_electron.tscn" id="2_electron"]
+
+[sub_resource type="Curve3D" id="Curve3D_to470"]
+
+[node name="GraetzSingal" type="Path3D" unique_id=1470529806]
+curve = SubResource("Curve3D_to470")
+script = ExtResource("1_signal")
+speed = 0.6
+electron_scene = ExtResource("2_electron")
