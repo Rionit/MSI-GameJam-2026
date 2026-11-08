@@ -8,17 +8,34 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qaqv0"]
 shader = ExtResource("4_tp7c1")
-shader_parameter/scanlines_1 = 300.0
-shader_parameter/scanlines_2 = 2.0
-shader_parameter/scan_reduction = 0.1
-shader_parameter/vinnette_alpla = 0.499999988824
-shader_parameter/vinnette_inner_radius = 0.0
-shader_parameter/vinnette_outer_radius = 1.0
+shader_parameter/overlay = false
+shader_parameter/time_offset = 0.0
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
-[node name="FirstPersonPlayer" type="CharacterBody3D" unique_id=752721606]
+[node name="FirstPersonPlayer" type="CharacterBody3D" unique_id=752721606 node_paths=PackedStringArray("camera_pivot")]
 collision_mask = 3
 script = ExtResource("1_0p46v")
 speed = 2.5
+camera_pivot = NodePath("Camera")
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=992260533]
 shape = SubResource("CapsuleShape3D_ofe37")

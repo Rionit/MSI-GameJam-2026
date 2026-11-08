@@ -139,6 +139,6 @@ breakers = [NodePath("../server_w_breakers/server/breaker/Breaker"), NodePath(".
 metadata/_custom_type_script = "uid://chk8b8otvioxh"
 
 [node name="CameraPos" type="Node3D" parent="." unique_id=724157002]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3577471, -1.0349393)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3577471, -1.096966)
 
 [editable path="server_w_breakers"]
