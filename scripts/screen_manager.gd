@@ -2,6 +2,37 @@
 extends Node
 class_name ScreenManager
 
+enum AspectRatio {
+	R_1x1,
+	R_1x2,
+	R_2x1,
+	R_4x3,
+	R_16x9,
+	R_9x16,
+	R_32x5
+}
+
+const RATIO_STRINGS = {
+	AspectRatio.R_1x1: "1x1",
+	AspectRatio.R_1x2: "1x2",
+	AspectRatio.R_2x1: "2x1",
+	AspectRatio.R_4x3: "4x3",
+	AspectRatio.R_16x9: "16x9",
+	AspectRatio.R_9x16: "9x16",
+	AspectRatio.R_32x5: "32x5",
+}
+
+@export_category("Setup Helper")
+@export_group("Asset Scanning")
+@export var target_ratio: AspectRatio = AspectRatio.R_16x9
+@export_dir var video_folder: String = "res://videos/"
+@export var mesh_search_root: NodePath ## Optional root node to search. If left empty, defaults to the current edited scene root.
+@export_tool_button("Find Unused Assets", "AcceptDialog") var find_unused_assets = _scan_unused_assets
+@export_tool_button("Find Duplicate Assets", "AcceptDialog") var find_duplicate_pairs = _scan_duplicate_pairs
+@export_tool_button("Find Invalid Pairs", "AcceptDialog") var find_invalid_pairs = _scan_invalid_pairs
+@export_group("")
+
+@export_category("Setup")
 @export var pairs: Array[VideoMeshPair] = []
 
 @export_range(0, 100, 1) var active_screen_count: int = 0:
@@ -67,7 +98,9 @@ func _activate_screen(mesh_instance: MeshInstance3D, pair: VideoMeshPair) -> voi
 	var viewport := SubViewport.new()
 	viewport.name = "ScreenViewport"
 	viewport.size = video_size
-	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	viewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+	viewport.gui_disable_input = true
+	viewport.disable_3d = true
 	
 	# Add the video player first so it renders in the background
 	viewport.add_child(video_player)
@@ -173,3 +206,161 @@ func _deactivate_screen(mesh_instance: MeshInstance3D, pair: VideoMeshPair = nul
 	else:
 		viewport.queue_free()
 		mesh_instance.material_override = null
+
+#region helper stuff for searching
+
+func _scan_unused_assets():
+	var ratio_str = RATIO_STRINGS[target_ratio]
+	print("\n--- [ScreenManager] Scanning for Unused Assets (Target Ratio: %s) ---" % ratio_str)
+	
+	# 1. Collect currently used video streams and mesh nodes
+	var used_videos: Array[VideoStream] = []
+	var used_mesh_nodes: Array[Node] = []
+	
+	for pair in pairs:
+		if not pair:
+			continue
+		if pair.video_stream and not pair.video_stream in used_videos:
+			used_videos.append(pair.video_stream)
+		if not pair.mesh_path.is_empty():
+			var node = get_node_or_null(pair.mesh_path)
+			if node and not node in used_mesh_nodes:
+				used_mesh_nodes.append(node)
+
+	# 2. Scan and check Unused Videos (from folder)
+	var all_videos = _get_files_in_directory(video_folder, [".ogv", ".webm", ".mp4"])
+	var unused_videos_count = 0
+	
+	print("\n[Unused Videos for %s]" % ratio_str)
+	for file_path in all_videos:
+		var file_name = file_path.get_file().get_basename()
+		if _matches_ratio(file_name, ratio_str):
+			var res = load(file_path) as VideoStream
+			if res and not res in used_videos:
+				print("  - ", file_path)
+				unused_videos_count += 1
+	if unused_videos_count == 0:
+		print("  (None found - all %s-named videos are in use)" % ratio_str)
+
+	# 3. Scan and check Unused Meshes (from Scene Tree)
+	print("\n[Unused Mesh Nodes in Tree for %s]" % ratio_str)
+	var root_node: Node = null
+	if not mesh_search_root.is_empty():
+		root_node = get_node_or_null(mesh_search_root)
+	elif Engine.is_editor_hint():
+		var editor_interface = Engine.get_singleton("EditorInterface")
+		if editor_interface:
+			root_node = editor_interface.get_edited_scene_root()
+	
+	if not root_node:
+		root_node = self
+
+	var unused_meshes_count = 0
+	if root_node:
+		var ratio_nodes = _find_ratio_nodes_recursive(root_node, ratio_str)
+		for node in ratio_nodes:
+			if not node in used_mesh_nodes:
+				var path_str = str(root_node.get_path_to(node))
+				print("  - Node Name: ", node.name, " | Path: ", path_str)
+				unused_meshes_count += 1
+				
+	if unused_meshes_count == 0:
+		print("  (None found - all %s-named mesh nodes are in use)" % ratio_str)
+		
+	print("---------------------------------------------------\n")
+
+func _scan_duplicate_pairs():
+	print("\n--- [ScreenManager] Scanning for Duplicate Meshes/Videos in Pairs ---")
+	var mesh_indices = {}
+	var video_indices = {}
+	
+	for i in range(pairs.size()):
+		var pair = pairs[i]
+		if not pair:
+			continue
+		if not pair.mesh_path.is_empty():
+			var path_str = str(pair.mesh_path)
+			if not mesh_indices.has(path_str):
+				mesh_indices[path_str] = []
+			mesh_indices[path_str].append(i)
+		if pair.video_stream:
+			if not video_indices.has(pair.video_stream):
+				video_indices[pair.video_stream] = []
+			video_indices[pair.video_stream].append(i)
+			
+	print("\n[Duplicate Mesh Paths]")
+	var dup_meshes = 0
+	for path in mesh_indices:
+		if mesh_indices[path].size() > 1:
+			print("  - Mesh Path '%s' used at indices: %s" % [path, mesh_indices[path]])
+			dup_meshes += 1
+	if dup_meshes == 0:
+		print("  (None found)")
+		
+	print("\n[Duplicate Video Streams]")
+	var dup_videos = 0
+	for stream in video_indices:
+		if video_indices[stream].size() > 1:
+			print("  - Video Stream '%s' used at indices: %s" % [stream.resource_path if stream else "Unknown", video_indices[stream]])
+			dup_videos += 1
+	if dup_videos == 0:
+		print("  (None found)")
+	print("---------------------------------------------------\n")
+
+func _scan_invalid_pairs():
+	print("\n--- [ScreenManager] Scanning for Invalid/Incomplete Pairs ---")
+	var invalid_count = 0
+	for i in range(pairs.size()):
+		var pair = pairs[i]
+		var issues = []
+		if not pair:
+			print("  - Index %d: Pair is null" % i)
+			invalid_count += 1
+			continue
+		if pair.mesh_path.is_empty():
+			issues.append("Mesh path is empty")
+		if not pair.video_stream:
+			issues.append("Video stream is nil")
+			
+		if issues.size() > 0:
+			print("  - Index %d: %s" % [i, ", ".join(issues)])
+			invalid_count += 1
+			
+	if invalid_count == 0:
+		print("  (None found - all pairs have valid mesh paths and video streams)")
+	print("---------------------------------------------------\n")
+
+# Recursively search the tree for nodes matching the target ratio prefix
+func _find_ratio_nodes_recursive(node: Node, ratio_str: String) -> Array[Node]:
+	var result: Array[Node] = []
+	if _matches_ratio(node.name, ratio_str):
+		result.append(node)
+	
+	for child in node.get_children():
+		result.append_array(_find_ratio_nodes_recursive(child, ratio_str))
+	return result
+
+# Helper to find video files in a folder
+func _get_files_in_directory(path: String, valid_extensions: Array) -> Array[String]:
+	var files: Array[String] = []
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "" :
+			if dir.current_is_dir():
+				if not file_name.begins_with("."):
+					files.append_array(_get_files_in_directory(path.path_join(file_name), valid_extensions))
+			else:
+				var ext = "." + file_name.get_extension().to_lower()
+				if ext in valid_extensions:
+					files.append(path.path_join(file_name))
+			file_name = dir.get_next()
+	return files
+
+# Checks if a name starts with the ratio string followed by a separator (e.g., "16x9_screen")
+func _matches_ratio(text: String, ratio_str: String) -> bool:
+	var lower_text = text.to_lower()
+	var lower_ratio = ratio_str.to_lower()
+	return lower_text.begins_with(lower_ratio + "_") or lower_text.begins_with(lower_ratio + "-") or lower_text == lower_ratio
+#endregion

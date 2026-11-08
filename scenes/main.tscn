@@ -5,19 +5,39 @@
 [ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ch8mjawwdfc7j" path="res://scripts/screen_manager.gd" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="2_0wfyh"]
-[ext_resource type="Script" uid="uid://30gbkac6ebgc" path="res://scripts/video_mesh_pair.gd" id="2_o6xl0"]
+[ext_resource type="ArrayOccluder3D" uid="uid://c0vrcbhfvwiyd" path="res://resources/main.occ" id="2_kmb1v"]
 [ext_resource type="Script" uid="uid://bhoupc1aclli0" path="res://scripts/split_screen_controller.gd" id="2_sugp2"]
 [ext_resource type="VideoStream" uid="uid://dp2irokjycfum" path="res://videos/any_colors.ogv" id="3_tipki"]
-[ext_resource type="VideoStream" uid="uid://ciuup5oxpfcpo" path="res://videos/9x16_math.ogv" id="4_85g3d"]
 [ext_resource type="VideoStream" uid="uid://q08lwb57g8qx" path="res://videos/32x5_eyes.ogv" id="5_choun"]
-[ext_resource type="VideoStream" uid="uid://diilavvwd1onf" path="res://videos/16x9_code.ogv" id="6_a8y0u"]
 [ext_resource type="Material" uid="uid://bk5xb1qh5vgx2" path="res://materials/crt_screen.tres" id="6_choun"]
+[ext_resource type="Script" uid="uid://30gbkac6ebgc" path="res://scripts/video_mesh_pair.gd" id="7_eb6dy"]
 [ext_resource type="VideoStream" uid="uid://cwj5dv1pbx4uq" path="res://videos/1x2_painting.ogv" id="7_jkv2x"]
 [ext_resource type="VideoStream" uid="uid://c2ybckp5a51tm" path="res://videos/2x1_war.ogv" id="8_jbj1t"]
-[ext_resource type="VideoStream" uid="uid://bo48c8mhkcltw" path="res://videos/4x3_kubik.ogv" id="9_muem4"]
+[ext_resource type="VideoStream" uid="uid://b840ladsl1o60" path="res://videos/2x1_plants.ogv" id="10_dp3eg"]
+[ext_resource type="VideoStream" uid="uid://c2a0tk6cf8mdi" path="res://videos/1x1_solarsystem.ogv" id="11_0ld40"]
 [ext_resource type="VideoStream" uid="uid://c2b115am33t5c" path="res://videos/crt-on.ogv" id="11_jbj1t"]
+[ext_resource type="VideoStream" uid="uid://ciuup5oxpfcpo" path="res://videos/9x16_math.ogv" id="12_jscy8"]
 [ext_resource type="VideoStream" uid="uid://cy7tcpkdqofcu" path="res://videos/crt-off.ogv" id="12_muem4"]
+[ext_resource type="VideoStream" uid="uid://db7r4qn8fshyu" path="res://videos/1x1_animals.ogv" id="13_pm3ni"]
+[ext_resource type="VideoStream" uid="uid://cpy3wiwij4dlj" path="res://videos/1x1_rubic.ogv" id="14_y6deb"]
+[ext_resource type="VideoStream" uid="uid://bwo64ivgta2xj" path="res://videos/4x3_architecture.ogv" id="15_og1vs"]
+[ext_resource type="VideoStream" uid="uid://dvahyh0cki5ln" path="res://videos/4x3_explosions.ogv" id="16_2wyq8"]
+[ext_resource type="VideoStream" uid="uid://l24bh8rb0a58" path="res://videos/32x5_grafs.ogv" id="17_vxglm"]
 [ext_resource type="PackedScene" uid="uid://c82cd25ttrvdj" path="res://models/doors.blend" id="18_dp3eg"]
+[ext_resource type="VideoStream" uid="uid://q3mtxlxvekqn" path="res://videos/2x1_newspaper.ogv" id="18_vxglm"]
+[ext_resource type="VideoStream" uid="uid://c0lmdwsaxehmh" path="res://videos/16x9_games.ogv" id="19_2f3dj"]
+[ext_resource type="VideoStream" uid="uid://rhxq3a0lrv8c" path="res://videos/2x1_dancing.ogv" id="20_2f3dj"]
+[ext_resource type="VideoStream" uid="uid://d2tjstfyob0en" path="res://videos/16x9_artworks.ogv" id="21_fv21b"]
+[ext_resource type="VideoStream" uid="uid://c2ujm8aixxk3q" path="res://videos/9x16_orchestra.ogv" id="22_tel4y"]
+[ext_resource type="VideoStream" uid="uid://c5xmwng7nwuep" path="res://videos/9x16_text.ogv" id="23_j8jky"]
+[ext_resource type="VideoStream" uid="uid://lk5a3un3xidi" path="res://videos/9x16_religion.ogv" id="23_tel4y"]
+[ext_resource type="VideoStream" uid="uid://bm3wcgdk4a0gh" path="res://videos/1x1_dancing_roach.ogv" id="24_5q0nq"]
+[ext_resource type="VideoStream" uid="uid://ciiuk3r56enie" path="res://videos/missing_video.ogv" id="25_dgi5k"]
+[ext_resource type="VideoStream" uid="uid://bo48c8mhkcltw" path="res://videos/4x3_kubik.ogv" id="26_dgi5k"]
+[ext_resource type="VideoStream" uid="uid://diilavvwd1onf" path="res://videos/16x9_code.ogv" id="27_j8jky"]
+[ext_resource type="VideoStream" uid="uid://jk2abknneto0" path="res://videos/4x3_animation.ogv" id="28_kmb1v"]
+[ext_resource type="VideoStream" uid="uid://ghpk850vjgdi" path="res://videos/1x1_3d_modeling.ogv" id="29_pibwh"]
+[ext_resource type="VideoStream" uid="uid://qjq6e4dvykmu" path="res://videos/1x2_hello_text.ogv" id="30_c6pm6"]
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 ambient_light_source = 2
@@ -26,46 +46,184 @@ ssao_enabled = true
 ssil_enabled = true
 glow_enabled = true
 
-[sub_resource type="Resource" id="Resource_tbgi4"]
-script = ExtResource("2_o6xl0")
+[sub_resource type="Resource" id="Resource_ya4ey"]
+script = ExtResource("7_eb6dy")
 mesh_path = NodePath("../map/1x1_screen")
 video_stream = ExtResource("3_tipki")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
-[sub_resource type="Resource" id="Resource_o6xl0"]
-script = ExtResource("2_o6xl0")
-mesh_path = NodePath("../map/9x16_screen")
-video_stream = ExtResource("4_85g3d")
-metadata/_custom_type_script = "uid://30gbkac6ebgc"
-
-[sub_resource type="Resource" id="Resource_tipki"]
-script = ExtResource("2_o6xl0")
-mesh_path = NodePath("../map/32x5_screen")
-video_stream = ExtResource("5_choun")
-metadata/_custom_type_script = "uid://30gbkac6ebgc"
-
-[sub_resource type="Resource" id="Resource_2imv7"]
-script = ExtResource("2_o6xl0")
-mesh_path = NodePath("../map/16x9_screen")
-video_stream = ExtResource("6_a8y0u")
-metadata/_custom_type_script = "uid://30gbkac6ebgc"
-
-[sub_resource type="Resource" id="Resource_814bv"]
-script = ExtResource("2_o6xl0")
+[sub_resource type="Resource" id="Resource_eb6dy"]
+script = ExtResource("7_eb6dy")
 mesh_path = NodePath("../map/1x2_screen")
 video_stream = ExtResource("7_jkv2x")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
-[sub_resource type="Resource" id="Resource_6up7u"]
-script = ExtResource("2_o6xl0")
+[sub_resource type="Resource" id="Resource_trceg"]
+script = ExtResource("7_eb6dy")
 mesh_path = NodePath("../map/2x1_screen")
 video_stream = ExtResource("8_jbj1t")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
-[sub_resource type="Resource" id="Resource_cfesm"]
-script = ExtResource("2_o6xl0")
+[sub_resource type="Resource" id="Resource_a8y0u"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/32x5_screen")
+video_stream = ExtResource("5_choun")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_jkv2x"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/9x16_screen")
+video_stream = ExtResource("23_j8jky")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_0lmq1"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/2x1_screen_003")
+video_stream = ExtResource("10_dp3eg")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_dp3eg"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/1x1_screen_002")
+video_stream = ExtResource("11_0ld40")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_c4kn6"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/9x16_screen_004_missing_vid")
+video_stream = ExtResource("12_jscy8")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_geqqb"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/1x1_screen_001")
+video_stream = ExtResource("13_pm3ni")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_x3vvp"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/1x1_screen_003")
+video_stream = ExtResource("14_y6deb")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_vchkt"]
+script = ExtResource("7_eb6dy")
 mesh_path = NodePath("../map/4x3_screen")
-video_stream = ExtResource("9_muem4")
+video_stream = ExtResource("15_og1vs")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_txyw0"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/4x3_screen_003")
+video_stream = ExtResource("16_2wyq8")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_vc5cj"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/32x5_screen_001")
+video_stream = ExtResource("17_vxglm")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_kmb1v"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/2x1_screen_001")
+video_stream = ExtResource("18_vxglm")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_fuf3a"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/16x9_screen_001")
+video_stream = ExtResource("19_2f3dj")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_5he1u"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/2x1_screen_004_missing_vid")
+video_stream = ExtResource("20_2f3dj")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_yq6so"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/16x9_screen")
+video_stream = ExtResource("21_fv21b")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_fv21b"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/9x16_screen_001")
+video_stream = ExtResource("22_tel4y")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_qkpxi"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/9x16_screen_003")
+video_stream = ExtResource("23_tel4y")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_tel4y"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/1x1_screen_004")
+video_stream = ExtResource("24_5q0nq")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_j8jky"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/1x2_screen_002_missing_vid")
+video_stream = ExtResource("25_dgi5k")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_pibwh"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/4x3_screen_002")
+video_stream = ExtResource("26_dgi5k")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_bu4jf"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/1x1_screen_006_missing_vid")
+video_stream = ExtResource("25_dgi5k")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_dgi5k"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/16x9_screen_003_missing_vid")
+video_stream = ExtResource("25_dgi5k")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_c6pm6"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/2x1_screen_002")
+video_stream = ExtResource("25_dgi5k")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_5poiv"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/16x9_screen_002")
+video_stream = ExtResource("27_j8jky")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_o7ddy"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/4x3_screen_001")
+video_stream = ExtResource("28_kmb1v")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_0loja"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/1x1_screen_005")
+video_stream = ExtResource("29_pibwh")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_ids8r"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/1x2_screen_001")
+video_stream = ExtResource("30_c6pm6")
+metadata/_custom_type_script = "uid://30gbkac6ebgc"
+
+[sub_resource type="Resource" id="Resource_1v6qk"]
+script = ExtResource("7_eb6dy")
+mesh_path = NodePath("../map/9x16_screen_002")
+video_stream = ExtResource("25_dgi5k")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
 [sub_resource type="BoxMesh" id="BoxMesh_gsyc7"]
@@ -75,7 +233,11 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 
 [node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("doors")]
 script = ExtResource("1_muem4")
-doors = [NodePath(""), NodePath(""), NodePath("")]
+doors = [NodePath("Doors/sliding_door_1"), NodePath("Doors/sliding_door_2"), NodePath("Doors/sliding_door_3"), NodePath("Doors/sliding_door_4"), NodePath("Doors/sliding_door_5")]
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="." unique_id=583295302]
+occluder = ExtResource("2_kmb1v")
+bake_simplification_distance = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=92616691]
 environment = SubResource("Environment_sugp2")
@@ -83,7 +245,9 @@ environment = SubResource("Environment_sugp2")
 [node name="ScreenManager" type="Node" parent="." unique_id=131894382]
 unique_name_in_owner = true
 script = ExtResource("1_tbgi4")
-pairs = Array[ExtResource("2_o6xl0")]([SubResource("Resource_tbgi4"), SubResource("Resource_o6xl0"), SubResource("Resource_tipki"), SubResource("Resource_2imv7"), SubResource("Resource_814bv"), SubResource("Resource_6up7u"), SubResource("Resource_cfesm")])
+target_ratio = 5
+mesh_search_root = NodePath("../map")
+pairs = Array[ExtResource("7_eb6dy")]([SubResource("Resource_ya4ey"), SubResource("Resource_eb6dy"), SubResource("Resource_trceg"), SubResource("Resource_a8y0u"), SubResource("Resource_jkv2x"), SubResource("Resource_0lmq1"), SubResource("Resource_dp3eg"), SubResource("Resource_c4kn6"), SubResource("Resource_geqqb"), SubResource("Resource_x3vvp"), SubResource("Resource_vchkt"), SubResource("Resource_txyw0"), SubResource("Resource_vc5cj"), SubResource("Resource_kmb1v"), SubResource("Resource_fuf3a"), SubResource("Resource_5he1u"), SubResource("Resource_yq6so"), SubResource("Resource_fv21b"), SubResource("Resource_qkpxi"), SubResource("Resource_tel4y"), SubResource("Resource_j8jky"), SubResource("Resource_pibwh"), SubResource("Resource_bu4jf"), SubResource("Resource_dgi5k"), SubResource("Resource_c6pm6"), SubResource("Resource_5poiv"), SubResource("Resource_o7ddy"), SubResource("Resource_0loja"), SubResource("Resource_ids8r"), SubResource("Resource_1v6qk")])
 crt_shader = ExtResource("6_choun")
 crt_turn_on = ExtResource("11_jbj1t")
 crt_turn_off = ExtResource("12_muem4")
@@ -132,7 +296,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 script = ExtResource("2_sugp2")
-split_ratio = 0.0
 
 [node name="SubViewportContainerLeft" type="SubViewportContainer" parent="SplitScreen" unique_id=1271243271]
 layout_mode = 2
@@ -142,7 +305,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerLeft" unique_id=1764969003]
 handle_input_locally = false
-size = Vector2i(2, 1080)
+size = Vector2i(2, 540)
 render_target_update_mode = 4
 
 [node name="UnmovablePlayer" parent="SplitScreen/SubViewportContainerLeft/SubViewport" unique_id=752721606 instance=ExtResource("1_o5qli")]
@@ -156,12 +319,12 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerRight" unique_id=964279091]
 handle_input_locally = false
-size = Vector2i(1920, 1080)
+size = Vector2i(960, 540)
 render_target_update_mode = 4
 
 [node name="FirstPersonPlayer" parent="SplitScreen/SubViewportContainerRight/SubViewport" unique_id=1859700186 instance=ExtResource("1_o5qli")]
 unique_name_in_owner = true
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -96.46507, 10.572394, -23.963009)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -119.48155, 10.572394, -44.502205)
 speed = 5.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer" unique_id=1190100453]

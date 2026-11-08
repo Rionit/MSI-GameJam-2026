@@ -26,8 +26,10 @@ func _input(event: InputEvent) -> void:
 func on_screen_connected():
 	screen_manager.active_screen_count += 1
 	_update_split_ratio()
-	if screen_manager.active_screen_count % 5 == 0:
-		doors[(screen_manager.active_screen_count / 5) - 1].open()
+	
+	var door_idx = (screen_manager.active_screen_count / 5) - 1
+	if screen_manager.active_screen_count % 5 == 0 and door_idx < doors.size():
+		doors[door_idx].open()
 
 func on_screen_disconnected():
 	screen_manager.active_screen_count -= 1
@@ -39,11 +41,13 @@ func _update_split_ratio() -> void:
 	player.can_move = false
 	split_screen.on_tween_finished.connect(func(): player.can_move = true)
 	
-	if screen_manager.active_screen_count >= max_screens:
+	if screen_manager.active_screen_count == 1:
+		split_screen.split_ratio = 0.075
+	elif screen_manager.active_screen_count >= max_screens:
 		split_screen.split_ratio = 1.0
 	else:
 		split_screen.split_ratio = remap(
 			screen_manager.active_screen_count, 
-			0, max_screens,
-			0.0, 0.9
+			1, max_screens,
+			0.075, 0.9
 		)
