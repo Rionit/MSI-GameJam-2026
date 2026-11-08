@@ -203,6 +203,7 @@ func move_camera(delta: float):
 		
 		# Rotate character body (Y axis) and camera (X axis)
 		rotate_y(_mouse_motion.x)
+		#camera_pivot.rotate_y(_mouse_motion.x)
 		camera_pivot.rotate_x(_mouse_motion.y)
 		camera_pivot.rotation_degrees.x = clamp(camera_pivot.rotation_degrees.x, -90, 90)
 	

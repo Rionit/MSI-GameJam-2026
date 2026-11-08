@@ -303,5 +303,7 @@ light_energy = 0.001
 omni_range = 1.5
 omni_attenuation = 10.0
 
+[node name="StaticCameraParent" type="Node3D" parent="SplitScreen/SubViewportContainerRight/SubViewport" unique_id=1647961134]
+
 [editable path="map"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]

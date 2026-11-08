@@ -147,10 +147,11 @@ size = Vector2(0.28, 0.01)
 [sub_resource type="BoxShape3D" id="BoxShape3D_d8lsv"]
 size = Vector3(0.8, 1, 0.2)
 
-[node name="Server Graetz Minigame" type="StaticBody3D" unique_id=1996921154 node_paths=PackedStringArray("minigame", "collider", "mesh_instance")]
+[node name="Server Graetz Minigame" type="StaticBody3D" unique_id=1996921154 node_paths=PackedStringArray("minigame", "collider", "cameraPosition", "mesh_instance")]
 script = ExtResource("1_i1kx8")
 minigame = NodePath("GraetzMinigame")
 collider = NodePath("CollisionShape3D")
+cameraPosition = NodePath("CameraPos")
 outline_material = ExtResource("2_ocepy")
 mesh_instance = NodePath("GraetzMinigame/TestButton/MeshInstance3D")
 metadata/_custom_type_script = "uid://vsmlnsfpq43o"
@@ -370,3 +371,6 @@ mesh = SubResource("PlaneMesh_73sxj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=578456570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3570375, -0.48634267)
 shape = SubResource("BoxShape3D_d8lsv")
+
+[node name="CameraPos" type="Node3D" parent="." unique_id=791361621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3187306, -1.0187192)

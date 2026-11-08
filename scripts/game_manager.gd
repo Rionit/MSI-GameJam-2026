@@ -5,6 +5,7 @@ class_name GameManager
 @onready var screen_manager: ScreenManager = %ScreenManager
 @onready var split_screen: SplitScreen = %SplitScreen
 @onready var player: PlayerController = %FirstPersonPlayer
+@onready var static_camera_parent: Node3D = %SplitScreen/SubViewportContainerRight/SubViewport/StaticCameraParent
 
 @export_group("Screen Actions")
 @export_tool_button("Connect Screen", "Add")

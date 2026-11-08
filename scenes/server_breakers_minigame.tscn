@@ -21,11 +21,12 @@ size = Vector3(0.060546875, 0.06542969, 0.1171875)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d5gv"]
 size = Vector3(0.7753906, 0.31054688, 0.2602539)
 
-[node name="Server Breakers Minigame" type="StaticBody3D" unique_id=1111946063 node_paths=PackedStringArray("minigame", "collider", "mesh_instance")]
+[node name="Server Breakers Minigame" type="StaticBody3D" unique_id=1111946063 node_paths=PackedStringArray("minigame", "collider", "cameraPosition", "mesh_instance")]
 collision_mask = 0
 script = ExtResource("1_iwqte")
 minigame = NodePath("BreakersMinigame")
 collider = NodePath("CollisionShape3D")
+cameraPosition = NodePath("CameraPos")
 outline_material = SubResource("StandardMaterial3D_5atrm")
 mesh_instance = NodePath("server_w_breakers/server/outline")
 metadata/_custom_type_script = "uid://vsmlnsfpq43o"
@@ -136,5 +137,8 @@ shape = SubResource("BoxShape3D_2d5gv")
 script = ExtResource("7_iyen1")
 breakers = [NodePath("../server_w_breakers/server/breaker/Breaker"), NodePath("../server_w_breakers/server/breaker_001/Breaker"), NodePath("../server_w_breakers/server/breaker_002/Breaker"), NodePath("../server_w_breakers/server/breaker_003/Breaker"), NodePath("../server_w_breakers/server/breaker_004/Breaker"), NodePath("../server_w_breakers/server/breaker_005/Breaker")]
 metadata/_custom_type_script = "uid://chk8b8otvioxh"
+
+[node name="CameraPos" type="Node3D" parent="." unique_id=724157002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3577471, -1.0349393)
 
 [editable path="server_w_breakers"]

@@ -14,11 +14,12 @@ grow_amount = 0.05
 [sub_resource type="BoxShape3D" id="BoxShape3D_2d5gv"]
 size = Vector3(0.7746582, 0.50512695, 0.74658203)
 
-[node name="Server Matrix Minigame" type="StaticBody3D" unique_id=2068626685 node_paths=PackedStringArray("minigame", "collider", "mesh_instance")]
+[node name="Server Matrix Minigame" type="StaticBody3D" unique_id=2068626685 node_paths=PackedStringArray("minigame", "collider", "cameraPosition", "mesh_instance")]
 transform = Transform3D(-0.011953227, 0, 0.99992853, 0, 1, 0, -0.99992853, 0, -0.011953227, 0, 0, 0)
 script = ExtResource("1_qyrgb")
 minigame = NodePath("server_w_laptop/server/laptop/MatrixMinigame")
 collider = NodePath("CollisionShape3D")
+cameraPosition = NodePath("CameraPos")
 outline_material = SubResource("StandardMaterial3D_qyrgb")
 mesh_instance = NodePath("server_w_laptop/server/outline_mesh")
 metadata/_custom_type_script = "uid://vsmlnsfpq43o"
@@ -35,5 +36,8 @@ transform = Transform3D(-0.04999884, 0.00034906302, -4.3711417e-09, 0.0003490634
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2030711319]
 transform = Transform3D(1, 0, -1.6111437e-07, 0, 1, 0, 1.6111437e-07, 0, 1, -0.028171778, 1.4449973, -0.794714)
 shape = SubResource("BoxShape3D_2d5gv")
+
+[node name="CameraPos" type="Node3D" parent="." unique_id=169348321]
+transform = Transform3D(1.0000007, 0, 0, 0, 0.9848077, -0.17364828, 0, 0.1736482, 0.9848084, -1.8626451e-09, 1.5370344, -1.4415318)
 
 [editable path="server_w_laptop"]

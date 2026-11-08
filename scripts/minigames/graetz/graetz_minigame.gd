@@ -88,8 +88,8 @@ func enable_buttons(enabled: bool) -> void:
 
 func add_path_points(path):
 	var start_pin = get_pin(path[0])
-	print("Trying start pin for path " + str(path) + ": " + str(start_pin.pin))
 	if start_pin != null:
+		print("Trying start pin for path " + str(path) + ": " + str(start_pin.pin))
 		for i in range(start_pin.path_points.size()):
 			path.insert(i+1, start_pin.path_points[i])
 		
@@ -97,9 +97,8 @@ func add_path_points(path):
 
 
 	var end_pin = get_pin(path[-1])
-	print("Trying end pin for path " + str(path) + ": " + str(end_pin.pin))
-
 	if end_pin != null:
+		print("Trying end pin for path " + str(path) + ": " + str(end_pin.pin))
 		for i in range(end_pin.path_points.size(), 0, -1):
 			path.insert(path.size()-1, end_pin.path_points[i-1])
 		print("Path after adding end pin points: " + str(path))
@@ -347,4 +346,3 @@ func signal_finished_callback() -> void:
 	num_signals_finished += 1
 	if num_signals_finished >= 2:
 		flow_finished.emit()
-
