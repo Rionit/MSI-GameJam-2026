@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://dn62i7rv7g06i" path="res://scenes/server_graetz_minigame.tscn" id="18_bjbt1"]
 [ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame.tscn" id="19_to470"]
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="20_bjbt1"]
+[ext_resource type="Script" uid="uid://vsmlnsfpq43o" path="res://scripts/minigame_server.gd" id="20_vusky"]
+[ext_resource type="PackedScene" uid="uid://bdx4tfrtagqbx" path="res://models/server_w_laptop.blend" id="21_ytn4r"]
+[ext_resource type="Script" uid="uid://6se0k8rcbsxe" path="res://scripts/minigames/antivirus/antivirus_minigame.gd" id="22_5atrm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -250,6 +253,17 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -17.
 
 [node name="Server Breakers Minigame" parent="Level" unique_id=1111946063 instance=ExtResource("19_to470")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.375013, 4.0994396, 2.5291944)
+
+[node name="MinigameServer" type="StaticBody3D" parent="Level" unique_id=302360381]
+script = ExtResource("20_vusky")
+metadata/_custom_type_script = "uid://vsmlnsfpq43o"
+
+[node name="server_w_laptop" parent="Level/MinigameServer" unique_id=1706280485 instance=ExtResource("21_ytn4r")]
+
+[node name="AntivirusMinigame" type="Node3D" parent="Level/MinigameServer" unique_id=600191076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14382774, 1.2859128, -0.8327342)
+script = ExtResource("22_5atrm")
+metadata/_custom_type_script = "uid://6se0k8rcbsxe"
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
