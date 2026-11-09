@@ -148,8 +148,9 @@ material = SubResource("StandardMaterial3D_to470")
 camera_feed_id = 1
 which_feed = 1
 
-[node name="Main" type="Node" unique_id=848906251]
+[node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("static_camera_parent")]
 script = ExtResource("1_nkgdn")
+static_camera_parent = NodePath("SplitScreen/SubViewportContainerRight/SubViewport/StaticCameraParent")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=92616691]
 environment = SubResource("Environment_sugp2")

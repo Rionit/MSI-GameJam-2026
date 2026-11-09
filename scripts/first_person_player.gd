@@ -49,6 +49,7 @@ const DOT_HOLE = preload("uid://bnk8g7td53uyy")
 @export var current_interaction: Interactable = null
 @onready var crosshair: TextureRect = $Crosshair
 @onready var interact_ray_cast_3d: RayCast3D = %InteractRayCast3D
+@onready var object_holder: Marker3D = %ObjectHolder
 
 var _current_speed: float
 var _current_fall_multiplier: float
@@ -139,7 +140,7 @@ func _input(event: InputEvent) -> void:
 		_current_speed = speed
 	
 	if event.is_action_pressed("interact") and current_interaction:
-		current_interaction.interact()
+		current_interaction.interact(self)
 
 func add_gravity(delta: float):
 	if use_fall_multiplier:
@@ -177,7 +178,6 @@ func show_mouse(mouse_visiblity: bool):
 	pass
 
 func move_camera(delta: float):
-	print("Moving camera!")
 	if use_camera_limit:
 		# Accumulate rotation locally on the camera pivot (Yaw and Pitch)
 		camera_pivot.rotation.y += _mouse_motion.x

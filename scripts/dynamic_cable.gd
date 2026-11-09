@@ -29,7 +29,7 @@ class_name DynamicCable
 @export var end_target: NodePath:
 	set(value):
 		end_target = value
-		if Engine.is_editor_hint():
+		if is_inside_tree():
 			_generate_chain()
 
 @export_flags_3d_physics var cable_collision_layer := 2:
@@ -92,8 +92,13 @@ func _generate_chain():
 	for i in range(link_count):
 		var link = _create_link(i)
 		link_container.add_child(link)
+		
+		# Set owner AFTER link is part of the tree
 		if Engine.is_editor_hint():
 			link.owner = self
+			for child in link.get_children():
+				child.owner = self
+				
 		links.append(link)
 		link.position = Vector3(0, -top_cap_offset - (i * cylinder_height), 0)
 	
@@ -125,11 +130,16 @@ func _generate_chain():
 			var last_link = links[links.size() - 1]
 			var end_joint = _create_joint(last_link)
 			end_joint.name = "Joint_to_EndTarget"
-			target_node.add_child(end_joint)
+			
+			link_container.add_child(end_joint)
 			if Engine.is_editor_hint():
 				end_joint.owner = self
+			
+			end_joint.global_position = last_link.global_position - Vector3(0, (link_length * 0.5) - link_radius, 0)
+			
 			end_joint.node_a = end_joint.get_path_to(last_link)
-			end_joint.node_b = NodePath("..")
+			end_joint.node_b = end_joint.get_path_to(target_node)
+			
 			joints.append(end_joint)
 
 func _create_link(index: int) -> RigidBody3D:
@@ -138,8 +148,9 @@ func _create_link(index: int) -> RigidBody3D:
 	
 	link.mass = 0.2
 	link.gravity_scale = 1.0
-	link.linear_damp = 0.5
-	link.angular_damp = 0.5
+	link.linear_damp = 0.01
+	link.angular_damp = 0.01
+	link.can_sleep = false
 	
 	link.collision_layer = cable_collision_layer
 	link.collision_mask = cable_collision_mask
@@ -150,8 +161,7 @@ func _create_link(index: int) -> RigidBody3D:
 	capsule.radius = link_radius
 	mesh_instance.mesh = capsule
 	link.add_child(mesh_instance)
-	if Engine.is_editor_hint():
-		mesh_instance.owner = self
+	# Removed owner assignment here because link isn't in the tree yet
 	
 	var collision_shape = CollisionShape3D.new()
 	var shape = CapsuleShape3D.new()
@@ -159,8 +169,7 @@ func _create_link(index: int) -> RigidBody3D:
 	shape.radius = link_radius
 	collision_shape.shape = shape
 	link.add_child(collision_shape)
-	if Engine.is_editor_hint():
-		collision_shape.owner = self
+	# Removed owner assignment here as well
 	
 	return link
 
@@ -189,3 +198,4 @@ func _create_joint(body_a: Node3D) -> Generic6DOFJoint3D:
 	joint.set_param_z(Generic6DOFJoint3D.PARAM_ANGULAR_UPPER_LIMIT, angular_limit_rad)
 	
 	return joint
+	
