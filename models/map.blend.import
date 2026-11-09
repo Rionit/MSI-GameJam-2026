@@ -40,6 +40,18 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
+"materials": {
+"blinking_light": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/blinking_lights.tres",
+"use_external/path": "uid://dy1q8prphuluj"
+},
+"blinking_light_2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/blinking_lights2.tres",
+"use_external/path": "uid://bderkb6m711xv"
+}
+},
 "nodes": {
 "PATH:GeneratedScreenBoxes": {
 "node/node_type": "MeshInstance3D"

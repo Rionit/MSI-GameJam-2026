@@ -409,25 +409,25 @@ freeze_mode = 1
 [node name="mesh" parent="CableMinigame/DynamicCable/Connector" unique_id=137217582 instance=ExtResource("42_chjal")]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -4.2036594e-10, -0.009616852, 0)
 
-[node name="connector_type_001" parent="CableMinigame/DynamicCable/Connector/mesh" index="0" unique_id=696173439]
+[node name="connector_type_001" parent="CableMinigame/DynamicCable/Connector/mesh" index="0" unique_id=1909413259]
 visible = false
 
-[node name="connector_type_002" parent="CableMinigame/DynamicCable/Connector/mesh" index="1" unique_id=1727478141]
+[node name="connector_type_002" parent="CableMinigame/DynamicCable/Connector/mesh" index="1" unique_id=2089641283]
 visible = false
 
-[node name="connector_type_003" parent="CableMinigame/DynamicCable/Connector/mesh" index="2" unique_id=1104791384]
+[node name="connector_type_003" parent="CableMinigame/DynamicCable/Connector/mesh" index="2" unique_id=37078263]
 visible = false
 
-[node name="connector_type_004" parent="CableMinigame/DynamicCable/Connector/mesh" index="3" unique_id=2133703725]
+[node name="connector_type_004" parent="CableMinigame/DynamicCable/Connector/mesh" index="3" unique_id=121485571]
 visible = false
 
-[node name="connector_type_006" parent="CableMinigame/DynamicCable/Connector/mesh" index="5" unique_id=143377872]
+[node name="connector_type_006" parent="CableMinigame/DynamicCable/Connector/mesh" index="5" unique_id=452724485]
 visible = false
 
-[node name="connector_type_007" parent="CableMinigame/DynamicCable/Connector/mesh" index="6" unique_id=1329495180]
+[node name="connector_type_007" parent="CableMinigame/DynamicCable/Connector/mesh" index="6" unique_id=1595357644]
 visible = false
 
-[node name="connector_type_008" parent="CableMinigame/DynamicCable/Connector/mesh" index="7" unique_id=1234703420]
+[node name="connector_type_008" parent="CableMinigame/DynamicCable/Connector/mesh" index="7" unique_id=167587891]
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CableMinigame/DynamicCable/Connector" unique_id=30719318]
@@ -441,8 +441,8 @@ mesh = SubResource("BoxMesh_qaqv0")
 [node name="outlet" parent="CableMinigame" unique_id=706188186 instance=ExtResource("42_2cjbq")]
 transform = Transform3D(-1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, 0, 1, 0.204216, -0.7056618, 0.29912186)
 
-[node name="rotating_part" parent="CableMinigame/outlet" index="1" unique_id=404496741]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, -1.7484554e-07, 0, 1.7484554e-07, 0.9999999, 0, 0, 0)
+[node name="rotating_part" parent="CableMinigame/outlet" index="1" unique_id=889061226]
+transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 0.9999999, 0, -0.9999999, 1.3113416e-07, 0, 0, 0)
 
 [node name="Hitbox" type="CollisionShape3D" parent="CableMinigame" unique_id=627886068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17651367, -0.4840088, 0.10357666)
