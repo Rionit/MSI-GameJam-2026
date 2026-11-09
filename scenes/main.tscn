@@ -442,7 +442,7 @@ mesh = SubResource("BoxMesh_qaqv0")
 transform = Transform3D(-1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, 0, 1, 0.204216, -0.7056618, 0.29912186)
 
 [node name="rotating_part" parent="CableMinigame/outlet" index="1" unique_id=404496741]
-transform = Transform3D(1, 0, 0, 0, -9.9347645e-08, -0.9999999, 0, 0.9999999, -9.9347645e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, -1.7484554e-07, 0, 1.7484554e-07, 0.9999999, 0, 0, 0)
 
 [node name="Hitbox" type="CollisionShape3D" parent="CableMinigame" unique_id=627886068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17651367, -0.4840088, 0.10357666)
