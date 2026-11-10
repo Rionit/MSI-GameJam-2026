@@ -34,6 +34,8 @@ func on_minigame_exited() -> void:
 
 
 func on_minigame_completed(minigame: Minigame) -> void:
+	gameManager.on_screen_connected()
+	
 	minigame_completed = true
 	minigame.exit_game()
 

@@ -430,14 +430,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.981514, 11.345698, -4.899
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
-[node name="Server Breakers Minigame" parent="." unique_id=1111946063 instance=ExtResource("41_2cjbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.07368, 9.501364, -39.440407)
+[node name="Matrixes" type="Node" parent="Minigames" unique_id=571694237]
 
-[node name="Server Matrix Minigame" parent="." unique_id=2068626685 instance=ExtResource("42_chjal")]
+[node name="Server Matrix Minigame" parent="Minigames/Matrixes" unique_id=2068626685 instance=ExtResource("42_chjal")]
 transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, -117.09963, 9.501364, -47.91872)
 
-[node name="Server Graetz Minigame" parent="." unique_id=1996921154 instance=ExtResource("43_chjal")]
-transform = Transform3D(-0.07435658, 0, 0.9972317, 0, 1, 0, -0.9972317, 0, -0.07435658, -114.73266, 9.501364, -44.411407)
+[node name="Breakers" type="Node" parent="Minigames" unique_id=301712362]
+
+[node name="Server Breakers Minigame" parent="Minigames/Breakers" unique_id=1111946063 instance=ExtResource("41_2cjbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.07368, 9.501364, -39.440407)
+
+[node name="Greatzs" type="Node" parent="Minigames" unique_id=2093071292]
+
+[node name="Server Graetz Minigame" parent="Minigames/Greatzs" unique_id=1996921154 instance=ExtResource("43_chjal")]
+transform = Transform3D(0.9999439, 0, -0.010591678, 0, 1, 0, 0.010591678, 0, 0.9999439, -114.88889, 9.501364, -49.143425)
 
 [connection signal="interacted" from="Level/Interactable" to="SplitScreen" method="_on_interactable_interacted"]
 
