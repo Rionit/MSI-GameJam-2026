@@ -38,6 +38,7 @@
 [ext_resource type="VideoStream" uid="uid://jk2abknneto0" path="res://videos/4x3_animation.ogv" id="28_kmb1v"]
 [ext_resource type="VideoStream" uid="uid://ghpk850vjgdi" path="res://videos/1x1_3d_modeling.ogv" id="29_pibwh"]
 [ext_resource type="VideoStream" uid="uid://qjq6e4dvykmu" path="res://videos/1x2_hello_text.ogv" id="30_c6pm6"]
+[ext_resource type="PackedScene" uid="uid://bbyrt7nlblljf" path="res://models/lucky.blend" id="34_cjqg0"]
 [ext_resource type="Script" uid="uid://b1nopq4k63c5d" path="res://scripts/dynamic_cable.gd" id="39_c6pm6"]
 [ext_resource type="Material" uid="uid://d0wi81y20ldid" path="res://materials/outline.tres" id="40_5he1u"]
 [ext_resource type="Script" uid="uid://bldtn7rj3gaxf" path="res://scripts/cable_minigame.gd" id="40_5poiv"]
@@ -310,6 +311,16 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -74.
 spot_range = 19.010784
 spot_angle = 89.99
 
+[node name="SpotLight3D8" type="SpotLight3D" parent="Lights" unique_id=1745609467]
+transform = Transform3D(0.90064263, 0, 0.4345606, -0.4345606, -4.371139e-08, 0.90064263, 1.8995246e-08, -1, -3.936834e-08, -53.178, 11.871015, -0.11474598)
+spot_range = 19.010784
+spot_angle = 89.99
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="Lights" unique_id=496527087]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -15.631729, 11.336709, -0.11474596)
+spot_range = 21.183344
+spot_angle = 44.683872
+
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
@@ -326,6 +337,9 @@ mesh = SubResource("BoxMesh_gsyc7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Interactable" unique_id=1419580967]
 transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_0wfyh")
+
+[node name="lucky" parent="Level" unique_id=1242021362 instance=ExtResource("34_cjqg0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.8546829, 0, -0.02440433)
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
@@ -463,7 +477,7 @@ mesh = SubResource("BoxMesh_qaqv0")
 transform = Transform3D(-1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, 0, 1, 0.204216, -0.7056618, 0.29912186)
 
 [node name="rotating_part" parent="CableMinigame/outlet" index="1" unique_id=1364614197]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710665, 0, -0.70710665, 0.70710677, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0, 0, 0)
 
 [node name="Hitbox" type="CollisionShape3D" parent="CableMinigame" unique_id=627886068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17651367, -0.4840088, 0.10357666)

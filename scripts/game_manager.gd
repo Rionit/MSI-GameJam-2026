@@ -48,7 +48,6 @@ func on_screen_connected():
 func on_screen_disconnected():
 	screen_manager.active_screen_count -= 1
 	_update_split_ratio()
-
 func _update_split_ratio() -> void:
 	var max_screens = screen_manager.pairs.size()
 	
