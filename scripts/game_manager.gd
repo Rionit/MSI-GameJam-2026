@@ -16,6 +16,8 @@ var connect_screen = on_screen_connected
 var disconnect_screen = on_screen_disconnected
 @export_group("")
 
+var next_door_index : int = 0
+
 func _ready() -> void:
 	# on_screen_connected()
 	pass
@@ -23,14 +25,25 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		on_screen_connected()
+		print(screen_manager.pairs.size() / doors.size())
 
 func on_screen_connected():
 	screen_manager.active_screen_count += 1
 	_update_split_ratio()
 	
-	var door_idx = (screen_manager.active_screen_count / 5) - 1
-	if screen_manager.active_screen_count % 5 == 0 and door_idx < doors.size():
-		doors[door_idx].open()
+	# Check doors in order, accumulating their required screens cumulatively
+	while next_door_index < doors.size():
+		# Calculate the total cumulative screens needed for the next door in line
+		var cumulative_required = 0
+		for i in range(next_door_index + 1):
+			cumulative_required += doors[i].number_of_games_to_open
+			
+		# If we've reached or exceeded this door's threshold, open it and move to the next
+		if screen_manager.active_screen_count >= cumulative_required:
+			doors[next_door_index].open()
+			next_door_index += 1
+		else:
+			break
 
 func on_screen_disconnected():
 	screen_manager.active_screen_count -= 1
@@ -50,5 +63,5 @@ func _update_split_ratio() -> void:
 		split_screen.split_ratio = remap(
 			screen_manager.active_screen_count, 
 			1, max_screens,
-			0.075, 0.9
+			0.075, 0.8
 		)
