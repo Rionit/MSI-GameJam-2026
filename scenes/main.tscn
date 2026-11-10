@@ -413,21 +413,25 @@ game = NodePath("../../..")
 
 [node name="CableMinigame2" parent="Minigames/Cables" unique_id=839617449 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -95.79736, 11.345698, -35.541767)
+type = 6
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="CableMinigame3" parent="Minigames/Cables" unique_id=316587700 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -95.79736, 11.345698, -9.909572)
+type = 1
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="CableMinigame4" parent="Minigames/Cables" unique_id=303172722 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.121254, 11.345698, -3.4955175)
+type = 2
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="CableMinigame5" parent="Minigames/Cables" unique_id=458089844 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.981514, 11.345698, -4.8990245)
+type = 7
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
