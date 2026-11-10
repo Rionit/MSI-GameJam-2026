@@ -36,6 +36,7 @@ func scale_electrons(scale_mult : float) -> void:
 
 func start_signal() -> void:
 	var length = curve.get_baked_length()
+	#AudioManager.play_sfx(Electricity sound)
 	# print("Animating movement for " + str(num_electrons) + " electrons along path of length " + str(length) + " (" + str(length / speed) + " seconds)")
 
 	tween = create_tween()

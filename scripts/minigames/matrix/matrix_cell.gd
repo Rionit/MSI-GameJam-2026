@@ -36,6 +36,7 @@ func setup_cell(blocked: bool, gridPos: Vector2i):
 
 
 func set_directly_selected(selected: bool):
+	#AudioManager.play_sfx(Cell selection zvuk (click/switch flip/...))
 	if selected:
 		self.selected = true
 		mesh_instance.material_override = directly_selected_material

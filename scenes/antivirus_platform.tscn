@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cf0kdknfekvb3"]
+
+[ext_resource type="Script" uid="uid://beojv3hxq3ra7" path="res://scripts/minigames/antivirus/antivirus_platform.gd" id="1_h24tu"]
+[ext_resource type="Material" uid="uid://bbptyvtgk0cd4" path="res://materials/emissive_red.tres" id="2_0vw6a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_oxx2p"]
+material = ExtResource("2_0vw6a")
+size = Vector3(0.3, 0.05, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d8lsv"]
+size = Vector3(0.3, 0.05, 0.3)
+
+[node name="AntivirusPlatform" type="Area3D" unique_id=678430322]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_h24tu")
+speed = 0.7
+direction = -1.0
+metadata/_custom_type_script = "uid://beojv3hxq3ra7"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=875050624]
+mesh = SubResource("BoxMesh_oxx2p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=699437068]
+shape = SubResource("BoxShape3D_d8lsv")

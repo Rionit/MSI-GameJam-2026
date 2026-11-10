@@ -37,6 +37,7 @@ collision_mask = 3
 script = ExtResource("1_0p46v")
 speed = 2.5
 camera_pivot = NodePath("Camera")
+camera_zoom_fov = 40.0
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=992260533]
 shape = SubResource("CapsuleShape3D_ofe37")
