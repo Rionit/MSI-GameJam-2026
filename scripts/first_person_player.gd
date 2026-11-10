@@ -40,6 +40,7 @@ const DOT_HOLE = preload("uid://bnk8g7td53uyy")
 @export var camera_zoom_fov : float = 50
 @onready var camera_original_fov = $Camera/Camera3D.fov
 var is_zoomed_in : bool = false
+var can_zoom : bool = true
 
 @export_category("Camera Limits")
 ## Enable to restrict camera view rotation to a cone
@@ -111,6 +112,14 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func enable_zoom():
+	can_zoom = true
+
+func disable_zoom():
+	can_zoom = false
+	if camera_tween.is_running():
+		camera_tween.kill()
+
 func check_interactions():
 	var collider = interact_ray_cast_3d.get_collider()
 	
@@ -154,10 +163,10 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("interact") and current_interaction:
 		current_interaction.interact(self)
-
-	if event.is_action_pressed("zoom"):
+		
+	if can_zoom and event.is_action_pressed("zoom"):
 		zoom_camera(true)
-	if event.is_action_released("zoom"):
+	if can_zoom and event.is_action_released("zoom"):
 		zoom_camera(false)
 
 func zoom_camera(zoom_in: bool):

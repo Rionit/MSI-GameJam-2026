@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://vcmk3ha2lhxd"]
+
+[ext_resource type="Script" uid="uid://c5ppcx1577kk3" path="res://scripts/minigames/triangular_pipe/triangular_pipe_cell.gd" id="1_cell"]
+[ext_resource type="Material" uid="uid://dfiheunguoabh" path="res://materials/emissive_dark_green.tres" id="2_jqjdl"]
+[ext_resource type="Material" uid="uid://7u63e102sis2" path="res://materials/emissive_blue.tres" id="2_nlxi5"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_cell"]
+size = Vector3(0.82, 1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pipe"]
+material = ExtResource("2_jqjdl")
+size = Vector3(0.42, 0.05, 0.09)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nlxi5"]
+material = ExtResource("2_jqjdl")
+size = Vector3(0.6, 0.05, 0.09)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cell"]
+size = Vector3(0.82, 1, 0.1)
+
+[node name="TriangularPipeCell" type="StaticBody3D" unique_id=1150448302 node_paths=PackedStringArray("collider", "pipe_segments", "mesh_instance")]
+script = ExtResource("1_cell")
+collider = NodePath("CollisionShape3D")
+pipe_segments = [NodePath("Pipe0"), NodePath("Pipe1"), NodePath("Pipe2")]
+mesh_instance = NodePath("Body")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1975543034]
+material_override = ExtResource("2_nlxi5")
+mesh = SubResource("PrismMesh_cell")
+
+[node name="Pipe0" type="MeshInstance3D" parent="." unique_id=1669600039]
+transform = Transform3D(0.8660254, 5.856215e-09, 0.49999994, 0.49999994, -2.1855692e-08, -0.8660254, 5.8562146e-09, 1, -2.185569e-08, 0.2, 0, 0.05)
+mesh = SubResource("BoxMesh_pipe")
+
+[node name="Pipe1" type="MeshInstance3D" parent="." unique_id=670516334]
+transform = Transform3D(-0.86602545, 8.156656e-08, 0.49999997, 0.49999997, -2.1855692e-08, 0.86602545, 8.156656e-08, 1, -2.1855692e-08, -0.2, 0, 0.05)
+mesh = SubResource("BoxMesh_pipe")
+
+[node name="Pipe2" type="MeshInstance3D" parent="." unique_id=881294357]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, -0.364367, 0.05)
+mesh = SubResource("BoxMesh_nlxi5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2081621935]
+shape = SubResource("BoxShape3D_cell")

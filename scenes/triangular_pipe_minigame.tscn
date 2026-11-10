@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c15pixuwrth25"]
+
+[ext_resource type="Script" uid="uid://cw6etkvsdhwaj" path="res://scripts/minigames/triangular_pipe/triangular_pipe_minigame.gd" id="1_minigame"]
+[ext_resource type="PackedScene" uid="uid://vcmk3ha2lhxd" path="res://scenes/triangular_pipe_cell.tscn" id="2_cell"]
+[ext_resource type="PackedScene" path="res://scenes/triangular_pipe_test_button.tscn" id="3_button"]
+
+[node name="TriangularPipeMinigame" type="Node3D" unique_id=286985792 node_paths=PackedStringArray("test_button", "result_label")]
+script = ExtResource("1_minigame")
+cell_scene = ExtResource("2_cell")
+test_button = NodePath("TestButton")
+result_label = NodePath("Result")
+
+[node name="TestButton" parent="." unique_id=23451333 instance=ExtResource("3_button")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4, 2.487916, -0.030603766)
+
+[node name="Result" type="Label3D" parent="." unique_id=487700017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.7098222, 1.2)
+pixel_size = 0.01
+text = "
+"
+font_size = 28
+outline_size = 8

@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame.tscn" id="19_to470"]
 [ext_resource type="PackedScene" uid="uid://3drommcgto4x" path="res://scenes/server_antivirus_minigame.tscn" id="20_aqtfj"]
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="20_bjbt1"]
+[ext_resource type="PackedScene" uid="uid://d1wn587kfoaqq" path="res://scenes/server_pipe_minigame.tscn" id="24_vusky"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -167,6 +168,12 @@ shadow_enabled = true
 spot_range = 9.72195
 spot_angle = 45.42925
 
+[node name="AreaLight3D" type="AreaLight3D" parent="Lights" unique_id=71254622]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -20.159801, -3.610214e-07)
+light_color = Color(1, 0, 0, 1)
+light_energy = 10.0
+area_range = 20.0
+
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("14_ie23h")]
 
 [node name="Matrix minigame server" type="StaticBody3D" parent="map" unique_id=1811772644]
@@ -221,13 +228,13 @@ transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.0
 light_energy = 4.361
 
 [node name="Server Matrix Minigame" parent="Level" unique_id=2068626685 instance=ExtResource("20_bjbt1")]
-transform = Transform3D(-0.011953227, 0, 0.99992853, 0, 1, 0, -0.99992853, 0, -0.011953227, -14.864648, 4, -1.8328084)
+transform = Transform3D(-0.99992853, 0, -0.011953271, 0, 1, 0, 0.011953271, 0, -0.99992853, -14.63329, 4, -2.751429)
 
 [node name="Server Graetz Minigame" parent="Level" unique_id=1996921154 instance=ExtResource("18_bjbt1")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -17.50431, 4.1502423, -2.1985807)
 
 [node name="Server Breakers Minigame" parent="Level" unique_id=1111946063 instance=ExtResource("19_to470")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.375013, 4.0994396, 1.5291944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.715311, 4.0994396, 2.3755376)
 
 [node name="Server Antivirus Minigame" parent="Level" unique_id=1464650673 instance=ExtResource("20_aqtfj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.232492, 3.9932694, 2.5751753)
@@ -285,6 +292,9 @@ omni_range = 1.5
 omni_attenuation = 10.0
 
 [node name="StaticCameraParent" type="Node3D" parent="SplitScreen/SubViewportContainerRight/SubViewport" unique_id=1647961134]
+
+[node name="Server Pipe Minigame" parent="." unique_id=925070766 instance=ExtResource("24_vusky")]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, -16.377188, 3.9999998, -2.385315)
 
 [editable path="map"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]
