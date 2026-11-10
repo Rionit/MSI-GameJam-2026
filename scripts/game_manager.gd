@@ -20,7 +20,7 @@ var next_door_index : int = 0
 
 func _ready() -> void:
 	# on_screen_connected()
-	open_all_doors()
+	#open_all_doors()
 	pass
 
 func _input(event: InputEvent) -> void:
