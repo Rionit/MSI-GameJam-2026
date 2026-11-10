@@ -2,6 +2,8 @@ extends Minigame
 
 class_name AntivirusMinigame
 
+const EMISSIVE_WHITE = preload("uid://b10ebpa8i8ioo")
+
 @export var player_ball: AntivirusBall
 @export var top_spawn: Node3D
 @export var platform_levels: Array[StaticBody3D]
@@ -50,6 +52,12 @@ var platform_x_offsets = {
 var _active := false
 var _completed := false
 
+func _apply_material_to_node_tree(node: Node, material: Material) -> void:
+	if node is MeshInstance3D:
+		node.material_override = material
+	for child in node.get_children():
+		_apply_material_to_node_tree(child, material)
+
 func generate_levels():
 	platform_levels.clear()
 	antivirus_platforms.clear()
@@ -67,6 +75,7 @@ func generate_levels():
 	for child in platform_children:
 		if child is StaticBody3D:
 			platform_levels.append(child)
+			_apply_material_to_node_tree(child, EMISSIVE_WHITE)
 		elif child is AntivirusPlatform:
 			antivirus_platforms.append(child)
 	
@@ -83,6 +92,7 @@ func generate_levels():
 		for child in platform_children:
 			if child is StaticBody3D:
 				platform_levels.append(child)
+				_apply_material_to_node_tree(child, EMISSIVE_WHITE)
 			elif child is AntivirusPlatform:
 				child.speed += (random.randf() * 2 - 1) * 0.2  
 				antivirus_platforms.append(child)

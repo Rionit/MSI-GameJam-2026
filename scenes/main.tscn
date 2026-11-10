@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame.tscn" id="41_2cjbq"]
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="42_chjal"]
 [ext_resource type="PackedScene" uid="uid://dn62i7rv7g06i" path="res://scenes/server_graetz_minigame.tscn" id="43_chjal"]
+[ext_resource type="PackedScene" uid="uid://3drommcgto4x" path="res://scenes/server_antivirus_minigame.tscn" id="44_cjqg0"]
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 ambient_light_source = 2
@@ -387,6 +388,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -120
 
 [node name="sliding_door_1" parent="Doors" unique_id=1914055593 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -108.900116, 9.5, -44.76178)
+number_of_games_to_open = 5
 
 [node name="sliding_door_2" parent="Doors" unique_id=2073990098 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -99.33677, 9.5, -35.195328)
@@ -399,7 +401,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.774376, 9.5, 0)
 
 [node name="sliding_door_5" parent="Doors" unique_id=108000251 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.61906, 9.5, 0)
-number_of_games_to_open = 5
 
 [node name="Minigames" type="Node" parent="." unique_id=829302286]
 
@@ -444,6 +445,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.07368, 9.501364, -39.440
 
 [node name="Server Graetz Minigame" parent="Minigames/Greatzs" unique_id=1996921154 instance=ExtResource("43_chjal")]
 transform = Transform3D(0.9999439, 0, -0.010591678, 0, 1, 0, 0.010591678, 0, 0.9999439, -114.88889, 9.501364, -49.143425)
+
+[node name="Antiviruses" type="Node" parent="Minigames" unique_id=1651013413]
+
+[node name="Server Antivirus Minigame" parent="Minigames/Antiviruses" unique_id=1464650673 instance=ExtResource("44_cjqg0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.11362, 9.501364, -49.148262)
 
 [connection signal="interacted" from="Level/Interactable" to="SplitScreen" method="_on_interactable_interacted"]
 
