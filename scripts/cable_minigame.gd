@@ -111,6 +111,8 @@ func check_cable():
 	if is_equal_approx(current_angle, target_angle):
 		print("yippee its correct")
 		
+		game.on_screen_connected()
+		
 		# 1. Disable interaction hitbox so it can't be triggered again
 		if hitbox:
 			hitbox.disabled = true
