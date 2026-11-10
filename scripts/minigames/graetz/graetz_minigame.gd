@@ -292,7 +292,7 @@ func animate_flow(flow_paths: Array[Dictionary], flow_starts : Array[Vector3], r
 func animate_signal(paths : Dictionary, signal_start : Vector3) -> void:
 	var start_paths_idx = find_split_paths(signal_start, paths.keys())
 	var next_paths = []
-	var electron_scale = 1.0
+	var electron_scale = 0.25
 
 	for start_idx in start_paths_idx:
 		next_paths.append(paths.keys()[start_idx])

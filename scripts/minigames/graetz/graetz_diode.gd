@@ -21,8 +21,7 @@ func _ready() -> void:
 
 	interacted.connect(on_diode_interacted)
 	if direction == DiodeDirection.RIGHT:
-		rotate_z(deg_to_rad(180))
-	
+		rotate_meshes()
 
 func resolve_signal_from(source : GraetzJunction) -> GraetzJunction:
 	# Pass - right junction
@@ -57,5 +56,8 @@ func get_destinations() -> GraetzJunction:
 
 func change_dir():
 	direction = DiodeDirection.LEFT if direction == DiodeDirection.RIGHT else DiodeDirection.RIGHT
-	mesh.rotate_z(deg_to_rad(180))
-	rotate_z(deg_to_rad(180))
+	rotate_meshes()
+
+func rotate_meshes():
+	mesh.rotate_z(deg_to_rad(180))	# visual
+	rotate_z(deg_to_rad(180))		# input

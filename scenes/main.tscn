@@ -455,3 +455,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.11362, 9.501364, -49.148
 
 [editable path="map"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]
+[editable path="Minigames/Greatzs/Server Graetz Minigame"]
+[editable path="Minigames/Greatzs/Server Graetz Minigame/GraetzMinigame/GraetzDiodeUL"]
+[editable path="Minigames/Greatzs/Server Graetz Minigame/server_w_graetz"]
