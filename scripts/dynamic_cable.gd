@@ -50,9 +50,18 @@ var link_container: Node3D
 var links: Array[RigidBody3D] = []
 var joints: Array[Generic6DOFJoint3D] = []
 
+# Cached unshaded black material to share across links efficiently
+var black_material: StandardMaterial3D
+
 func _ready() -> void:
+	_setup_material()
 	_setup_nodes()
 	_generate_chain()
+
+func _setup_material() -> void:
+	black_material = StandardMaterial3D.new()
+	black_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	black_material.albedo_color = Color.BLACK
 
 func _setup_nodes() -> void:
 	if has_node("Anchor"):
@@ -86,21 +95,20 @@ func _generate_chain():
 	for child in link_container.get_children():
 		child.queue_free()
 	
-	var cylinder_height = (link_length - (2.0 * link_radius)) * slack
+	var effective_length = (link_length - (2.0 * link_radius)) * slack
 	var top_cap_offset = (link_length * 0.5) - link_radius
 	
 	for i in range(link_count):
 		var link = _create_link(i)
 		link_container.add_child(link)
 		
-		# Set owner AFTER link is part of the tree
 		if Engine.is_editor_hint():
 			link.owner = self
 			for child in link.get_children():
 				child.owner = self
 				
 		links.append(link)
-		link.position = Vector3(0, -top_cap_offset - (i * cylinder_height), 0)
+		link.position = Vector3(0, -top_cap_offset - (i * effective_length), 0)
 	
 	await get_tree().process_frame
 	if not is_inside_tree():
@@ -123,7 +131,6 @@ func _generate_chain():
 		
 		joints.append(joint)
 		
-	# Attach the final link to an optional second body/target (e.g., dynamic end point)
 	if not end_target.is_empty() and has_node(end_target):
 		var target_node = get_node(end_target)
 		if target_node and links.size() > 0:
@@ -135,7 +142,7 @@ func _generate_chain():
 			if Engine.is_editor_hint():
 				end_joint.owner = self
 			
-			end_joint.global_position = last_link.global_position - Vector3(0, (link_length * 0.5) - link_radius, 0)
+			end_joint.global_position = last_link.global_position - Vector3(0, top_cap_offset, 0)
 			
 			end_joint.node_a = end_joint.get_path_to(last_link)
 			end_joint.node_b = end_joint.get_path_to(target_node)
@@ -146,10 +153,10 @@ func _create_link(index: int) -> RigidBody3D:
 	var link = RigidBody3D.new()
 	link.name = "Link_" + str(index)
 	
-	link.mass = 0.2
+	link.mass = 1.0
 	link.gravity_scale = 1.0
-	link.linear_damp = 0.01
-	link.angular_damp = 0.01
+	link.linear_damp = 0.1
+	link.angular_damp = 0.1
 	link.can_sleep = false
 	
 	link.collision_layer = cable_collision_layer
@@ -160,8 +167,13 @@ func _create_link(index: int) -> RigidBody3D:
 	capsule.height = link_length
 	capsule.radius = link_radius
 	mesh_instance.mesh = capsule
+	
+	# Assign the unshaded black material to the mesh
+	if not black_material:
+		_setup_material()
+	mesh_instance.material_override = black_material
+	
 	link.add_child(mesh_instance)
-	# Removed owner assignment here because link isn't in the tree yet
 	
 	var collision_shape = CollisionShape3D.new()
 	var shape = CapsuleShape3D.new()
@@ -169,7 +181,6 @@ func _create_link(index: int) -> RigidBody3D:
 	shape.radius = link_radius
 	collision_shape.shape = shape
 	link.add_child(collision_shape)
-	# Removed owner assignment here as well
 	
 	return link
 
@@ -198,4 +209,3 @@ func _create_joint(body_a: Node3D) -> Generic6DOFJoint3D:
 	joint.set_param_z(Generic6DOFJoint3D.PARAM_ANGULAR_UPPER_LIMIT, angular_limit_rad)
 	
 	return joint
-	

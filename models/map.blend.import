@@ -41,6 +41,11 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
+"WS / Rubber / 5fe7b5d782cc": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/cable.tres",
+"use_external/path": "uid://xeinmgenjcoe"
+},
 "blinking_light": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://materials/blinking_lights.tres",

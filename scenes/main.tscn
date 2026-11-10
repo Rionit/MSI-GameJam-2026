@@ -38,11 +38,12 @@
 [ext_resource type="VideoStream" uid="uid://jk2abknneto0" path="res://videos/4x3_animation.ogv" id="28_kmb1v"]
 [ext_resource type="VideoStream" uid="uid://ghpk850vjgdi" path="res://videos/1x1_3d_modeling.ogv" id="29_pibwh"]
 [ext_resource type="VideoStream" uid="uid://qjq6e4dvykmu" path="res://videos/1x2_hello_text.ogv" id="30_c6pm6"]
-[ext_resource type="Script" uid="uid://b1nopq4k63c5d" path="res://scripts/dynamic_cable.gd" id="39_c6pm6"]
-[ext_resource type="Material" uid="uid://d0wi81y20ldid" path="res://materials/outline.tres" id="40_5he1u"]
-[ext_resource type="Script" uid="uid://bldtn7rj3gaxf" path="res://scripts/cable_minigame.gd" id="40_5poiv"]
-[ext_resource type="PackedScene" uid="uid://q04y5s83vqns" path="res://models/outlet.blend" id="42_2cjbq"]
-[ext_resource type="PackedScene" uid="uid://draawl21ymy4t" path="res://models/connector.blend" id="42_chjal"]
+[ext_resource type="PackedScene" uid="uid://bbyrt7nlblljf" path="res://models/lucky.blend" id="34_cjqg0"]
+[ext_resource type="PackedScene" uid="uid://wh4j7hrx1y44" path="res://scenes/cable_minigame.tscn" id="40_5he1u"]
+[ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame.tscn" id="41_2cjbq"]
+[ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="42_chjal"]
+[ext_resource type="PackedScene" uid="uid://dn62i7rv7g06i" path="res://scenes/server_graetz_minigame.tscn" id="43_chjal"]
+[ext_resource type="PackedScene" uid="uid://3drommcgto4x" path="res://scenes/server_antivirus_minigame.tscn" id="44_cjqg0"]
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 ambient_light_source = 2
@@ -236,16 +237,6 @@ metadata/_custom_type_script = "uid://30gbkac6ebgc"
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0wfyh"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qaqv0"]
-radius = 0.1015625
-height = 0.26123047
-
-[sub_resource type="BoxMesh" id="BoxMesh_qaqv0"]
-size = Vector3(0.24414063, 0.4873047, 0.39672852)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qaqv0"]
-size = Vector3(0.64697266, 1.6208496, 0.6446533)
-
 [node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("static_camera_parent", "doors")]
 script = ExtResource("1_muem4")
 static_camera_parent = NodePath("SplitScreen/SubViewportContainerRight/SubViewport/StaticCameraParent")
@@ -310,6 +301,16 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -74.
 spot_range = 19.010784
 spot_angle = 89.99
 
+[node name="SpotLight3D8" type="SpotLight3D" parent="Lights" unique_id=1745609467]
+transform = Transform3D(0.90064263, 0, 0.4345606, -0.4345606, -4.371139e-08, 0.90064263, 1.8995246e-08, -1, -3.936834e-08, -53.178, 11.871015, -0.11474598)
+spot_range = 19.010784
+spot_angle = 89.99
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="Lights" unique_id=496527087]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -15.631729, 11.336709, -0.11474596)
+spot_range = 21.183344
+spot_angle = 44.683872
+
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
@@ -326,6 +327,9 @@ mesh = SubResource("BoxMesh_gsyc7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Interactable" unique_id=1419580967]
 transform = Transform3D(0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0, 0.43923765, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_0wfyh")
+
+[node name="lucky" parent="Level" unique_id=1242021362 instance=ExtResource("34_cjqg0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.8546829, 0, -0.02440433)
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
@@ -384,6 +388,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -120
 
 [node name="sliding_door_1" parent="Doors" unique_id=1914055593 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -108.900116, 9.5, -44.76178)
+number_of_games_to_open = 5
 
 [node name="sliding_door_2" parent="Doors" unique_id=2073990098 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -99.33677, 9.5, -35.195328)
@@ -396,91 +401,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.774376, 9.5, 0)
 
 [node name="sliding_door_5" parent="Doors" unique_id=108000251 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.61906, 9.5, 0)
-number_of_games_to_open = 5
 
-[node name="CableMinigame" type="StaticBody3D" parent="." unique_id=326816353 node_paths=PackedStringArray("connector_types", "rotating_part", "player", "game")]
+[node name="Minigames" type="Node" parent="." unique_id=829302286]
+
+[node name="Cables" type="Node" parent="Minigames" unique_id=1683433703]
+
+[node name="CableMinigame" parent="Minigames/Cables" unique_id=579783282 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.25407, 11.345698, -41.789078)
-collision_layer = 8
-collision_mask = 8
-script = ExtResource("40_5poiv")
-type = 4
-connector_types = [NodePath("DynamicCable/Connector/mesh/connector_type_001"), NodePath("DynamicCable/Connector/mesh/connector_type_002"), NodePath("DynamicCable/Connector/mesh/connector_type_003"), NodePath("DynamicCable/Connector/mesh/connector_type_004"), NodePath("DynamicCable/Connector/mesh/connector_type_005"), NodePath("DynamicCable/Connector/mesh/connector_type_006"), NodePath("DynamicCable/Connector/mesh/connector_type_007"), NodePath("DynamicCable/Connector/mesh/connector_type_008")]
-rotating_part = NodePath("outlet/rotating_part")
-player = NodePath("../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
-game = NodePath("..")
-outline_material = ExtResource("40_5he1u")
+player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
+game = NodePath("../../..")
 
-[node name="DynamicCable" type="Node3D" parent="CableMinigame" unique_id=1897369192]
-script = ExtResource("39_c6pm6")
-link_count = 20
-link_length = 0.1
-link_radius = 0.025
-end_target = NodePath("Connector")
-cable_collision_layer = 4
-cable_collision_mask = 3
-metadata/_custom_type_script = "uid://b1nopq4k63c5d"
+[node name="CableMinigame2" parent="Minigames/Cables" unique_id=839617449 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -95.79736, 11.345698, -35.541767)
+type = 6
+player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
+game = NodePath("../../..")
 
-[node name="Connector" type="RigidBody3D" parent="CableMinigame/DynamicCable" unique_id=273079277]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1219692, 0)
-collision_layer = 4
-mass = 0.1
-can_sleep = false
-freeze_mode = 1
+[node name="CableMinigame3" parent="Minigames/Cables" unique_id=316587700 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -95.79736, 11.345698, -9.909572)
+type = 1
+player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
+game = NodePath("../../..")
 
-[node name="mesh" parent="CableMinigame/DynamicCable/Connector" unique_id=137217582 instance=ExtResource("42_chjal")]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -4.2036594e-10, -0.009616852, 0)
+[node name="CableMinigame4" parent="Minigames/Cables" unique_id=303172722 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.121254, 11.345698, -3.4955175)
+type = 2
+player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
+game = NodePath("../../..")
 
-[node name="connector_type_001" parent="CableMinigame/DynamicCable/Connector/mesh" index="0" unique_id=1899404113]
-visible = false
+[node name="CableMinigame5" parent="Minigames/Cables" unique_id=458089844 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.981514, 11.345698, -4.8990245)
+type = 7
+player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
+game = NodePath("../../..")
 
-[node name="connector_type_002" parent="CableMinigame/DynamicCable/Connector/mesh" index="1" unique_id=1435892880]
-visible = false
+[node name="Matrixes" type="Node" parent="Minigames" unique_id=571694237]
 
-[node name="connector_type_003" parent="CableMinigame/DynamicCable/Connector/mesh" index="2" unique_id=244670846]
-visible = false
+[node name="Server Matrix Minigame" parent="Minigames/Matrixes" unique_id=2068626685 instance=ExtResource("42_chjal")]
+transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, -117.09963, 9.501364, -47.91872)
 
-[node name="connector_type_004" parent="CableMinigame/DynamicCable/Connector/mesh" index="3" unique_id=1363618814]
-visible = false
+[node name="Breakers" type="Node" parent="Minigames" unique_id=301712362]
 
-[node name="connector_type_006" parent="CableMinigame/DynamicCable/Connector/mesh" index="5" unique_id=1207831851]
-visible = false
+[node name="Server Breakers Minigame" parent="Minigames/Breakers" unique_id=1111946063 instance=ExtResource("41_2cjbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.07368, 9.501364, -39.440407)
 
-[node name="connector_type_007" parent="CableMinigame/DynamicCable/Connector/mesh" index="6" unique_id=77630048]
-visible = false
+[node name="Greatzs" type="Node" parent="Minigames" unique_id=2093071292]
 
-[node name="connector_type_008" parent="CableMinigame/DynamicCable/Connector/mesh" index="7" unique_id=1319368298]
-visible = false
+[node name="Server Graetz Minigame" parent="Minigames/Greatzs" unique_id=1996921154 instance=ExtResource("43_chjal")]
+transform = Transform3D(0.9999439, 0, -0.010591678, 0, 1, 0, 0.010591678, 0, 0.9999439, -114.88889, 9.501364, -49.143425)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CableMinigame/DynamicCable/Connector" unique_id=30719318]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0031738281, 0)
-shape = SubResource("CapsuleShape3D_qaqv0")
+[node name="Antiviruses" type="Node" parent="Minigames" unique_id=1651013413]
 
-[node name="Box" type="MeshInstance3D" parent="CableMinigame" unique_id=980610317]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020996094, 0.040593147, 0)
-mesh = SubResource("BoxMesh_qaqv0")
-
-[node name="outlet" parent="CableMinigame" unique_id=706188186 instance=ExtResource("42_2cjbq")]
-transform = Transform3D(-1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, 0, 1, 0.204216, -0.7056618, 0.29912186)
-
-[node name="rotating_part" parent="CableMinigame/outlet" index="1" unique_id=1364614197]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710665, 0, -0.70710665, 0.70710677, 0, 0, 0)
-
-[node name="Hitbox" type="CollisionShape3D" parent="CableMinigame" unique_id=627886068]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17651367, -0.4840088, 0.10357666)
-shape = SubResource("BoxShape3D_qaqv0")
-
-[node name="CameraPosition" type="Marker3D" parent="CableMinigame" unique_id=713336500]
-transform = Transform3D(0.49999988, 0.3958878, -0.77024204, 7.450581e-09, 0.8893989, 0.45713186, 0.8660253, -0.22856589, 0.44469938, -0.27467346, -0.65002537, 0.49723053)
-
-[node name="ConnectorHoldPosition" type="Marker3D" parent="CableMinigame" unique_id=814646689]
-transform = Transform3D(0.5, 0.6415334, 0.5817516, -1.4901161e-08, -0.6717489, 0.7407789, 0.8660253, -0.37038946, -0.33587438, -0.029281616, -0.91825104, 0.36147308)
-
-[node name="ConnectorInsertPosition" type="Marker3D" parent="CableMinigame" unique_id=103438667]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.115676865, -0.7084322, 0.29520032)
+[node name="Server Antivirus Minigame" parent="Minigames/Antiviruses" unique_id=1464650673 instance=ExtResource("44_cjqg0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.11362, 9.501364, -49.148262)
 
 [connection signal="interacted" from="Level/Interactable" to="SplitScreen" method="_on_interactable_interacted"]
 
 [editable path="map"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]
-[editable path="CableMinigame/DynamicCable/Connector/mesh"]
-[editable path="CableMinigame/outlet"]
+[editable path="Minigames/Greatzs/Server Graetz Minigame"]
+[editable path="Minigames/Greatzs/Server Graetz Minigame/GraetzMinigame/GraetzDiodeUL"]
+[editable path="Minigames/Greatzs/Server Graetz Minigame/server_w_graetz"]

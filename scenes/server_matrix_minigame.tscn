@@ -26,18 +26,18 @@ metadata/_custom_type_script = "uid://vsmlnsfpq43o"
 
 [node name="server_w_laptop" parent="." unique_id=1542370153 instance=ExtResource("2_itj8a")]
 
-[node name="collider" parent="server_w_laptop/server" parent_id_path=PackedInt32Array(1542370153, 505732327) index="0" unique_id=933052427]
+[node name="collider" parent="server_w_laptop/server" parent_id_path=PackedInt32Array(1542370153, 1056114163) index="0" unique_id=1764299543]
 collision_layer = 0
 collision_mask = 0
 
-[node name="MatrixMinigame" parent="server_w_laptop/server/laptop" parent_id_path=PackedInt32Array(1542370153, 860452345) index="0" unique_id=2015886342 instance=ExtResource("3_4v4og")]
+[node name="MatrixMinigame" parent="server_w_laptop/server/laptop" parent_id_path=PackedInt32Array(1542370153, 957055909) index="0" unique_id=2015886342 instance=ExtResource("3_4v4og")]
 transform = Transform3D(-0.050000057, -1.4950174e-09, 4.1075294e-09, 0, 0.04698463, 0.017101016, -4.371144e-09, 0.017101007, -0.04698466, 0.13856098, 0.056409754, 0.20798066)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2030711319]
 transform = Transform3D(1, 0, -1.6111437e-07, 0, 1, 0, 1.6111437e-07, 0, 1, -0.028171778, 1.4449973, -0.794714)
 shape = SubResource("BoxShape3D_2d5gv")
 
-[node name="CameraPos" type="Node3D" parent="." unique_id=169348321]
+[node name="CameraPos" type="Marker3D" parent="." unique_id=506201364]
 transform = Transform3D(-1.0000005, -2.9900345e-08, 8.215058e-08, 0, 0.9396925, 0.34202027, -8.742282e-08, 0.3420201, -0.9396931, 0, 1.7261167, -1.4999999)
 
 [editable path="server_w_laptop"]

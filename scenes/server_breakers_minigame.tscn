@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://vsmlnsfpq43o"
 
 [node name="server_w_breakers" parent="." unique_id=1750765973 instance=ExtResource("2_cjyph")]
 
-[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker" parent_id_path=PackedInt32Array(1750765973, 1787752185) index="1" unique_id=1022131821 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker" parent_id_path=PackedInt32Array(1750765973, 1563683468) index="1" unique_id=1022131821 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
 script = ExtResource("3_kq41l")
 flip = NodePath("../toggle")
 collider = NodePath("CollisionShape3D")
@@ -48,7 +48,7 @@ metadata/_custom_type_script = "uid://cq82pq61itemp"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
 shape = SubResource("BoxShape3D_d8lsv")
 
-[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_001" parent_id_path=PackedInt32Array(1750765973, 16811291) index="1" unique_id=144367851 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_001" parent_id_path=PackedInt32Array(1750765973, 1677748741) index="1" unique_id=144367851 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
 script = ExtResource("3_kq41l")
 flip = NodePath("../toggle_001")
 collider = NodePath("CollisionShape3D")
@@ -63,7 +63,7 @@ metadata/_custom_type_script = "uid://cq82pq61itemp"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
 shape = SubResource("BoxShape3D_d8lsv")
 
-[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_002" parent_id_path=PackedInt32Array(1750765973, 782253053) index="1" unique_id=873002804 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_002" parent_id_path=PackedInt32Array(1750765973, 352028783) index="1" unique_id=873002804 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
 script = ExtResource("3_kq41l")
 flip = NodePath("../toggle_002")
 collider = NodePath("CollisionShape3D")
@@ -78,7 +78,7 @@ metadata/_custom_type_script = "uid://cq82pq61itemp"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
 shape = SubResource("BoxShape3D_d8lsv")
 
-[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_003" parent_id_path=PackedInt32Array(1750765973, 816635650) index="1" unique_id=1069761390 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_003" parent_id_path=PackedInt32Array(1750765973, 1906702016) index="1" unique_id=1069761390 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
 script = ExtResource("3_kq41l")
 flip = NodePath("../toggle_003")
 collider = NodePath("CollisionShape3D")
@@ -93,7 +93,7 @@ metadata/_custom_type_script = "uid://cq82pq61itemp"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
 shape = SubResource("BoxShape3D_d8lsv")
 
-[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_004" parent_id_path=PackedInt32Array(1750765973, 937487326) index="1" unique_id=1233088857 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_004" parent_id_path=PackedInt32Array(1750765973, 914785031) index="1" unique_id=1233088857 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
 script = ExtResource("3_kq41l")
 flip = NodePath("../toggle_004")
 collider = NodePath("CollisionShape3D")
@@ -108,7 +108,7 @@ metadata/_custom_type_script = "uid://cq82pq61itemp"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
 shape = SubResource("BoxShape3D_d8lsv")
 
-[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_005" parent_id_path=PackedInt32Array(1750765973, 1981019821) index="1" unique_id=518098671 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
+[node name="Breaker" type="StaticBody3D" parent="server_w_breakers/server/breaker_005" parent_id_path=PackedInt32Array(1750765973, 1837033976) index="1" unique_id=518098671 node_paths=PackedStringArray("flip", "collider", "breaker_mesh", "mesh_instance")]
 script = ExtResource("3_kq41l")
 flip = NodePath("../toggle_005")
 collider = NodePath("CollisionShape3D")
@@ -123,10 +123,10 @@ metadata/_custom_type_script = "uid://cq82pq61itemp"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008951038, 0.024148941, 0)
 shape = SubResource("BoxShape3D_d8lsv")
 
-[node name="CollisionShape3D" parent="server_w_breakers/server/collider" parent_id_path=PackedInt32Array(1750765973, 778145305) index="0" unique_id=1890989787]
+[node name="CollisionShape3D" parent="server_w_breakers/server/collider" parent_id_path=PackedInt32Array(1750765973, 848266156) index="0" unique_id=770852267]
 disabled = true
 
-[node name="outline" parent="server_w_breakers/server" parent_id_path=PackedInt32Array(1750765973, 694504916) index="7" unique_id=626064996]
+[node name="outline" parent="server_w_breakers/server" parent_id_path=PackedInt32Array(1750765973, 2070946064) index="7" unique_id=1502197632]
 transform = Transform3D(0.33072323, 0, 0, 0, 0.15187341, 0, 0, 0, 0.16179733, -0.01143074, 1.3288636, -0.30381536)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1714191188]
@@ -138,7 +138,7 @@ script = ExtResource("7_iyen1")
 breakers = [NodePath("../server_w_breakers/server/breaker/Breaker"), NodePath("../server_w_breakers/server/breaker_001/Breaker"), NodePath("../server_w_breakers/server/breaker_002/Breaker"), NodePath("../server_w_breakers/server/breaker_003/Breaker"), NodePath("../server_w_breakers/server/breaker_004/Breaker"), NodePath("../server_w_breakers/server/breaker_005/Breaker")]
 metadata/_custom_type_script = "uid://chk8b8otvioxh"
 
-[node name="CameraPos" type="Node3D" parent="." unique_id=724157002]
+[node name="CameraPos" type="Marker3D" parent="." unique_id=591337170]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3577471, -1.096966)
 
 [editable path="server_w_breakers"]
