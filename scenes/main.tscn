@@ -40,6 +40,9 @@
 [ext_resource type="VideoStream" uid="uid://qjq6e4dvykmu" path="res://videos/1x2_hello_text.ogv" id="30_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://bbyrt7nlblljf" path="res://models/lucky.blend" id="34_cjqg0"]
 [ext_resource type="PackedScene" uid="uid://wh4j7hrx1y44" path="res://scenes/cable_minigame.tscn" id="40_5he1u"]
+[ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame.tscn" id="41_2cjbq"]
+[ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="42_chjal"]
+[ext_resource type="PackedScene" uid="uid://dn62i7rv7g06i" path="res://scenes/server_graetz_minigame.tscn" id="43_chjal"]
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 ambient_light_source = 2
@@ -426,6 +429,15 @@ game = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.981514, 11.345698, -4.8990245)
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
+
+[node name="Server Breakers Minigame" parent="." unique_id=1111946063 instance=ExtResource("41_2cjbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.07368, 9.501364, -39.440407)
+
+[node name="Server Matrix Minigame" parent="." unique_id=2068626685 instance=ExtResource("42_chjal")]
+transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, -117.09963, 9.501364, -47.91872)
+
+[node name="Server Graetz Minigame" parent="." unique_id=1996921154 instance=ExtResource("43_chjal")]
+transform = Transform3D(-0.07435658, 0, 0.9972317, 0, 1, 0, -0.9972317, 0, -0.07435658, -114.73266, 9.501364, -44.411407)
 
 [connection signal="interacted" from="Level/Interactable" to="SplitScreen" method="_on_interactable_interacted"]
 

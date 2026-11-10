@@ -31,6 +31,7 @@ var dc_minus : GraetzPinJunction
 @export var lower_right_diode : GraetzDiode
 
 var num_signals_finished = 0
+var total_expected_signals = 2
 
 func _ready() -> void:
 
@@ -266,12 +267,18 @@ func forward_signal(junction: GraetzJunction, source : Node3D, used_junctions : 
 
 func animate_flow(flow_paths: Array[Dictionary], flow_starts : Array[Vector3], result_visualizer : MeshInstance3D, plus_plus_success : bool, minus_minus_success : bool) -> void:
 	num_signals_finished = 0
-	var tween = create_tween()
-	tween.set_parallel()
+	# Set expected signals based on whether the second path will run
+	total_expected_signals = 2 if plus_plus_success else 1
 
-	tween.tween_callback(func() -> void: await animate_signal(flow_paths[0], flow_starts[0]))
+	# Start the first signal immediately
+	animate_signal(flow_paths[0], flow_starts[0])
+
+	# Start the second signal with a delay if plus_plus_success is true
 	if plus_plus_success:
-		tween.tween_callback(func() -> void: await animate_signal(flow_paths[1], flow_starts[1])).set_delay(2.0)
+		get_tree().create_timer(2.0).timeout.connect(
+			func() -> void: animate_signal(flow_paths[1], flow_starts[1]), 
+			CONNECT_ONE_SHOT
+		)
 
 	await flow_finished
 	
@@ -344,5 +351,5 @@ func find_split_paths(split_point : Vector3, paths : Array) -> Array[int]:
 
 func signal_finished_callback() -> void:
 	num_signals_finished += 1
-	if num_signals_finished >= 2:
+	if num_signals_finished >= total_expected_signals:
 		flow_finished.emit()

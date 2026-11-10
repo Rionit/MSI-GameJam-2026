@@ -5,7 +5,7 @@ var minigame_completed = false
 
 @export var minigame : Minigame
 @export var collider : CollisionShape3D
-@export var cameraPosition : Node3D
+@export var cameraPosition : Marker3D
 @onready var gameManager : GameManager = get_node("/root/Main")
 
 func _ready() -> void:

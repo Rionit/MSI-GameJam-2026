@@ -57,5 +57,5 @@ func get_destinations() -> GraetzJunction:
 
 func change_dir():
 	direction = DiodeDirection.LEFT if direction == DiodeDirection.RIGHT else DiodeDirection.RIGHT
+	mesh.rotate_z(deg_to_rad(180))
 	rotate_z(deg_to_rad(180))
-
