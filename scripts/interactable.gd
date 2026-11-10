@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends PhysicsBody3D
 class_name Interactable
 
 signal interacted(interactable: Interactable)
@@ -6,7 +6,7 @@ signal interacted(interactable: Interactable)
 @export var outline_material: Material 
 @export var mesh_instance: MeshInstance3D
 
-func interact() -> void:
+func interact(player: PlayerController) -> void:
 	interacted.emit(self)
 
 func highlight() -> void:

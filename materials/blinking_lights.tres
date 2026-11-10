@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dy1q8prphuluj"]
+
+[ext_resource type="Shader" uid="uid://cem44xdgccetj" path="res://shaders/blinking_lights.gdshader" id="1_1m8t7"]
+[ext_resource type="Texture2D" uid="uid://cyq3svws41mtu" path="res://models/textures/blinking_lights_texture.png" id="2_itrrp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1m8t7")
+shader_parameter/emission_texture = ExtResource("2_itrrp")
+shader_parameter/scroll_speed = Vector2(0.2, 0)
+shader_parameter/emission_energy = 1.0

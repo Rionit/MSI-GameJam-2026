@@ -171,8 +171,9 @@ size = Vector3(1.5, 0.05, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxx2p"]
 size = Vector3(0.7, 0.7, 0.8)
 
-[node name="Main" type="Node" unique_id=848906251]
+[node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("static_camera_parent")]
 script = ExtResource("1_nkgdn")
+static_camera_parent = NodePath("SplitScreen/SubViewportContainerRight/SubViewport/StaticCameraParent")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=92616691]
 environment = SubResource("Environment_sugp2")
@@ -397,7 +398,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 script = ExtResource("16_itxy7")
-split_ratio = 0.0
 
 [node name="SubViewportContainerLeft" type="SubViewportContainer" parent="SplitScreen" unique_id=1271243271]
 layout_mode = 2
@@ -407,7 +407,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerLeft" unique_id=1764969003]
 handle_input_locally = false
-size = Vector2i(2, 1080)
+size = Vector2i(2, 540)
 render_target_update_mode = 4
 
 [node name="UnmovablePlayer" parent="SplitScreen/SubViewportContainerLeft/SubViewport" unique_id=752721606 instance=ExtResource("17_2d6mp")]
@@ -424,7 +424,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerRight" unique_id=964279091]
 handle_input_locally = false
-size = Vector2i(1920, 1080)
+size = Vector2i(960, 540)
 render_target_update_mode = 4
 
 [node name="FirstPersonPlayer" parent="SplitScreen/SubViewportContainerRight/SubViewport" unique_id=1859700186 instance=ExtResource("17_2d6mp")]

@@ -32,6 +32,7 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
 [node name="FirstPersonPlayer" type="CharacterBody3D" unique_id=752721606 node_paths=PackedStringArray("camera_pivot")]
+collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_0p46v")
 speed = 2.5
@@ -48,6 +49,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="InteractRayCast3D" type="RayCast3D" parent="Camera/Camera3D" unique_id=284567336]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -1.5)
+collision_mask = 13
+
+[node name="ObjectHolder" type="Marker3D" parent="Camera" unique_id=1157575664]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -0.7071067, 0.7071067, 0, -0.7071067, -0.7071067, 0, -0.2, -0.7)
 
 [node name="Crosshair" type="TextureRect" parent="." unique_id=1340775454]
 top_level = true

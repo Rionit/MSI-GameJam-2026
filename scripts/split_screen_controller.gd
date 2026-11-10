@@ -2,13 +2,15 @@
 extends HBoxContainer
 class_name SplitScreen
 
+signal on_tween_finished
+
 @onready var viewport_left: SubViewportContainer = $SubViewportContainerLeft
 @onready var viewport_right: SubViewportContainer = $SubViewportContainerRight
 
 @onready var main_viewport: SubViewport = $SubViewportContainerRight/SubViewport
 
 ## Controls the width ratio between the left and right viewports (0.0 to 1.0).
-@export_range(0.0, 1.0) var split_ratio: float = 0.5:
+@export_range(0.0, 1.0) var split_ratio: float = 0.0:
 	set(value):
 		split_ratio = value
 		if not is_inside_tree():
@@ -57,6 +59,12 @@ func _animate_split_to(target_value: float) -> void:
 	_tween.set_trans(tween_trans)
 	_tween.set_ease(tween_ease)
 	_tween.tween_method(_update_split, current_ratio, target_value, tween_length)
+	_tween.finished.connect(_on_finished_split_tween)
+
+func _on_finished_split_tween():
+	on_tween_finished.emit()
+	if split_ratio == 1.0:
+		viewport_right.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
@@ -70,9 +78,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		#else:
 			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		#return
-
+	if main_viewport and event is InputEventMouseMotion:
+		main_viewport.push_input(event)
 	#if main_viewport:
-	#	main_viewport.push_input(event)
+		#main_viewport.push_input(event)
 
 func _on_test_button_pressed() -> void:
 	# Cycles between 0.5, 0.8, and 0.2 for quick testing

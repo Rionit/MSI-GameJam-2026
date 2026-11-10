@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://wh4j7hrx1y44"]
+
+[ext_resource type="Script" uid="uid://bldtn7rj3gaxf" path="res://scripts/cable_minigame.gd" id="1_33myn"]
+[ext_resource type="Material" uid="uid://d0wi81y20ldid" path="res://materials/outline.tres" id="2_glkkc"]
+[ext_resource type="Script" uid="uid://b1nopq4k63c5d" path="res://scripts/dynamic_cable.gd" id="3_ureyy"]
+[ext_resource type="PackedScene" uid="uid://draawl21ymy4t" path="res://models/connector.blend" id="4_oeepm"]
+[ext_resource type="PackedScene" uid="uid://q04y5s83vqns" path="res://models/outlet.blend" id="5_toic6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qaqv0"]
+radius = 0.1015625
+height = 0.26123047
+
+[sub_resource type="BoxMesh" id="BoxMesh_qaqv0"]
+size = Vector3(0.24414063, 0.4873047, 0.39672852)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qaqv0"]
+size = Vector3(0.64697266, 1.6208496, 0.6446533)
+
+[node name="CableMinigame" type="StaticBody3D" unique_id=579783282 node_paths=PackedStringArray("connector_types", "rotating_part")]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_33myn")
+type = 4
+connector_types = [NodePath("DynamicCable/Connector/mesh/connector_type_001"), NodePath("DynamicCable/Connector/mesh/connector_type_002"), NodePath("DynamicCable/Connector/mesh/connector_type_003"), NodePath("DynamicCable/Connector/mesh/connector_type_004"), NodePath("DynamicCable/Connector/mesh/connector_type_005"), NodePath("DynamicCable/Connector/mesh/connector_type_006"), NodePath("DynamicCable/Connector/mesh/connector_type_007"), NodePath("DynamicCable/Connector/mesh/connector_type_008")]
+rotating_part = NodePath("outlet/rotating_part")
+outline_material = ExtResource("2_glkkc")
+
+[node name="DynamicCable" type="Node3D" parent="." unique_id=1853623582]
+script = ExtResource("3_ureyy")
+link_count = 20
+link_length = 0.1
+link_radius = 0.025
+end_target = NodePath("Connector")
+cable_collision_layer = 4
+cable_collision_mask = 3
+metadata/_custom_type_script = "uid://b1nopq4k63c5d"
+
+[node name="Connector" type="RigidBody3D" parent="DynamicCable" unique_id=1591141501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1219692, 0)
+collision_layer = 4
+mass = 0.1
+can_sleep = false
+freeze_mode = 1
+
+[node name="mesh" parent="DynamicCable/Connector" unique_id=1408349797 instance=ExtResource("4_oeepm")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -4.2036594e-10, -0.009616852, 0)
+
+[node name="connector_type_001" parent="DynamicCable/Connector/mesh" index="0" unique_id=1909413259]
+visible = false
+
+[node name="connector_type_002" parent="DynamicCable/Connector/mesh" index="1" unique_id=2089641283]
+visible = false
+
+[node name="connector_type_003" parent="DynamicCable/Connector/mesh" index="2" unique_id=37078263]
+visible = false
+
+[node name="connector_type_004" parent="DynamicCable/Connector/mesh" index="3" unique_id=121485571]
+visible = false
+
+[node name="connector_type_006" parent="DynamicCable/Connector/mesh" index="5" unique_id=452724485]
+visible = false
+
+[node name="connector_type_007" parent="DynamicCable/Connector/mesh" index="6" unique_id=1595357644]
+visible = false
+
+[node name="connector_type_008" parent="DynamicCable/Connector/mesh" index="7" unique_id=167587891]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamicCable/Connector" unique_id=709037867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0031738281, 0)
+shape = SubResource("CapsuleShape3D_qaqv0")
+
+[node name="Anchor" type="StaticBody3D" parent="DynamicCable" unique_id=635235458]
+
+[node name="LinkContainer" type="Node3D" parent="DynamicCable" unique_id=233733185]
+
+[node name="Box" type="MeshInstance3D" parent="." unique_id=1004379640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020996094, 0.040593147, 0)
+mesh = SubResource("BoxMesh_qaqv0")
+
+[node name="outlet" parent="." unique_id=903131348 instance=ExtResource("5_toic6")]
+transform = Transform3D(-1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, 0, 1, 0.204216, -0.7056618, 0.29912186)
+
+[node name="rotating_part" parent="outlet" index="1" unique_id=889061226]
+transform = Transform3D(1, 0, 0, 0, -9.9347645e-08, -0.9999999, 0, 0.9999999, -9.9347645e-08, 0, 0, 0)
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=54130861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17651367, -0.4840088, 0.10357666)
+shape = SubResource("BoxShape3D_qaqv0")
+
+[node name="CameraPosition" type="Marker3D" parent="." unique_id=707718930]
+transform = Transform3D(0.49999988, 0.3958878, -0.77024204, 7.450581e-09, 0.8893989, 0.45713186, 0.8660253, -0.22856589, 0.44469938, -0.27467346, -0.65002537, 0.49723053)
+
+[node name="ConnectorHoldPosition" type="Marker3D" parent="." unique_id=374927074]
+transform = Transform3D(0.5, 0.6415334, 0.5817516, -1.4901161e-08, -0.6717489, 0.7407789, 0.8660253, -0.37038946, -0.33587438, -0.029281616, -0.91825104, 0.36147308)
+
+[node name="ConnectorInsertPosition" type="Marker3D" parent="." unique_id=269384887]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.115676865, -0.7084322, 0.29520032)
+
+[editable path="DynamicCable/Connector/mesh"]
+[editable path="outlet"]
