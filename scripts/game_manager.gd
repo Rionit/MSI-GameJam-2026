@@ -9,7 +9,7 @@ class_name GameManager
 @export var static_camera_parent: Node3D 
 @export var doors: Array[Door]
 
-@export_group("Screen Actions")
+@export_group("Debug")
 @export_tool_button("Connect Screen", "Add")
 var connect_screen = on_screen_connected
 @export_tool_button("Disconnect Screen", "Remove")
@@ -20,12 +20,17 @@ var next_door_index : int = 0
 
 func _ready() -> void:
 	# on_screen_connected()
+	open_all_doors()
 	pass
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		on_screen_connected()
 		print(screen_manager.pairs.size() / doors.size())
+
+func open_all_doors():
+	for door in doors:
+		door.open()
 
 func on_screen_connected():
 	screen_manager.active_screen_count += 1
