@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ccx5pey0swwyu"]
+
+[ext_resource type="PackedScene" uid="uid://cf0kdknfekvb3" path="res://scenes/antivirus_platform.tscn" id="1_sq0tw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ytn4r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xpt42"]
+size = Vector3(5, 0.1, 1)
+
+[node name="LevelRight" type="Node3D" unique_id=726907047]
+
+[node name="Platform1" type="StaticBody3D" parent="." unique_id=1441890573]
+collision_layer = 2
+collision_mask = 2
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform1" unique_id=995752521]
+transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ytn4r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform1" unique_id=190468258]
+shape = SubResource("BoxShape3D_xpt42")
+
+[node name="AntivirusPlatform" parent="." unique_id=678430322 instance=ExtResource("1_sq0tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.2, 0)
+left_x = -2.0
+right_x = 2.0
+
+[editable path="AntivirusPlatform"]

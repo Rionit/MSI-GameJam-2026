@@ -37,6 +37,7 @@ func _ready() -> void:
 				breaker_connections[breaker].append(connected_breaker)
 
 func _on_breaker_interacted(interacted: Interactable):
+	#AudioManager.play_sfx(Switch flip sound)
 	var interacted_breaker = interacted as Breaker
 	print("Breaker " + str(interacted) + " interacted.")
 	interacted_breaker.flip_breaker()

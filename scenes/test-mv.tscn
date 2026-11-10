@@ -20,14 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="17_2d6mp"]
 [ext_resource type="PackedScene" uid="uid://dn62i7rv7g06i" path="res://scenes/server_graetz_minigame.tscn" id="18_bjbt1"]
 [ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame.tscn" id="19_to470"]
+[ext_resource type="PackedScene" uid="uid://3drommcgto4x" path="res://scenes/server_antivirus_minigame.tscn" id="20_aqtfj"]
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="20_bjbt1"]
-[ext_resource type="Script" uid="uid://vsmlnsfpq43o" path="res://scripts/minigame_server.gd" id="20_vusky"]
-[ext_resource type="Material" uid="uid://d0wi81y20ldid" path="res://materials/outline.tres" id="21_4pgbm"]
-[ext_resource type="PackedScene" uid="uid://bdx4tfrtagqbx" path="res://models/server_w_laptop.blend" id="21_ytn4r"]
-[ext_resource type="Script" uid="uid://6se0k8rcbsxe" path="res://scripts/minigames/antivirus/antivirus_minigame.gd" id="22_5atrm"]
-[ext_resource type="Script" uid="uid://cpna553kgsefo" path="res://scripts/minigames/antivirus/antivirus_ball.gd" id="23_ytn4r"]
-[ext_resource type="PackedScene" uid="uid://cf0kdknfekvb3" path="res://scenes/antivirus_platform.tscn" id="24_5atrm"]
-[ext_resource type="Material" uid="uid://bbptyvtgk0cd4" path="res://materials/emissive_red.tres" id="25_7dy28"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -145,32 +139,6 @@ void fragment() {
 	ALPHA = edge * distance_fade;
 }"
 
-[sub_resource type="SphereMesh" id="SphereMesh_2d5gv"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_2d5gv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_4pgbm"]
-size = Vector3(1, 5, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2d5gv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ytn4r"]
-size = Vector3(1, 5, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ytn4r"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_7dy28"]
-material = ExtResource("25_7dy28")
-size = Vector3(1.5, 0.05, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7dy28"]
-size = Vector3(1.5, 0.05, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2d5gv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_oxx2p"]
-size = Vector3(0.7, 0.7, 0.8)
-
 [node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("static_camera_parent")]
 script = ExtResource("1_nkgdn")
 static_camera_parent = NodePath("SplitScreen/SubViewportContainerRight/SubViewport/StaticCameraParent")
@@ -253,139 +221,16 @@ transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.0
 light_energy = 4.361
 
 [node name="Server Matrix Minigame" parent="Level" unique_id=2068626685 instance=ExtResource("20_bjbt1")]
-transform = Transform3D(-0.011953227, 0, 0.99992853, 0, 1, 0, -0.99992853, 0, -0.011953227, -15.59583, 4, -1.8240677)
+transform = Transform3D(-0.011953227, 0, 0.99992853, 0, 1, 0, -0.99992853, 0, -0.011953227, -14.864648, 4, -1.8328084)
 
 [node name="Server Graetz Minigame" parent="Level" unique_id=1996921154 instance=ExtResource("18_bjbt1")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -17.50431, 4.1502423, -2.1985807)
 
 [node name="Server Breakers Minigame" parent="Level" unique_id=1111946063 instance=ExtResource("19_to470")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.375013, 4.0994396, 2.5291944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.375013, 4.0994396, 1.5291944)
 
-[node name="Server Antivirus Minigame" type="StaticBody3D" parent="Level" unique_id=302360381 node_paths=PackedStringArray("minigame", "collider", "cameraPosition", "mesh_instance")]
+[node name="Server Antivirus Minigame" parent="Level" unique_id=1464650673 instance=ExtResource("20_aqtfj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.232492, 3.9932694, 2.5751753)
-script = ExtResource("20_vusky")
-minigame = NodePath("AntivirusMinigame")
-collider = NodePath("Collider")
-cameraPosition = NodePath("CameraPos")
-outline_material = ExtResource("21_4pgbm")
-mesh_instance = NodePath("server_w_laptop/server/outline_mesh")
-metadata/_custom_type_script = "uid://vsmlnsfpq43o"
-
-[node name="server_w_laptop" parent="Level/Server Antivirus Minigame" unique_id=1706280485 instance=ExtResource("21_ytn4r")]
-
-[node name="AntivirusMinigame" type="Node3D" parent="Level/Server Antivirus Minigame" unique_id=600191076 node_paths=PackedStringArray("player_ball", "top_spawn", "platform_levels", "antivirus_platforms", "side_bounds", "bottom_hole")]
-transform = Transform3D(0.075, 0, 0, 0, 0.07047695, -0.02565151, 0, 0.02565151, 0.07047695, 0, 1.4182389, -0.6263616)
-script = ExtResource("22_5atrm")
-player_ball = NodePath("AntivirusBall")
-top_spawn = NodePath("AntivirusBall")
-platform_levels = [NodePath("Platforms/Level1/Platform1"), NodePath("Platforms/Level2/Platform1"), NodePath("Platforms/Level3/Platform1")]
-antivirus_platforms = [NodePath("Platforms/Level2/AntivirusPlatform"), NodePath("Platforms/Level3/AntivirusPlatform")]
-side_bounds = [NodePath("Bounds/LeftBound"), NodePath("Bounds/RightBound")]
-bottom_hole = NodePath("Platforms/FinalTrigger")
-metadata/_custom_type_script = "uid://6se0k8rcbsxe"
-
-[node name="BallSpawn" type="Node3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame" unique_id=1184069742]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 0)
-
-[node name="AntivirusBall" type="CharacterBody3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame" unique_id=220634046]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2.5, 2, 0)
-script = ExtResource("23_ytn4r")
-metadata/_custom_type_script = "uid://cpna553kgsefo"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/AntivirusBall" unique_id=1931932149]
-mesh = SubResource("SphereMesh_2d5gv")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/AntivirusBall" unique_id=1883330847]
-shape = SubResource("SphereShape3D_2d5gv")
-
-[node name="Bounds" type="Node3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame" unique_id=981026116]
-
-[node name="LeftBound" type="Area3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Bounds" unique_id=1408161647]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Bounds/LeftBound" unique_id=710085082]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
-shape = SubResource("BoxShape3D_4pgbm")
-
-[node name="DebugVisualizer" type="MeshInstance3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Bounds/LeftBound/CollisionShape3D" unique_id=960195776]
-transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_2d5gv")
-
-[node name="RightBound" type="Area3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Bounds" unique_id=972234107]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Bounds/RightBound" unique_id=225571946]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-shape = SubResource("BoxShape3D_ytn4r")
-
-[node name="DebugVisualizer" type="MeshInstance3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Bounds/RightBound/CollisionShape3D" unique_id=456491605]
-transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_2d5gv")
-
-[node name="Platforms" type="Node3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame" unique_id=1371180662]
-
-[node name="Level1" type="Node3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms" unique_id=1608561365]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="Platform1" type="StaticBody3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level1" unique_id=1219995396]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level1/Platform1" unique_id=1960752209]
-transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.5, 0, 0)
-mesh = SubResource("BoxMesh_ytn4r")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level1/Platform1" unique_id=676287108]
-
-[node name="Level2" type="Node3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms" unique_id=505688487]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 0)
-
-[node name="Platform1" type="StaticBody3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level2" unique_id=1228869095]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level2/Platform1" unique_id=1323202131]
-transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.5, 0, 0)
-mesh = SubResource("BoxMesh_ytn4r")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level2/Platform1" unique_id=526368711]
-
-[node name="AntivirusPlatform" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level2" unique_id=678430322 instance=ExtResource("24_5atrm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7138652, 0.22846866, 0)
-left_x = -2.0
-right_x = 2.0
-
-[node name="Level3" type="Node3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms" unique_id=1911421548]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="Platform1" type="StaticBody3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level3" unique_id=1849177657]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level3/Platform1" unique_id=1748337132]
-transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.5, 0, 0)
-mesh = SubResource("BoxMesh_ytn4r")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level3/Platform1" unique_id=698263097]
-
-[node name="AntivirusPlatform" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level3" unique_id=59888298 instance=ExtResource("24_5atrm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.127, 0)
-speed = 0.6
-left_x = -2.0
-right_x = 2.0
-direction = 1.0
-
-[node name="MeshInstance3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level3/AntivirusPlatform" index="0" unique_id=875050624]
-mesh = SubResource("BoxMesh_7dy28")
-
-[node name="CollisionShape3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level3/AntivirusPlatform" index="1" unique_id=699437068]
-shape = SubResource("BoxShape3D_7dy28")
-
-[node name="FinalTrigger" type="Area3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms" unique_id=1797282703]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/FinalTrigger" unique_id=1916067764]
-shape = SubResource("BoxShape3D_2d5gv")
-
-[node name="CameraPos" type="Node3D" parent="Level/Server Antivirus Minigame" unique_id=949135916]
-transform = Transform3D(-1.0000005, -2.9900345e-08, 8.215058e-08, 0, 0.9396925, 0.34202027, -8.742282e-08, 0.3420201, -0.9396931, 0, 1.7261167, -1.4999999)
-
-[node name="Collider" type="CollisionShape3D" parent="Level/Server Antivirus Minigame" unique_id=1483813794]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4010721, -0.8571992)
-shape = SubResource("BoxShape3D_oxx2p")
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
@@ -413,6 +258,7 @@ render_target_update_mode = 4
 [node name="UnmovablePlayer" parent="SplitScreen/SubViewportContainerLeft/SubViewport" unique_id=752721606 instance=ExtResource("17_2d6mp")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, 0)
 can_move = false
+receives_input = false
 speed = 5.0
 can_walk = false
 can_interact = false
@@ -441,6 +287,4 @@ omni_attenuation = 10.0
 [node name="StaticCameraParent" type="Node3D" parent="SplitScreen/SubViewportContainerRight/SubViewport" unique_id=1647961134]
 
 [editable path="map"]
-[editable path="Level/Server Antivirus Minigame/server_w_laptop"]
-[editable path="Level/Server Antivirus Minigame/AntivirusMinigame/Platforms/Level3/AntivirusPlatform"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]

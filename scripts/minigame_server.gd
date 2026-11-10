@@ -68,6 +68,7 @@ func animate_camera(to_game: bool) -> void:
 	# Tween the global_transform directly (smooth position & quaternion rotation)
 	tween.tween_property(player.camera_pivot, "global_transform", target_transform, duration)
 
+	#AudioManager.play_sfx(Whoosh SFX (pro přechod kamery))
 	await tween.finished
 
 	print("Reparenting camera pivot from " + str(player.camera_pivot.get_parent()) + " to " + str(target_parent))

@@ -7,6 +7,8 @@ const DOT_HOLE = preload("uid://bnk8g7td53uyy")
 @export_category("Override")
 @export var can_move: bool = true
 
+@export var receives_input: bool = true
+
 @export_category("Movement")
 ##Speed of the character movement
 @export var speed: float = 5.0
@@ -35,6 +37,9 @@ const DOT_HOLE = preload("uid://bnk8g7td53uyy")
 ##Camera sensiblity
 @export var camera_sensitivty: float = 0.01
 @export var camera_pivot: Node3D 
+@export var camera_zoom_fov : float = 50
+@onready var camera_original_fov = $Camera/Camera3D.fov
+var is_zoomed_in : bool = false
 
 @export_category("Camera Limits")
 ## Enable to restrict camera view rotation to a cone
@@ -57,11 +62,18 @@ var _mouse_motion: Vector2
 
 var current_minigame_server: MinigameServer = null
 
+var camera_tween : Tween = null
 func _ready() -> void:
+	set_process_input(receives_input)
+
 	add_to_group("player")
 	_current_fall_multiplier = fall_multiplier
 	_current_speed = speed
 	show_mouse(false)
+
+	camera_tween = get_tree().create_tween()
+	camera_tween.set_trans(Tween.TRANS_CUBIC)
+	camera_tween.set_ease(Tween.EASE_IN_OUT)
 	
 func _physics_process(delta: float) -> void:
 	crosshair.visible = can_interact
@@ -138,9 +150,39 @@ func _input(event: InputEvent) -> void:
 		_current_speed = speed * run_multiplier
 	elif event.is_action_released("run"):
 		_current_speed = speed
-	
+
+
 	if event.is_action_pressed("interact") and current_interaction:
 		current_interaction.interact(self)
+
+	if event.is_action_pressed("zoom"):
+		zoom_camera(true)
+	if event.is_action_released("zoom"):
+		zoom_camera(false)
+
+func zoom_camera(zoom_in: bool):
+	if camera_tween.is_running():
+		camera_tween.kill()
+
+	camera_tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	var current_fov = camera_pivot.get_node("Camera3D").fov
+	print("Current camera FOV: ", current_fov, " Target FOV: ", camera_zoom_fov if zoom_in else camera_original_fov)
+	if zoom_in:
+		print("Zooming in camera.")
+		#camera_tween.tween_property(camera_pivot.get_node("Camera3D") as Camera3D, "fov", camera_zoom_fov, 0.5)
+		camera_tween.tween_method(set_camera_fov, current_fov, camera_zoom_fov, 0.3)
+	else:
+		print("Zooming out camera.")
+		camera_tween.tween_method(set_camera_fov, current_fov, camera_original_fov, 0.3)
+		#camera_tween.tween_property(camera_pivot.get_node("Camera3D") as Camera3D, "fov", camera_original_fov, 0.5)
+
+func set_camera_fov(fov: float):
+	var camera = camera_pivot.get_node("Camera3D") as Camera3D
+	if camera:
+		camera.fov = fov
+		print("Camera FOV set to: ", fov)
+	else:
+		print("Camera node not found. Cannot set FOV.")
 
 func add_gravity(delta: float):
 	if use_fall_multiplier:
