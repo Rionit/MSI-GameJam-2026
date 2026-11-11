@@ -24,6 +24,7 @@ size = Vector3(0.8, 1, 0.2)
 [node name="Server Graetz Minigame" type="StaticBody3D" unique_id=1996921154 node_paths=PackedStringArray("minigame", "collider", "cameraPosition", "mesh_instance")]
 script = ExtResource("1_i1kx8")
 minigame = NodePath("GraetzMinigame")
+tutorial_id = "graetz"
 collider = NodePath("CollisionShape3D")
 cameraPosition = NodePath("CameraPos")
 outline_material = ExtResource("2_ocepy")

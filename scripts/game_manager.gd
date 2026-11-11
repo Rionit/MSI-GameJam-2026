@@ -7,11 +7,13 @@ class_name GameManager
 @onready var player: PlayerController = %FirstPersonPlayer
 @onready var screen_room: Node3D = $Level/ScreenRoom
 @onready var map: Node3D = $map
+@onready var red_light: SpotLight3D = $Lights/RedLight
+@onready var game_over_screen: ColorRect = $SplitScreen/SubViewportContainerLeft/EndgameScreen
+@onready var endgame_quit_button : Button = $SplitScreen/SubViewportContainerLeft/EndgameScreen/QuitButton
 
 @export var static_camera_parent: Node3D 
 @export var doors: Array[Door]
 @export var rooms: Array[Node3D]
-
 @export_group("Debug")
 @export_tool_button("Connect Screen", "Add")
 var connect_screen = on_screen_connected
@@ -56,7 +58,8 @@ func on_screen_connected():
 		var cumulative_required = 0
 		for i in range(next_door_index + 1):
 			cumulative_required += doors[i].number_of_games_to_open
-			
+			print("Cumulative required for door %d: %d" % [i, cumulative_required])
+
 		# If we've reached or exceeded this door's threshold, open it and move to the next
 		if screen_manager.active_screen_count >= cumulative_required:
 			doors[next_door_index].open()
@@ -84,3 +87,28 @@ func _update_split_ratio() -> void:
 			1, max_screens,
 			0.075, 0.8
 		)
+func switch_pressed() -> void:
+	MonologueManager.display_next_batch()
+	player.can_walk = false
+	player.can_jump = false
+	player.can_move = false
+
+	await MonologueManager.reading_finished
+	
+
+func endgame_animation() -> void:
+	var tween = create_tween()
+	tween.set_parallel()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(red_light, "attenuation", -3.0, 4.0)
+	# TODO: ADD AUDIO TWEEN
+	await tween.finished
+
+	game_over_screen.visible = true
+	# TODO: Animate text
+
+
+func on_endgame_quit_pressed() -> void:
+	get_tree().quit()

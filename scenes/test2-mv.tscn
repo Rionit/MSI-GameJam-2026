@@ -25,7 +25,6 @@
 [ext_resource type="VideoStream" uid="uid://lk5a3un3xidi" path="res://videos/9x16_religion.ogv" id="23_m4qpx"]
 [ext_resource type="VideoStream" uid="uid://bm3wcgdk4a0gh" path="res://videos/1x1_dancing_roach.ogv" id="24_ce6jt"]
 [ext_resource type="VideoStream" uid="uid://ciiuk3r56enie" path="res://videos/missing_video.ogv" id="25_3vpsw"]
-[ext_resource type="VideoStream" uid="uid://bo48c8mhkcltw" path="res://videos/4x3_kubik.ogv" id="26_twjs7"]
 [ext_resource type="VideoStream" uid="uid://diilavvwd1onf" path="res://videos/16x9_code.ogv" id="27_7d8sp"]
 [ext_resource type="VideoStream" uid="uid://jk2abknneto0" path="res://videos/4x3_animation.ogv" id="28_icg6g"]
 [ext_resource type="VideoStream" uid="uid://ghpk850vjgdi" path="res://videos/1x1_3d_modeling.ogv" id="29_7fk3i"]
@@ -182,7 +181,6 @@ metadata/_custom_type_script = "uid://30gbkac6ebgc"
 [sub_resource type="Resource" id="Resource_pibwh"]
 script = ExtResource("4_njx54")
 mesh_path = NodePath("../map/4x3_screen_002")
-video_stream = ExtResource("26_twjs7")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
 [sub_resource type="Resource" id="Resource_bu4jf"]
@@ -242,20 +240,20 @@ height = 1.1376953
 [sub_resource type="PrismMesh" id="PrismMesh_qaqv0"]
 material = ExtResource("34_7gnws")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n8n6g"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_6cmf0"]
 viewport_path = NodePath("../Instructions/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8n6g"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_6cmf0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jlvu"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_n8n6g")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vd6k8"]
-resource_local_to_scene = true
-albedo_color = Color(0, 0, 0, 1)
-emission_enabled = true
-emission_texture = SubResource("ViewportTexture_n8n6g")
+emission_texture = SubResource("ViewportTexture_6cmf0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vchkt"]
 shader = ExtResource("45_v5fvp")
@@ -389,11 +387,11 @@ mesh = SubResource("PrismMesh_qaqv0")
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("35_3bvs2")]
 
-[node name="instruction_screen" parent="map" index="64" unique_id=1579535288]
-material_override = SubResource("StandardMaterial3D_4jlvu")
+[node name="instruction_screen" parent="map" index="64" unique_id=1625503402]
+material_override = SubResource("StandardMaterial3D_n8n6g")
 
-[node name="instruction_screen_001" parent="map" index="68" unique_id=272065325]
-material_override = SubResource("StandardMaterial3D_vd6k8")
+[node name="instruction_screen_001" parent="map" index="68" unique_id=1024913984]
+material_override = SubResource("StandardMaterial3D_4jlvu")
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
 
@@ -503,30 +501,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.61906, 9.5, 0)
 
 [node name="CableMinigame" parent="Minigames/Cables" unique_id=579783282 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_nkgi1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.25407, 11.345698, -41.789078)
+screen_override = 1
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="CableMinigame2" parent="Minigames/Cables" unique_id=839617449 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_nkgi1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -95.79736, 11.345698, -35.541767)
 type = 6
+screen_override = 1
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="CableMinigame3" parent="Minigames/Cables" unique_id=316587700 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_nkgi1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -95.79736, 11.345698, -9.909572)
 type = 1
+screen_override = 1
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="CableMinigame4" parent="Minigames/Cables" unique_id=303172722 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_nkgi1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.121254, 11.345698, -4.67083)
 type = 2
+screen_override = 1
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="CableMinigame5" parent="Minigames/Cables" unique_id=458089844 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_nkgi1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.981514, 11.345698, -5.187783)
 type = 7
+screen_override = 1
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 

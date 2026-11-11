@@ -246,7 +246,9 @@ func _side_direction(cell: Interactable, side: int) -> Vector3:
 
 func _on_cell_interacted(_cell: Interactable) -> void:
 	pass
+
 func _on_test_button_interacted(_button: Interactable) -> void:
+	AudioManager.play_sfx_at_3d("text", global_position)
 	result_label.text = ""
 	success_label.text = ""
 	if _completed:
@@ -272,12 +274,13 @@ func _on_test_button_interacted(_button: Interactable) -> void:
 		label_tween.set_parallel()
 		label_tween.tween_property(success_side_label, "text", "Knowledge data\nflow connected", 1.0)
 		await label_tween.finished
-
+		AudioManager.play_sfx_at_3d("antivirus_pass", global_position)
 		await get_tree().create_timer(2.0).timeout
 		_completed = true
 		exit_game()		
 		minigame_completed.emit(self)
 	else:
+		AudioManager.play_sfx_at_3d("error", global_position)
 		await get_tree().create_timer(2.0).timeout
 		result_label.text = ""
 		success_label.text = ""

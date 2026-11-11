@@ -2,11 +2,14 @@
 extends Interactable
 class_name CableMinigame
 
+signal cable_connected
+
 @onready var connector: RigidBody3D = $DynamicCable/Connector
 @onready var camera_position: Marker3D = $CameraPosition
 @onready var connector_hold_position: Marker3D = $ConnectorHoldPosition
 @onready var connector_insert_position: Marker3D = $ConnectorInsertPosition
 @onready var hitbox: CollisionShape3D = $Hitbox
+
 
 @export_category("Game Setup")
 @export_range(0, 7, 1) var type : int = 0.0:
@@ -116,6 +119,8 @@ func check_cable():
 		print("yippee its correct")
 		AudioManager.play_sfx_at_3d("zap", connector_insert_position.global_position)
 		
+		cable_connected.emit()
+
 		for i in range(screen_override):
 			game.on_screen_connected()
 			await get_tree().create_timer(2.0).timeout
@@ -138,6 +143,7 @@ func check_cable():
 		player.can_jump = true
 		
 		await exit_tween.finished
+		MonologueManager.display_next_batch()
 		is_interacting = false
 		
 	else:

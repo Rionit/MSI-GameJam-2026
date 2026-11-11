@@ -116,7 +116,11 @@ After they would do it, they would open the information dams and pour all the wo
 
 A real information overclock.
 
-### Post-4th
+Please, keep connecting.
+
+## Room 4
+
+### Post-1st
 
 They experimented on how to achieve it in many ways, but almost all of them failed.
 
@@ -125,8 +129,6 @@ Almost.
 They built a huge body of steel, copper and silicon. Wired together in a colossal web similar to human brain.
 
 And once they finished building and pulled the switch, their child was born.
-
-Please, keep connecting.
 
 ## Room 4
 

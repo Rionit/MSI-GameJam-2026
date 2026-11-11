@@ -589,6 +589,7 @@ size = Vector3(0.7753906, 0.5623779, 0.2602539)
 collision_mask = 0
 script = ExtResource("1_3jhlw")
 minigame = NodePath("BreakersMinigame")
+tutorial_id = "breakers"
 collider = NodePath("CollisionShape3D")
 cameraPosition = NodePath("CameraPos")
 outline_material = SubResource("StandardMaterial3D_5atrm")

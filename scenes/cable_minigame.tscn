@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://draawl21ymy4t" path="res://models/connector.blend" id="4_oeepm"]
 [ext_resource type="PackedScene" uid="uid://cbn8nvg0iwqmo" path="res://models/cable_box.blend" id="5_glkkc"]
 [ext_resource type="PackedScene" uid="uid://q04y5s83vqns" path="res://models/outlet.blend" id="5_toic6"]
+[ext_resource type="Material" uid="uid://cfjwywelmumj1" path="res://materials/emissive_yellow.tres" id="7_ureyy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qaqv0"]
 radius = 0.1015625
@@ -14,12 +15,16 @@ height = 0.26123047
 [sub_resource type="BoxShape3D" id="BoxShape3D_qaqv0"]
 size = Vector3(0.64697266, 1.6208496, 0.6446533)
 
+[sub_resource type="SphereMesh" id="SphereMesh_2d5gv"]
+material = ExtResource("7_ureyy")
+radius = 0.05
+height = 0.1
+
 [node name="CableMinigame" type="StaticBody3D" unique_id=579783282 node_paths=PackedStringArray("connector_types", "rotating_part", "mesh_instance")]
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_33myn")
 type = 4
-screen_override = null
 connector_types = [NodePath("DynamicCable/Connector/mesh/connector_type_001"), NodePath("DynamicCable/Connector/mesh/connector_type_002"), NodePath("DynamicCable/Connector/mesh/connector_type_003"), NodePath("DynamicCable/Connector/mesh/connector_type_004"), NodePath("DynamicCable/Connector/mesh/connector_type_005"), NodePath("DynamicCable/Connector/mesh/connector_type_006"), NodePath("DynamicCable/Connector/mesh/connector_type_007"), NodePath("DynamicCable/Connector/mesh/connector_type_008")]
 rotating_part = NodePath("outlet/rotating_part")
 outline_material = ExtResource("2_glkkc")
@@ -45,44 +50,7 @@ freeze_mode = 1
 [node name="mesh" parent="DynamicCable/Connector" unique_id=1408349797 instance=ExtResource("4_oeepm")]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, -0.11845058, 0)
 
-[node name="connector_type_001" parent="DynamicCable/Connector/mesh" index="0" unique_id=1899404113]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
-visible = false
-layers = 5
-
-[node name="connector_type_002" parent="DynamicCable/Connector/mesh" index="1" unique_id=1435892880]
-visible = false
-layers = 5
-
-[node name="connector_type_003" parent="DynamicCable/Connector/mesh" index="2" unique_id=244670846]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
-visible = false
-layers = 5
-
-[node name="connector_type_004" parent="DynamicCable/Connector/mesh" index="3" unique_id=1363618814]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
-visible = false
-layers = 5
-
-[node name="connector_type_005" parent="DynamicCable/Connector/mesh" index="4" unique_id=1673153079]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
-layers = 5
-
-[node name="connector_type_006" parent="DynamicCable/Connector/mesh" index="5" unique_id=1207831851]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
-visible = false
-layers = 5
-
-[node name="connector_type_007" parent="DynamicCable/Connector/mesh" index="6" unique_id=77630048]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
-visible = false
-layers = 5
-
-[node name="connector_type_008" parent="DynamicCable/Connector/mesh" index="7" unique_id=1319368298]
-visible = false
-layers = 5
-
-[node name="ConnectorHead" parent="DynamicCable/Connector/mesh" index="8" unique_id=1043738922]
+[node name="ConnectorHead" parent="DynamicCable/Connector/mesh" index="0" unique_id=591436140]
 layers = 5
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="DynamicCable/Connector/mesh/ConnectorHead" index="0" unique_id=1833293783]
@@ -90,6 +58,43 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.13
 layers = 4
 light_energy = 0.02
 light_cull_mask = 4294967292
+
+[node name="connector_type_008" parent="DynamicCable/Connector/mesh" index="1" unique_id=1241772821]
+visible = false
+layers = 5
+
+[node name="connector_type_007" parent="DynamicCable/Connector/mesh" index="2" unique_id=2059136285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
+visible = false
+layers = 5
+
+[node name="connector_type_006" parent="DynamicCable/Connector/mesh" index="3" unique_id=2056288680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
+visible = false
+layers = 5
+
+[node name="connector_type_005" parent="DynamicCable/Connector/mesh" index="4" unique_id=965813066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
+layers = 5
+
+[node name="connector_type_004" parent="DynamicCable/Connector/mesh" index="5" unique_id=1637216216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
+visible = false
+layers = 5
+
+[node name="connector_type_003" parent="DynamicCable/Connector/mesh" index="6" unique_id=1064918577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
+visible = false
+layers = 5
+
+[node name="connector_type_002" parent="DynamicCable/Connector/mesh" index="7" unique_id=808592369]
+visible = false
+layers = 5
+
+[node name="connector_type_001" parent="DynamicCable/Connector/mesh" index="8" unique_id=1552074018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
+visible = false
+layers = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DynamicCable/Connector" unique_id=709037867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02363193, 0)
@@ -105,11 +110,11 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -
 [node name="outlet" parent="." unique_id=903131348 instance=ExtResource("5_toic6")]
 transform = Transform3D(-1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, 0, 1, 0.204216, -0.7056618, 0.29912186)
 
-[node name="inside" parent="outlet" index="0" unique_id=1914339139]
-layers = 5
+[node name="rotating_part" parent="outlet" index="0" unique_id=206047247]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0, 0, 0)
 
-[node name="rotating_part" parent="outlet" index="1" unique_id=1364614197]
-transform = Transform3D(1, 0, 0, 0, -0.70710665, -0.70710677, 0, 0.70710677, -0.70710665, 0, 0, 0)
+[node name="inside" parent="outlet" index="1" unique_id=1308351904]
+layers = 5
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=54130861]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17651367, -0.4840088, 0.10357666)
@@ -129,6 +134,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0560368, -0.696511, 0.29777
 layers = 4
 light_energy = 0.02
 light_cull_mask = 4294967292
+
+[node name="LightMesh" type="MeshInstance3D" parent="." unique_id=640482252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09318769, 0.30186975, -0.13154402)
+cast_shadow = 2
+mesh = SubResource("SphereMesh_2d5gv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LightMesh" unique_id=637998046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11735313, 0, 0)
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.1
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 3.0
+omni_shadow_mode = 0
 
 [editable path="DynamicCable/Connector/mesh"]
 [editable path="outlet"]

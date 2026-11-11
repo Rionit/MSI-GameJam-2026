@@ -6,18 +6,23 @@ var minigame_completed = false
 @export var minigame : Minigame
 @export var collider : CollisionShape3D
 @export var cameraPosition : Node3D
+@export_enum("none", "antivirus", "breakers", "graetz", "matrix", "triangular_pipe") var tutorial_id: String = "none"
 @onready var gameManager : GameManager = get_node("/root/Main")
 
 var laptop_hum : AudioStreamPlayer3D
 
-func _ready() -> void:
+func enable_server() -> void:
 	laptop_hum = AudioManager.play_sfx_at_3d("laptop_hum", global_position)
-	
+	collider.disabled = false
+
+func _ready() -> void:
 	interacted.connect(on_interacted)
 	minigame.minigame_completed.connect(on_minigame_completed)
+	collider.disabled = true
 
 func on_interacted(interactable: Interactable) -> void:
 	print("Interacted with minigame server: " + str(minigame))
+	MonologueManager.enqueue_tutorial(tutorial_id)
 	gameManager.player.can_walk = false
 	gameManager.player.can_jump = false
 
@@ -39,7 +44,7 @@ func on_minigame_exited() -> void:
 
 func on_minigame_completed(minigame: Minigame) -> void:
 	gameManager.on_screen_connected()
-	
+	MonologueManager.display_next_batch()
 	minigame_completed = true
 	minigame.exit_game()
 
@@ -77,6 +82,4 @@ func animate_camera(to_game: bool) -> void:
 
 	AudioManager.play_sfx("whoosh")
 	await tween.finished
-
-	print("Reparenting camera pivot from " + str(player.camera_pivot.get_parent()) + " to " + str(target_parent))
 	player.camera_pivot.reparent(target_parent)
