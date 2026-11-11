@@ -151,12 +151,13 @@ func _on_antivirus_body_entered(body: Node3D) -> void:
 	if not _active or body != player_ball or top_spawn == null:
 		return
 	print("Antivirus body entered by: ", body)
-	#AudioManager.play_sfx(Antivirus zvuk (třeba nějakej distorted error sound))
+	AudioManager.play_sfx_at_3d("error", global_position)
 	player_ball.activate(top_spawn.global_position)
 
 func _on_side_bound_body_entered(body: Node3D) -> void:
+	if body == player_ball:
+		AudioManager.play_sfx_at_3d("bounce", global_position)
 	print("Side bound entered by: ", body)
-	#AudioManager.play_sfx(Ball bounce zvuk)
 	if not _active or body != player_ball:
 		return
 	player_ball.reverse_horizontal_velocity()
@@ -166,7 +167,7 @@ func _on_bottom_hole_body_entered(body: Node3D) -> void:
 		return
 	_completed = true
 	_active = false
-	#AudioManager.play_sfx(Pass zvuk)
+	AudioManager.play_sfx_at_3d("antivirus_pass", global_position)
 	print("Antivirus minigame completed!")
 
 	await success_anim()

@@ -45,7 +45,7 @@ func getDirFrom(source : Node3D) -> DiodeDirection:
 
 func on_diode_interacted(source : Node3D) -> void:
 	change_dir()
-	#AudioManager.play_sfx(Diode flip zvuk, může bejt i switch flip)
+	AudioManager.play_sfx_at_3d("breaker_flip", global_position)
 
 ## Returns the destinations that the diode is connected to, based on its current direction.
 func get_destinations() -> GraetzJunction:

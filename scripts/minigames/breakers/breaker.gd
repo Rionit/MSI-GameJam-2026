@@ -14,9 +14,9 @@ class_name Breaker
 
 func flip_breaker() -> void:
 	switch_flipped = !switch_flipped
-
+	AudioManager.play_sfx("breaker_flip", "SFX")
+	
 	breaker_mesh.set_surface_override_material(1, flipped_material if switch_flipped else default_material)
-	# TODO: Flip sound
 	flip.rotate_x(deg_to_rad(60) * (-1 if switch_flipped else 1))
 
 func deactivate():

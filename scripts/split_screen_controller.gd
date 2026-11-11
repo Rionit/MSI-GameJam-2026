@@ -70,18 +70,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
 		
-	# Press ESC to toggle mouse capture on/off 
-	# TODO: Use this for menu cause player ESC rn doesnt work
-	#if event.is_action_pressed("ui_cancel"):
-		#if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		#else:
-			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		#return
 	if main_viewport and event is InputEventMouseMotion:
 		main_viewport.push_input(event)
-	#if main_viewport:
-		#main_viewport.push_input(event)
 
 func _on_test_button_pressed() -> void:
 	# Cycles between 0.5, 0.8, and 0.2 for quick testing

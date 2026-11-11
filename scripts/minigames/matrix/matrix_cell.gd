@@ -36,7 +36,7 @@ func setup_cell(blocked: bool, gridPos: Vector2i):
 
 
 func set_directly_selected(selected: bool):
-	#AudioManager.play_sfx(Cell selection zvuk (click/switch flip/...))
+	AudioManager.play_sfx("matrix_beep")
 	if selected:
 		self.selected = true
 		mesh_instance.material_override = directly_selected_material

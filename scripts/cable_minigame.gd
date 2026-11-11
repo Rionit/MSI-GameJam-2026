@@ -14,6 +14,7 @@ class_name CableMinigame
 		type = value
 		if Engine.is_editor_hint():
 			_set_type()
+@export var screen_override := 1
 
 @export_category("Exports")
 @export var connector_types: Array[MeshInstance3D]
@@ -56,7 +57,7 @@ func _set_type():
 	
 	# Put correctly and then scramble
 	rotating_part.rotation.x = deg_to_rad(45 * type)
-	rotating_part.rotate_x(deg_to_rad(45 * randi_range(1, 7)))
+	rotating_part.rotate_x(deg_to_rad(45 * randi_range(2, 6)))
 
 func highlight() -> void:
 	if not is_interacting:
@@ -88,6 +89,7 @@ func interact(player: PlayerController) -> void:
 	player.can_walk = false
 	player.can_jump = false
 	
+	AudioManager.play_sfx("whoosh")
 	await tween.finished
 	
 	player.camera_pivot.reparent(game.static_camera_parent)
@@ -104,14 +106,19 @@ func check_cable():
 	insert_tween.tween_property(connector, "global_transform", connector_insert_position.global_transform, 0.5)
 	await insert_tween.finished
 	
+	AudioManager.play_sfx_at_3d("cable_plug_in", connector_insert_position.global_position)
+	
 	# 2. Modulated rotation check (handles full 360-degree wraps using TAU / 2*PI)
 	var current_angle = fposmod(rotating_part.rotation.x, TAU)
 	var target_angle = fposmod(deg_to_rad(45 * type), TAU)
 	
 	if is_equal_approx(current_angle, target_angle):
 		print("yippee its correct")
+		AudioManager.play_sfx_at_3d("zap", connector_insert_position.global_position)
 		
-		game.on_screen_connected()
+		for i in range(screen_override):
+			game.on_screen_connected()
+			await get_tree().create_timer(2.0).timeout
 		
 		# 1. Disable interaction hitbox so it can't be triggered again
 		if hitbox:
@@ -149,8 +156,10 @@ func _input(event: InputEvent) -> void:
 	
 	var step = deg_to_rad(45)
 	if event.is_action_pressed("move_left"):
+		AudioManager.play_sfx_at_3d("breaker_flip", connector_insert_position.global_position)
 		smooth_rotate_x(step)
 	elif event.is_action_pressed("move_right"):
+		AudioManager.play_sfx_at_3d("breaker_flip", connector_insert_position.global_position)
 		smooth_rotate_x(-step)
 
 func smooth_rotate_x(amount: float):
