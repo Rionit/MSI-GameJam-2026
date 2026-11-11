@@ -151,9 +151,9 @@ var tutorial_batches: Dictionary = {
         "I highlighed the ports that need to be forwarded on the outside of the hub you see before you. Make a tunnel between them so I can damage their security structure."
 	],
 	TUTORIAL_GRAETZ: [
-		"Before they left, they broke some electrical circuits that power up some of my systems.
-        Rotate the diodes so the electrical current flows from + to + and from - to - all the time.
-        In the first wave, the AC's + is on the upper pin, in the second, the + and - switch for AC."
+		"Before they left, they broke some electrical circuits that power up some of my systems.",
+        "Rotate the diodes so the electrical current flows from + to + and from - to - all the time.",
+        "In the first wave, the AC's + is on the upper pin, in the second, the + and - switch for AC."
 	]
 }
 

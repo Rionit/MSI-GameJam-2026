@@ -43,8 +43,10 @@
 [ext_resource type="PackedScene" uid="uid://bbyrt7nlblljf" path="res://models/lucky.blend" id="34_cjqg0"]
 [ext_resource type="Material" uid="uid://bbptyvtgk0cd4" path="res://materials/emissive_red.tres" id="34_vchkt"]
 [ext_resource type="Shader" uid="uid://cagqp2p777hrv" path="res://shaders/vhs.gdshader" id="36_vchkt"]
+[ext_resource type="Script" uid="uid://obrtykheeyyh" path="res://scripts/switch.gd" id="39_1v6qk"]
 [ext_resource type="PackedScene" uid="uid://wh4j7hrx1y44" path="res://scenes/cable_minigame.tscn" id="40_5he1u"]
 [ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame_6.tscn" id="41_2cjbq"]
+[ext_resource type="Material" uid="uid://d0wi81y20ldid" path="res://materials/outline.tres" id="41_augu2"]
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="42_chjal"]
 [ext_resource type="PackedScene" uid="uid://dn62i7rv7g06i" path="res://scenes/server_graetz_minigame.tscn" id="43_chjal"]
 [ext_resource type="PackedScene" uid="uid://3drommcgto4x" path="res://scenes/server_antivirus_minigame.tscn" id="44_cjqg0"]
@@ -253,20 +255,20 @@ height = 1.1376953
 [sub_resource type="PrismMesh" id="PrismMesh_qaqv0"]
 material = ExtResource("34_vchkt")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ids8r"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_1v6qk"]
 viewport_path = NodePath("../Instructions/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnhof"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_augu2"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_ids8r")
+emission_texture = SubResource("ViewportTexture_1v6qk")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1v6qk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tm6hj"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_ids8r")
+emission_texture = SubResource("ViewportTexture_1v6qk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tb35h"]
 
@@ -449,27 +451,13 @@ mesh = SubResource("PrismMesh_qaqv0")
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
 [node name="instruction_screen" parent="map" index="64" unique_id=1625503402]
-material_override = SubResource("StandardMaterial3D_dnhof")
+material_override = SubResource("StandardMaterial3D_augu2")
 
 [node name="instruction_screen_001" parent="map" index="68" unique_id=1024913984]
-material_override = SubResource("StandardMaterial3D_1v6qk")
+material_override = SubResource("StandardMaterial3D_tm6hj")
 
 [node name="server_row_043" parent="map" index="115" unique_id=844398413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.20011, 10.66703, -49.441982)
-
-[node name="BigassSwitch2" type="MeshInstance3D" parent="map" unique_id=1791780354]
-transform = Transform3D(0.4979296, 0, 0, 0, 0.4979296, 0, 0, 0, 0.4979296, -15.133383, 4.4626036, 0)
-mesh = SubResource("ArrayMesh_ok7l8")
-metadata/extras = {
-"ant_landscape": {},
-"wire52": {},
-"wire52_owner": {}
-}
-
-[node name="StaticBody3D" type="StaticBody3D" parent="map/BigassSwitch2" unique_id=2027600683]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="map/BigassSwitch2/StaticBody3D" unique_id=840896846]
-shape = SubResource("ConvexPolygonShape3D_v0vv6")
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
 
@@ -493,6 +481,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.73349, 11.9801, -0.321859
 
 [node name="ScreenRoom" type="Node3D" parent="Level" unique_id=1444310145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.39002, 5.8277717, -0.32185936)
+
+[node name="Switch" type="StaticBody3D" parent="Level" unique_id=2027600683 node_paths=PackedStringArray("mesh_instance")]
+transform = Transform3D(0.4979296, 0, 0, 0, 0.4979296, 0, 0, 0, 0.4979296, -15.133383, 4.4626036, 0)
+script = ExtResource("39_1v6qk")
+switch_down_mesh = SubResource("ArrayMesh_ok7l8")
+mesh_instance = NodePath("BigassSwitch2")
+outline_material = ExtResource("41_augu2")
+
+[node name="BigassSwitch2" type="MeshInstance3D" parent="Level/Switch" unique_id=1791780354]
+mesh = SubResource("ArrayMesh_ok7l8")
+metadata/extras = {
+"ant_landscape": {},
+"wire52": {},
+"wire52_owner": {}
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Switch" unique_id=840896846]
+shape = SubResource("ConvexPolygonShape3D_v0vv6")
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
@@ -527,8 +533,8 @@ script = null
 [node name="Camera3D" parent="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer/Camera" parent_id_path=PackedInt32Array(752721606, 347107271) index="0" unique_id=1008336844]
 far = 100.0
 
-[node name="VHS" parent="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer" index="3" unique_id=1604721172]
-visible = true
+[node name="Crosshair" parent="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer" index="2" unique_id=1340775454]
+visible = false
 
 [node name="EndgameScreen" type="ColorRect" parent="SplitScreen/SubViewportContainerLeft/SubViewport" unique_id=269682890]
 visible = false
