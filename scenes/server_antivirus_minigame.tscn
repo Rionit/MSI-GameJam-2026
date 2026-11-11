@@ -56,6 +56,8 @@ player_ball = NodePath("AntivirusBall")
 top_spawn = NodePath("BallSpawn")
 platform_levels = [null, null, null]
 antivirus_platforms = [null, null]
+platform_levels = [null, null, null]
+antivirus_platforms = [null, null]
 side_bounds = [NodePath("Bounds/LeftBound"), NodePath("Bounds/RightBound")]
 bottom_hole = NodePath("Platforms/FinalTrigger")
 platform_hole_left = ExtResource("6_h6gf5")
@@ -120,7 +122,7 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_2d5gv")
 
 [node name="CameraPos" type="Marker3D" parent="." unique_id=262658773]
-transform = Transform3D(-1.0000005, -2.9900345e-08, 8.215058e-08, 0, 0.9396925, 0.34202027, -8.742282e-08, 0.3420201, -0.9396931, 0, 1.7261167, -1.4999999)
+transform = Transform3D(-1.0000005, -2.9900345e-08, 8.215058e-08, 0, 0.9396925, 0.34202027, -8.742282e-08, 0.3420201, -0.9396931, -2.4504066e-08, 1.6240981, -1.219706)
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=274982331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4010721, -0.8571992)

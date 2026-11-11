@@ -47,7 +47,6 @@ func _ready() -> void:
 	for i in range(ac_upper_pin_junction.size()-2):
 		ac_upper.path_points.append(ac_upper_pin_junction[i+2].global_position)
 
-
 	ac_lower.pin = ac_lower_pin_junction[0]
 	ac_lower.junction = ac_lower_pin_junction[1]
 	ac_lower.path_points = []
@@ -281,6 +280,8 @@ func animate_flow(flow_paths: Array[Dictionary], flow_starts : Array[Vector3], r
 		)
 
 	await flow_finished
+
+	print("FLow finished!")
 	
 	await get_tree().create_timer(2.0).timeout
 
