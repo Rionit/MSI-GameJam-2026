@@ -8,7 +8,11 @@ const TUTORIAL_TRIANGULAR_PIPE := "triangular_pipe"
 
 @export var text_speed: float = 0.03
 @export var seconds_per_character: float = 0.08
+
+
 var can_skip = true
+
+signal queue_finished
 
 var monologue_batches: Array = [
 	# Room 1
@@ -265,3 +269,4 @@ func _process_line_queue() -> void:
 		reading_timer.start(max(3.0, line.length() * seconds_per_character))
 		await reading_finished
 	processing_queue = false
+	queue_finished.emit()
