@@ -90,7 +90,7 @@ func _update_split_ratio() -> void:
 			1, max_screens,
 			0.075, 0.8
 		)
-func switch_pressed() -> void:
+func switch_pressed(player: PlayerController) -> void:
 	MonologueManager.display_next_batch()
 	player.can_walk = false
 	player.can_jump = false
