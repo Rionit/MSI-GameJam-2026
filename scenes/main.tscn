@@ -282,7 +282,7 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.0
 
-[node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("static_camera_parent", "doors")]
+[node name="Main3" type="Node" unique_id=848906251 node_paths=PackedStringArray("static_camera_parent", "doors")]
 script = ExtResource("1_muem4")
 static_camera_parent = NodePath("SplitScreen/SubViewportContainerRight/SubViewport/StaticCameraParent")
 doors = [NodePath("Doors/sliding_door_1"), NodePath("Doors/sliding_door_2"), NodePath("Doors/sliding_door_3"), NodePath("Doors/sliding_door_4"), NodePath("Doors/sliding_door_5")]
@@ -389,10 +389,10 @@ mesh = SubResource("PrismMesh_qaqv0")
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
-[node name="instruction_screen" parent="map" index="57" unique_id=1321167243]
+[node name="instruction_screen" parent="map" index="64" unique_id=1579535288]
 material_override = SubResource("StandardMaterial3D_txyw0")
 
-[node name="instruction_screen_001" parent="map" index="58" unique_id=836650466]
+[node name="instruction_screen_001" parent="map" index="68" unique_id=272065325]
 material_override = SubResource("StandardMaterial3D_vc5cj")
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
