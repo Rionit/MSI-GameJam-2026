@@ -8,5 +8,6 @@ extends Control
 func _ready() -> void:
 	volume_slider.value_changed.connect(func(v): AudioManager.set_bus_volume_linear("Master", v))
 	sfx_slider.value_changed.connect(func(v): AudioManager.set_bus_volume_linear("SFX", v))
+	sfx_slider.value_changed.connect(func(v): AudioManager.set_bus_volume_linear("SFX_ScreenRoom", v))
 	music_slider.value_changed.connect(func(v): AudioManager.set_bus_volume_linear("Music", v))
 	
