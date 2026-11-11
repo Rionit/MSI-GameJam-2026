@@ -8,7 +8,7 @@ class_name GameManager
 @onready var screen_room: Node3D = $Level/ScreenRoom
 @onready var map: Node3D = $map
 @onready var red_light: SpotLight3D = $Lights/RedLight
-@onready var game_over_screen: ColorRect = $SplitScreen/SubViewportContainerLeft/EndgameScreen
+@onready var game_over_screen: ColorRect = $SplitScreen/SubViewportContainerLeft/SubViewport/EndgameScreen
 @onready var endgame_quit_button : Button = $SplitScreen/SubViewportContainerLeft/EndgameScreen/QuitButton
 @onready var switch : Switch = $Level/Switch
 
@@ -106,7 +106,7 @@ func endgame_animation() -> void:
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_IN)
 
-	tween.tween_property(red_light, "attenuation", -3.0, 4.0)
+	tween.tween_property(red_light, "spot_attenuation", -3.0, 4.0)
 	# TODO: ADD AUDIO TWEEN
 	await tween.finished
 	AudioManager.set_bus_volume_linear("SFX", -100.0)
