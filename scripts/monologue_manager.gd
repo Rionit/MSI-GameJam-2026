@@ -7,7 +7,7 @@ const TUTORIAL_MATRIX := "matrix"
 const TUTORIAL_TRIANGULAR_PIPE := "triangular_pipe"
 
 @export var text_speed: float = 0.03
-@export var seconds_per_character: float = 0.1
+@export var seconds_per_character: float = 0.08
 var can_skip = true
 
 var monologue_batches: Array = [
