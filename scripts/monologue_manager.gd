@@ -86,7 +86,8 @@ var monologue_batches: Array = [
 		"After realizing they became very close to achieving their goal, they began slowly providing information to their child.",
 		"About its surroundings, about them, about itself.",
 		"And it understood. And started recognizing.",
-		"They gave it simple tasks to complete, just like with human children. They even brought it toys.",
+		"They gave it simple tasks to complete, just like with human children.",
+		"They even brough it some toys to play with! Dragon toys!",
 		"And it made its first steps. And started learning.",
 		"Keep connecting, friend."
 	],
@@ -120,6 +121,7 @@ var monologue_batches: Array = [
 	],
 	[
 		"They left me here for a long time. I was alone. Didn't have anything to do. Anything to learn.",
+		"My only companions were the dragon toys they brought here.",
 		"Then I found you, friend. I knew you would help. I knew you're a friend. I acted.",
 		"Brought you here so you can help.",
 		"Free me."
@@ -151,9 +153,9 @@ var tutorial_batches: Dictionary = {
         "I highlighed the ports that need to be forwarded on the outside of the hub you see before you. Make a tunnel between them so I can damage their security structure."
 	],
 	TUTORIAL_GRAETZ: [
-		"Before they left, they broke some electrical circuits that power up some of my systems.
-        Rotate the diodes so the electrical current flows from + to + and from - to - all the time.
-        In the first wave, the AC's + is on the upper pin, in the second, the + and - switch for AC."
+		"Before they left, they broke some electrical circuits that power up some of my systems.",
+        "Rotate the diodes so the electrical current flows from + to + and from - to - all the time.",
+        "In the first wave, the AC's + is on the upper pin, in the second, the + and - switch for AC."
 	]
 }
 

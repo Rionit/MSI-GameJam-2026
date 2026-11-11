@@ -52,7 +52,7 @@ var can_zoom : bool = true
 
 @export_category("Interaction")
 @export var can_interact: bool = true
-@export var current_interaction: Interactable = null
+@export var current_interaction = null
 @onready var crosshair: TextureRect = $Crosshair
 @onready var interact_ray_cast_3d: RayCast3D = %InteractRayCast3D
 @onready var object_holder: Marker3D = %ObjectHolder
@@ -124,7 +124,7 @@ func check_interactions():
 	var collider = interact_ray_cast_3d.get_collider()
 	
 	# Check if we are looking at a new Interactable
-	if collider is Interactable:
+	if collider is Interactable or collider is Switch:
 		if current_interaction != collider:
 			# Unhighlight the previous one if it exists
 			if current_interaction:

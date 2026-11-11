@@ -10,6 +10,7 @@ class_name GameManager
 @onready var red_light: SpotLight3D = $Lights/RedLight
 @onready var game_over_screen: ColorRect = $SplitScreen/SubViewportContainerLeft/EndgameScreen
 @onready var endgame_quit_button : Button = $SplitScreen/SubViewportContainerLeft/EndgameScreen/QuitButton
+@onready var switch : Switch = $Level/Switch
 
 @export var static_camera_parent: Node3D 
 @export var doors: Array[Door]
@@ -27,6 +28,8 @@ func _ready() -> void:
 	# Disable the default root window audio listener to prevent conflicts
 	get_tree().get_root().audio_listener_enable_3d = false
 	play_sounds()
+	switch.interacted.connect(switch_pressed)
+
 	# on_screen_connected()
 	#open_all_doors()
 	pass
@@ -94,7 +97,7 @@ func switch_pressed() -> void:
 	player.can_move = false
 
 	await MonologueManager.reading_finished
-	
+	endgame_animation()
 
 func endgame_animation() -> void:
 	var tween = create_tween()
