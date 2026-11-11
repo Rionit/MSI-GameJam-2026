@@ -57,7 +57,7 @@ func _set_type():
 	
 	# Put correctly and then scramble
 	rotating_part.rotation.x = deg_to_rad(45 * type)
-	rotating_part.rotate_x(deg_to_rad(45 * randi_range(1, 7)))
+	rotating_part.rotate_x(deg_to_rad(45 * randi_range(2, 6)))
 
 func highlight() -> void:
 	if not is_interacting:

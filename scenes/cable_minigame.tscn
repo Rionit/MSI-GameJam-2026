@@ -19,6 +19,7 @@ collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_33myn")
 type = 4
+screen_override = null
 connector_types = [NodePath("DynamicCable/Connector/mesh/connector_type_001"), NodePath("DynamicCable/Connector/mesh/connector_type_002"), NodePath("DynamicCable/Connector/mesh/connector_type_003"), NodePath("DynamicCable/Connector/mesh/connector_type_004"), NodePath("DynamicCable/Connector/mesh/connector_type_005"), NodePath("DynamicCable/Connector/mesh/connector_type_006"), NodePath("DynamicCable/Connector/mesh/connector_type_007"), NodePath("DynamicCable/Connector/mesh/connector_type_008")]
 rotating_part = NodePath("outlet/rotating_part")
 outline_material = ExtResource("2_glkkc")
@@ -47,31 +48,48 @@ transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, -
 [node name="connector_type_001" parent="DynamicCable/Connector/mesh" index="0" unique_id=1899404113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
 visible = false
+layers = 5
 
 [node name="connector_type_002" parent="DynamicCable/Connector/mesh" index="1" unique_id=1435892880]
 visible = false
+layers = 5
 
 [node name="connector_type_003" parent="DynamicCable/Connector/mesh" index="2" unique_id=244670846]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
 visible = false
+layers = 5
 
 [node name="connector_type_004" parent="DynamicCable/Connector/mesh" index="3" unique_id=1363618814]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
 visible = false
+layers = 5
 
 [node name="connector_type_005" parent="DynamicCable/Connector/mesh" index="4" unique_id=1673153079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
+layers = 5
 
 [node name="connector_type_006" parent="DynamicCable/Connector/mesh" index="5" unique_id=1207831851]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
 visible = false
+layers = 5
 
 [node name="connector_type_007" parent="DynamicCable/Connector/mesh" index="6" unique_id=77630048]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038066357, 0, 0)
 visible = false
+layers = 5
 
 [node name="connector_type_008" parent="DynamicCable/Connector/mesh" index="7" unique_id=1319368298]
 visible = false
+layers = 5
+
+[node name="ConnectorHead" parent="DynamicCable/Connector/mesh" index="8" unique_id=1043738922]
+layers = 5
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="DynamicCable/Connector/mesh/ConnectorHead" index="0" unique_id=1833293783]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.13359165, -0.0007685127, -0.00037007034)
+layers = 4
+light_energy = 0.02
+light_cull_mask = 4294967292
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DynamicCable/Connector" unique_id=709037867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02363193, 0)
@@ -87,8 +105,11 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -
 [node name="outlet" parent="." unique_id=903131348 instance=ExtResource("5_toic6")]
 transform = Transform3D(-1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, 0, 1, 0.204216, -0.7056618, 0.29912186)
 
+[node name="inside" parent="outlet" index="0" unique_id=1914339139]
+layers = 5
+
 [node name="rotating_part" parent="outlet" index="1" unique_id=1364614197]
-transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 0.9999999, 0, -0.9999999, 1.3113416e-07, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.70710665, -0.70710677, 0, 0.70710677, -0.70710665, 0, 0, 0)
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=54130861]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17651367, -0.4840088, 0.10357666)
@@ -102,6 +123,12 @@ transform = Transform3D(0.5, 0.6415334, 0.5817516, -1.4901161e-08, -0.6717489, 0
 
 [node name="ConnectorInsertPosition" type="Marker3D" parent="." unique_id=269384887]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.115676865, -0.7054678, 0.2996469)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2010730851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0560368, -0.696511, 0.2977769)
+layers = 4
+light_energy = 0.02
+light_cull_mask = 4294967292
 
 [editable path="DynamicCable/Connector/mesh"]
 [editable path="outlet"]
