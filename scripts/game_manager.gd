@@ -95,6 +95,7 @@ func switch_pressed() -> void:
 	player.can_walk = false
 	player.can_jump = false
 	player.can_move = false
+	MonologueManager.can_skip = false
 
 	await MonologueManager.reading_finished
 	endgame_animation()
