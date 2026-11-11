@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://dkmwl6wuwbb60" path="res://materials/emissive_green.tres" id="9_rjvys"]
 [ext_resource type="Material" uid="uid://b10ebpa8i8ioo" path="res://materials/emissive_white.tres" id="10_2twt6"]
 [ext_resource type="PackedScene" uid="uid://cvbvf3ue82ec6" path="res://scenes/antivirus_level_types/level_middle.tscn" id="10_rjvys"]
+[ext_resource type="FontFile" uid="uid://bb2wq8b5xcdxt" path="res://fonts/Consolas-Font/CONSOLA.TTF" id="11_2twt6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvj3l"]
 cull_mode = 1
@@ -49,13 +50,11 @@ metadata/_custom_type_script = "uid://vsmlnsfpq43o"
 
 [node name="server_w_laptop" parent="." unique_id=1706280485 instance=ExtResource("3_h6gf5")]
 
-[node name="AntivirusMinigame" type="Node3D" parent="." unique_id=1564768850 node_paths=PackedStringArray("player_ball", "top_spawn", "platform_levels", "antivirus_platforms", "side_bounds", "bottom_hole")]
-transform = Transform3D(0.075, 0, 0, 0, 0.07047695, -0.02565151, 0, 0.02565151, 0.07047695, 0, 1.423, -0.639)
+[node name="AntivirusMinigame" type="Node3D" parent="." unique_id=1564768850 node_paths=PackedStringArray("player_ball", "top_spawn", "platform_levels", "antivirus_platforms", "side_bounds", "bottom_hole", "success_label")]
+transform = Transform3D(0.075, 0, 0, 0, 0.070913896, -0.0032556814, 0, 0.024417615, 0.009455184, 0, 1.4260191, -0.6475279)
 script = ExtResource("4_rjvys")
 player_ball = NodePath("AntivirusBall")
 top_spawn = NodePath("BallSpawn")
-platform_levels = [null, null, null]
-antivirus_platforms = [null, null]
 platform_levels = [null, null, null]
 antivirus_platforms = [null, null]
 side_bounds = [NodePath("Bounds/LeftBound"), NodePath("Bounds/RightBound")]
@@ -64,6 +63,8 @@ platform_hole_left = ExtResource("6_h6gf5")
 platform_hole_right = ExtResource("7_rjvys")
 platform_hole_middle = ExtResource("10_rjvys")
 platform_hole_both = ExtResource("9_h6gf5")
+success_label = NodePath("SuccessLabel")
+success_material = ExtResource("9_rjvys")
 metadata/_custom_type_script = "uid://6se0k8rcbsxe"
 
 [node name="BallSpawn" type="Node3D" parent="AntivirusMinigame" unique_id=1762992888]
@@ -90,11 +91,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AntivirusMinigame/Bounds/LeftBound" unique_id=1981271034]
+[node name="CollisionShape" type="CollisionShape3D" parent="AntivirusMinigame/Bounds/LeftBound" unique_id=1981271034]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 shape = SubResource("BoxShape3D_4pgbm")
 
-[node name="DebugVisualizer" type="MeshInstance3D" parent="AntivirusMinigame/Bounds/LeftBound/CollisionShape3D" unique_id=210293802]
+[node name="Visualizer" type="MeshInstance3D" parent="AntivirusMinigame/Bounds/LeftBound/CollisionShape" unique_id=210293802]
 transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_2d5gv")
 
@@ -103,11 +104,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AntivirusMinigame/Bounds/RightBound" unique_id=120874081]
+[node name="CollisionShape" type="CollisionShape3D" parent="AntivirusMinigame/Bounds/RightBound" unique_id=120874081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 shape = SubResource("BoxShape3D_ytn4r")
 
-[node name="DebugVisualizer" type="MeshInstance3D" parent="AntivirusMinigame/Bounds/RightBound/CollisionShape3D" unique_id=1634924330]
+[node name="Visualizer" type="MeshInstance3D" parent="AntivirusMinigame/Bounds/RightBound/CollisionShape" unique_id=1634924330]
 transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_2d5gv")
 
@@ -120,6 +121,12 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AntivirusMinigame/Platforms/FinalTrigger" unique_id=627939565]
 shape = SubResource("BoxShape3D_2d5gv")
+
+[node name="SuccessLabel" type="Label3D" parent="AntivirusMinigame" unique_id=487415939]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 2.0165312, 0)
+font = ExtResource("11_2twt6")
+font_size = 64
+outline_size = 0
 
 [node name="CameraPos" type="Marker3D" parent="." unique_id=262658773]
 transform = Transform3D(-1.0000005, -2.9900345e-08, 8.215058e-08, 0, 0.9396925, 0.34202027, -8.742282e-08, 0.3420201, -0.9396931, -2.4504066e-08, 1.6240981, -1.219706)
