@@ -16,14 +16,12 @@
 script = ExtResource("3_geqqb")
 tag = "fart"
 streams = Array[AudioStream]([ExtResource("4_c4kn6")])
-random_start_offset = null
 metadata/_custom_type_script = "uid://vamoav5galaq"
 
 [sub_resource type="Resource" id="Resource_f1iyj"]
 script = ExtResource("3_geqqb")
 tag = "crt_powerup"
 streams = Array[AudioStream]([ExtResource("5_geqqb")])
-random_start_offset = null
 pitch_randomness = 0.05
 metadata/_custom_type_script = "uid://vamoav5galaq"
 
@@ -31,7 +29,6 @@ metadata/_custom_type_script = "uid://vamoav5galaq"
 script = ExtResource("3_geqqb")
 tag = "door"
 streams = Array[AudioStream]([ExtResource("6_x3vvp")])
-random_start_offset = null
 pitch_randomness = 0.05
 metadata/_custom_type_script = "uid://vamoav5galaq"
 
@@ -71,7 +68,6 @@ metadata/_custom_type_script = "uid://vamoav5galaq"
 script = ExtResource("3_geqqb")
 tag = "screen_room_ambience"
 streams = Array[AudioStream]([ExtResource("10_jaogm")])
-random_start_offset = null
 metadata/_custom_type_script = "uid://vamoav5galaq"
 
 [resource]

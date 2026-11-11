@@ -425,11 +425,13 @@ script = ExtResource("2_sugp2")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0001
+mouse_filter = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerLeft" unique_id=1764969003]
 handle_input_locally = false
 audio_listener_enable_3d = true
+gui_disable_input = true
 size = Vector2i(2, 540)
 render_target_update_mode = 4
 
@@ -443,6 +445,7 @@ far = 100.0
 [node name="SubViewportContainerRight" type="SubViewportContainer" parent="SplitScreen" unique_id=493460797]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerRight" unique_id=964279091]
@@ -546,9 +549,11 @@ offset_left = -960.0
 offset_right = -960.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="Instructions" unique_id=233541085]
 handle_input_locally = false
+gui_disable_input = true
 size = Vector2i(960, 124)
 render_target_update_mode = 4
 
@@ -558,13 +563,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="Instructions/SubViewport/Container" unique_id=1252699545]
 layout_mode = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Instructions/SubViewport/Container" unique_id=1392359404]
 layout_mode = 2
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "hello
@@ -582,6 +590,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [editable path="map"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]

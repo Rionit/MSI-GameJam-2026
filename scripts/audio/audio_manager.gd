@@ -7,7 +7,7 @@ extends Node
 @export var sfx_bus: String = "SFX"
 @export var bgm_bus: String = "Music"
 
-@onready var settings: Control = $Settings
+@onready var settings: Control = %Settings
 
 # Dual BGM players for smooth crossfading
 var bgm_player_1: AudioStreamPlayer
