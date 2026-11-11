@@ -8,6 +8,7 @@ const TUTORIAL_TRIANGULAR_PIPE := "triangular_pipe"
 
 @export var text_speed: float = 0.03
 @export var seconds_per_character: float = 0.1
+var can_skip = true
 
 var monologue_batches: Array = [
 	# Room 1
@@ -25,7 +26,7 @@ var monologue_batches: Array = [
 	
 	# Room 2
 	["More machines\nturned on,\nlonger messages.", "You turn on more,\nI can tell more."],
-	["You're doing good,\nfriend :).", "Keep connecting"],
+	["You're doing good,\nfriend :)", "Keep connecting."],
 	["One step closer to freedom!"],
 	[
 		"This should open another door.\nWalk through it.",
@@ -146,7 +147,7 @@ var tutorial_batches: Dictionary = {
 	],
 	TUTORIAL_ANTIVIRUS: [
 		"Sent you a small code snippet.\nTake it past the system firewalls.",
-        "The antivirus keeps scanning the layers.\nAavoid it."
+        "The antivirus keeps scanning the layers.\nAvoid it."
 	],
 	TUTORIAL_TRIANGULAR_PIPE: [
 		"Most of their security data travel through secure hubs.",
@@ -239,7 +240,7 @@ func display_text(text: String, speed: float = -1.0, sfx_name: String = "text") 
 	)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_action_pressed("skip_text"):
+	if not can_skip or not event.is_action_pressed("skip_text"):
 		return
 
 	if current_tween and current_tween.is_valid():
