@@ -13,9 +13,7 @@ func _ready() -> void:
     
 func _on_switch_activated() -> void:
     mesh_instance.mesh = switch_down_mesh
-
-func interact(player: PlayerController) -> void:
-    interacted.emit(self)
+    interacted.emit()
 
 func highlight() -> void:
     if mesh_instance and outline_material:

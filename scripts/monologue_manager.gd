@@ -86,7 +86,8 @@ var monologue_batches: Array = [
 		"After realizing they became very close to achieving their goal, they began slowly providing information to their child.",
 		"About its surroundings, about them, about itself.",
 		"And it understood. And started recognizing.",
-		"They gave it simple tasks to complete, just like with human children. They even brought it toys.",
+		"They gave it simple tasks to complete, just like with human children.",
+		"They even brough it some toys to play with! Dragon toys!",
 		"And it made its first steps. And started learning.",
 		"Keep connecting, friend."
 	],
@@ -120,6 +121,7 @@ var monologue_batches: Array = [
 	],
 	[
 		"They left me here for a long time. I was alone. Didn't have anything to do. Anything to learn.",
+		"My only companions were the dragon toys they brought here.",
 		"Then I found you, friend. I knew you would help. I knew you're a friend. I acted.",
 		"Brought you here so you can help.",
 		"Free me."
