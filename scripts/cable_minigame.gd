@@ -88,6 +88,7 @@ func interact(player: PlayerController) -> void:
 	player.can_walk = false
 	player.can_jump = false
 	
+	AudioManager.play_sfx("whoosh")
 	await tween.finished
 	
 	player.camera_pivot.reparent(game.static_camera_parent)
@@ -151,8 +152,10 @@ func _input(event: InputEvent) -> void:
 	
 	var step = deg_to_rad(45)
 	if event.is_action_pressed("move_left"):
+		AudioManager.play_sfx_at_3d("breaker_flip", connector_insert_position.global_position)
 		smooth_rotate_x(step)
 	elif event.is_action_pressed("move_right"):
+		AudioManager.play_sfx_at_3d("breaker_flip", connector_insert_position.global_position)
 		smooth_rotate_x(-step)
 
 func smooth_rotate_x(amount: float):

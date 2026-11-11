@@ -57,9 +57,7 @@ func _physics_process(delta: float) -> void:
 	var velocity_length = velocity_vector.length()
 
 	var collision := move_and_collide((to_global(velocity_dir)-global_position) * velocity_length * delta)
-	#AudioManager.play_sfx(Ball bounce zvuk)
+	#AudioManager.play_sfx_at_3d("bounce", global_position)
 	if collision != null:
 		print("Collision detected with velocity Y: ", velocity_vector.y, " and bounce_y_speed: ", bounce_y_speed)
 		velocity_vector.y = bounce_y_speed
-
-

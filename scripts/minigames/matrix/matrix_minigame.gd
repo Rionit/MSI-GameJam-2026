@@ -137,7 +137,7 @@ func _on_cell_interacted(cell: Interactable) -> void:
 
 func success_anim() -> void:
 	await (get_tree().create_timer(0.5).timeout)
-	#AudioManager.play_sfx(Typing zvuk na text)
+	#AudioManager.play_sfx("text")
 	var text_tween = create_tween()
 	text_tween.set_trans(Tween.TRANS_LINEAR)
 	text_tween.tween_property(success_label, "text", "Learning matrix\nestabilished", 2.0)
