@@ -458,19 +458,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 script = ExtResource("2_sugp2")
-split_ratio = 0.6
 
 [node name="SubViewportContainerLeft" type="SubViewportContainer" parent="SplitScreen" unique_id=1271243271]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.6
+size_flags_stretch_ratio = 0.0001
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerLeft" unique_id=1764969003]
 handle_input_locally = false
 audio_listener_enable_3d = true
 gui_disable_input = true
-size = Vector2i(576, 540)
+size = Vector2i(2, 540)
 render_target_update_mode = 4
 
 [node name="UnmovablePlayer" parent="SplitScreen/SubViewportContainerLeft/SubViewport" unique_id=752721606 instance=ExtResource("1_o5qli")]
@@ -571,13 +570,12 @@ fit_content = true
 [node name="SubViewportContainerRight" type="SubViewportContainer" parent="SplitScreen" unique_id=493460797]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.4
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerRight" unique_id=964279091]
 handle_input_locally = false
 audio_listener_enable_3d = true
-size = Vector2i(384, 540)
+size = Vector2i(960, 540)
 render_target_update_mode = 4
 
 [node name="FirstPersonPlayer" parent="SplitScreen/SubViewportContainerRight/SubViewport" unique_id=1859700186 instance=ExtResource("1_o5qli")]
