@@ -32,9 +32,12 @@
 [ext_resource type="VideoStream" uid="uid://lk5a3un3xidi" path="res://videos/9x16_religion.ogv" id="23_tel4y"]
 [ext_resource type="VideoStream" uid="uid://bm3wcgdk4a0gh" path="res://videos/1x1_dancing_roach.ogv" id="24_5q0nq"]
 [ext_resource type="VideoStream" uid="uid://ciiuk3r56enie" path="res://videos/missing_video.ogv" id="25_dgi5k"]
-[ext_resource type="VideoStream" uid="uid://bo48c8mhkcltw" path="res://videos/4x3_kubik.ogv" id="26_dgi5k"]
+[ext_resource type="VideoStream" uid="uid://dmcxffb54rdsv" path="res://videos/zoom.ogv" id="25_txyw0"]
+[ext_resource type="VideoStream" uid="uid://ckid1vg56xtdh" path="res://videos/4x3_water.ogv" id="26_nvyfr"]
 [ext_resource type="VideoStream" uid="uid://diilavvwd1onf" path="res://videos/16x9_code.ogv" id="27_j8jky"]
+[ext_resource type="VideoStream" uid="uid://bh0jdsi4orpfo" path="res://videos/bounce.ogv" id="27_vc5cj"]
 [ext_resource type="VideoStream" uid="uid://jk2abknneto0" path="res://videos/4x3_animation.ogv" id="28_kmb1v"]
+[ext_resource type="VideoStream" uid="uid://d23dyccqmkx5k" path="res://videos/galaxy.ogv" id="28_nvyfr"]
 [ext_resource type="VideoStream" uid="uid://ghpk850vjgdi" path="res://videos/1x1_3d_modeling.ogv" id="29_pibwh"]
 [ext_resource type="VideoStream" uid="uid://qjq6e4dvykmu" path="res://videos/1x2_hello_text.ogv" id="30_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://bbyrt7nlblljf" path="res://models/lucky.blend" id="34_cjqg0"]
@@ -176,25 +179,25 @@ metadata/_custom_type_script = "uid://30gbkac6ebgc"
 [sub_resource type="Resource" id="Resource_j8jky"]
 script = ExtResource("7_eb6dy")
 mesh_path = NodePath("../map/1x2_screen_002_missing_vid")
-video_stream = ExtResource("25_dgi5k")
+video_stream = ExtResource("25_txyw0")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
 [sub_resource type="Resource" id="Resource_pibwh"]
 script = ExtResource("7_eb6dy")
 mesh_path = NodePath("../map/4x3_screen_002")
-video_stream = ExtResource("26_dgi5k")
+video_stream = ExtResource("26_nvyfr")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
 [sub_resource type="Resource" id="Resource_bu4jf"]
 script = ExtResource("7_eb6dy")
 mesh_path = NodePath("../map/1x1_screen_006_missing_vid")
-video_stream = ExtResource("25_dgi5k")
+video_stream = ExtResource("27_vc5cj")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
 [sub_resource type="Resource" id="Resource_dgi5k"]
 script = ExtResource("7_eb6dy")
 mesh_path = NodePath("../map/16x9_screen_003_missing_vid")
-video_stream = ExtResource("25_dgi5k")
+video_stream = ExtResource("28_nvyfr")
 metadata/_custom_type_script = "uid://30gbkac6ebgc"
 
 [sub_resource type="Resource" id="Resource_c6pm6"]
@@ -242,20 +245,20 @@ height = 1.1376953
 [sub_resource type="PrismMesh" id="PrismMesh_qaqv0"]
 material = ExtResource("34_vchkt")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vchkt"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ty1g6"]
 viewport_path = NodePath("../Instructions/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txyw0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2jfr"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_vchkt")
+emission_texture = SubResource("ViewportTexture_ty1g6")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vc5cj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjg73"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_vchkt")
+emission_texture = SubResource("ViewportTexture_ty1g6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vchkt"]
 shader = ExtResource("36_vchkt")
@@ -390,10 +393,10 @@ mesh = SubResource("PrismMesh_qaqv0")
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
 [node name="instruction_screen" parent="map" index="57" unique_id=1321167243]
-material_override = SubResource("StandardMaterial3D_txyw0")
+material_override = SubResource("StandardMaterial3D_j2jfr")
 
 [node name="instruction_screen_001" parent="map" index="58" unique_id=836650466]
-material_override = SubResource("StandardMaterial3D_vc5cj")
+material_override = SubResource("StandardMaterial3D_bjg73")
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
 
