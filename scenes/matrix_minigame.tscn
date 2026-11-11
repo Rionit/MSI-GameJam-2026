@@ -2,9 +2,16 @@
 
 [ext_resource type="Script" uid="uid://cwhl7o8pqe465" path="res://scripts/minigames/matrix/matrix_minigame.gd" id="1_iv7im"]
 [ext_resource type="PackedScene" uid="uid://dcsn2wqnkqdnc" path="res://scenes/matrix_cell.tscn" id="2_6s2g5"]
+[ext_resource type="FontFile" uid="uid://bb2wq8b5xcdxt" path="res://fonts/Consolas-Font/CONSOLA.TTF" id="3_6s2g5"]
 
-[node name="MatrixMinigame" type="Node3D" unique_id=2015886342]
+[node name="MatrixMinigame" type="Node3D" unique_id=2015886342 node_paths=PackedStringArray("success_label")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 script = ExtResource("1_iv7im")
 cell_scene = ExtResource("2_6s2g5")
+success_label = NodePath("Label3D")
 metadata/_custom_type_script = "uid://cwhl7o8pqe465"
+
+[node name="Label3D" type="Label3D" parent="." unique_id=622767387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -0.25, 0)
+font = ExtResource("3_6s2g5")
+font_size = 96

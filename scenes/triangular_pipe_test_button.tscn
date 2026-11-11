@@ -1,35 +1,35 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bxan5sgq4d5xq"]
 
-[ext_resource type="Script" path="res://scripts/minigames/triangular_pipe/triangular_pipe_test_button.gd" id="1_button"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_button"]
-size = Vector3(0.9, 0.16, 0.35)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_button"]
-size = Vector3(0.9, 0.16, 0.35)
+[ext_resource type="Script" uid="uid://c4s4p7sdjohhp" path="res://scripts/minigames/triangular_pipe/triangular_pipe_test_button.gd" id="1_button"]
+[ext_resource type="FontFile" uid="uid://bb2wq8b5xcdxt" path="res://fonts/Consolas-Font/CONSOLA.TTF" id="2_5opnl"]
+[ext_resource type="Material" uid="uid://d0wi81y20ldid" path="res://materials/outline.tres" id="2_6ujl2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_active"]
 albedo_color = Color(0.15, 0.75, 0.3, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inactive"]
-albedo_color = Color(0.25, 0.25, 0.25, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_button"]
+size = Vector3(0.9, 0.35, 0.16)
 
-[node name="TriangularPipeTestButton" type="StaticBody3D" node_paths=PackedStringArray("collider", "mesh", "active_material", "inactive_material")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_button"]
+size = Vector3(0.9, 0.35, 0.16)
+
+[node name="TriangularPipeTestButton" type="StaticBody3D" unique_id=1735612680 node_paths=PackedStringArray("collider", "mesh", "mesh_instance")]
 script = ExtResource("1_button")
 collider = NodePath("CollisionShape3D")
 mesh = NodePath("Mesh")
-active_material = SubResource("StandardMaterial3D_active")
-inactive_material = SubResource("StandardMaterial3D_inactive")
+outline_material = ExtResource("2_6ujl2")
+mesh_instance = NodePath("Mesh")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_button")
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1161602424]
 material_override = SubResource("StandardMaterial3D_active")
+mesh = SubResource("BoxMesh_button")
 
-[node name="Label" type="Label3D" parent="."]
-position = Vector3(0, 0.18, 0)
+[node name="Label" type="Label3D" parent="." unique_id=658010898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0039699078, 0.08605704)
 text = "TEST"
-font_size = 32
-modulate = Color(1, 1, 1, 1)
+font = ExtResource("2_5opnl")
+font_size = 64
+outline_size = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=726538473]
 shape = SubResource("BoxShape3D_button")

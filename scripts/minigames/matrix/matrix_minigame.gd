@@ -10,6 +10,8 @@ class_name MatrixMinigame
 
 @export var num_cells_to_select : int
 
+@export var success_label : Label3D
+
 func enter_game() -> void:
 	print("Entering Matrix Minigame")
 	for row in grid:
@@ -52,6 +54,7 @@ func _ready() -> void:
 				blocked_cells_in_row[x].append(rand_blocked_cell_y)
 				y += 1
 	self.visible = false
+	var half_size = float(grid_size) / 2.0
 
 	for x in range(grid_size):
 		grid.append([])
@@ -59,7 +62,8 @@ func _ready() -> void:
 			var cell = cell_scene.instantiate()
 			cell.setup_cell(y in blocked_cells_in_row[x], Vector2i(x, y))
 			add_child(cell)
-			cell.position = Vector3( x*1, y * 1, 0)
+
+			cell.position = Vector3(x - half_size, y - half_size, 0)
 
 			cell.interacted.connect(_on_cell_interacted)
 			cell.deactivate()
@@ -126,6 +130,17 @@ func _on_cell_interacted(cell: Interactable) -> void:
 	# Check for win condition
 	if num_cells_to_select <= 0:
 		print("Minigame completed!")
+		await success_anim()
+		
+		print("Post animation")
 		minigame_completed.emit(self)
 
-	
+func success_anim() -> void:
+	await (get_tree().create_timer(0.5).timeout)
+	#AudioManager.play_sfx(Typing zvuk na text)
+	var text_tween = create_tween()
+	text_tween.set_trans(Tween.TRANS_LINEAR)
+	text_tween.tween_property(success_label, "text", "Learning matrix\nestabilished", 2.0)
+
+	await text_tween.finished
+	await (get_tree().create_timer(1.0).timeout)	

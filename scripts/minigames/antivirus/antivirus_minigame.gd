@@ -16,6 +16,9 @@ const EMISSIVE_WHITE = preload("uid://b10ebpa8i8ioo")
 @export var platform_hole_middle : PackedScene
 @export var platform_hole_both : PackedScene
 
+@export var success_label : Label3D
+@export var success_material : Material
+
 var num_levels = 4
 var start_level_height = 1.5
 var level_height_decrement = 1.0
@@ -165,4 +168,26 @@ func _on_bottom_hole_body_entered(body: Node3D) -> void:
 	_active = false
 	#AudioManager.play_sfx(Pass zvuk)
 	print("Antivirus minigame completed!")
+
+	await success_anim()
 	minigame_completed.emit(self)
+
+func success_anim() -> void:
+	for antivirus_platform in antivirus_platforms:
+		if antivirus_platform != null:
+			antivirus_platform.deactivate()
+
+	for bound in side_bounds:
+		var visualizer = bound.get_node("CollisionShape/Visualizer") as MeshInstance3D
+		visualizer.material_override = success_material
+	
+	await(get_tree().create_timer(0.5).timeout)
+	#AudioManager.play_sfx(Typing zvuk na text)
+	var text_tween = create_tween()
+
+	text_tween.set_trans(Tween.TRANS_LINEAR)
+	text_tween.tween_property(success_label, "text", "Security breached", 1.0)
+
+	await(text_tween.finished)
+	await(get_tree().create_timer(1.0).timeout)
+	return 

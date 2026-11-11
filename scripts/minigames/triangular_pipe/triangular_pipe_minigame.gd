@@ -4,9 +4,10 @@ class_name TriangularPipeMinigame
 
 @export var cell_scene: PackedScene
 @export_range(2, 20, 1) var rows: int = 4
-@export var cell_spacing: float = .9
+@export var cell_spacing: float = .8
 @export var test_button: Interactable
 @export var result_label: Label3D
+@export var success_label: Label3D
 @export var start_active: bool = true
 @export var success_path_material: Material
 
@@ -91,7 +92,7 @@ func _cell_position(row: int, column: int) -> Vector3:
 	var first_row_height = float(rows) * cell_spacing * (1/0.86)
 	var row_width := float(row * 2)
 	var x = (float(column) - row_width / 2.0) * cell_spacing
-	var y = first_row_height - float(row) * cell_spacing * 1.8
+	var y = first_row_height - float(row) * cell_spacing * 1.4
 	return Vector3(x, y, 0.0)
 
 func _connect_cells(first: Interactable, first_side: int, second: Interactable, second_side: int) -> void:
@@ -236,22 +237,33 @@ func _create_marker(cell: Interactable, side: int, color: Color, marker_name: St
 
 func _side_direction(cell: Interactable, side: int) -> Vector3:
 	var directions := [
-		Vector3(0.8944, 0.4472, 0.0) * 0.5,
-		Vector3(-0.8944, 0.4472, 0.0) * 0.5,
+		Vector3(0.986, 0.164, 0.0) * 0.5,
+		Vector3(-0.986, 0.164, 0.0) * 0.5,
 		Vector3(0.0, -0.5, 0.0)
 	]
 	return directions[side].rotated(Vector3.FORWARD, cell.global_rotation.z)
 
 func _on_cell_interacted(_cell: Interactable) -> void:
-	if result_label:
-		result_label.text = "Rotate pipes, then test"
-
+	pass
 func _on_test_button_interacted(_button: Interactable) -> void:
+	result_label.text = ""
+	success_label.text = ""
 	if _completed:
 		return
 	var connected := _is_input_connected_to_output()
-	if result_label:
-		result_label.text = "CONNECTED" if connected else "NOT CONNECTED"
+
+	var label_tween = create_tween()
+	label_tween.set_trans(Tween.TRANS_LINEAR)
+	label_tween.tween_property(result_label, "text", "Result:", 1.0)
+	await label_tween.finished
+	await get_tree().create_timer(1.0).timeout
+
+	success_label.modulate = Color(0.0, 0.5, 0) if connected else Color(1.0, 0.1, 0.1)
+
+	label_tween = create_tween()
+	label_tween.set_trans(Tween.TRANS_LINEAR)
+	label_tween.tween_property(success_label, "text", "SUCCESS" if connected else "FAILURE", 1.0)
+	
 	if connected:
 		var path := find_input_output_path()
 		for cell in path:
@@ -260,6 +272,11 @@ func _on_test_button_interacted(_button: Interactable) -> void:
 		_completed = true
 		exit_game()		
 		minigame_completed.emit(self)
+	else:
+		await get_tree().create_timer(2.0).timeout
+		result_label.text = ""
+		success_label.text = ""
+
 
 func _is_input_connected_to_output() -> bool:
 	return not find_input_output_path().is_empty()

@@ -17,24 +17,27 @@ func exit_game() -> void:
 		breaker.deactivate()
 
 func _ready() -> void:
-	var random = RandomNumberGenerator.new()
 	breakers_to_connect = breakers.size()
-	
-	for i in range(breakers.size()):
-		var breaker = breakers[i]
+
+	var randomized_breakers = breakers.duplicate()
+	randomized_breakers.shuffle()
+
+	for i in range(randomized_breakers.size()):
+		var breaker = randomized_breakers[i]
 
 		breaker.interacted.connect(_on_breaker_interacted)
 		breaker.deactivate()
-		var num_connected_breakers = random.randi() % 2 + 1 # Each breaker can connect to 1 or 2 other breakers
 
-		breaker_connections[breaker] = []
+		var connected_breakers = []
+		if randomized_breakers.size() > 1:
+			var next_breaker = randomized_breakers[(i + 1) % randomized_breakers.size()]
+			connected_breakers.append(next_breaker)
 
-		while(len(breaker_connections[breaker]) < num_connected_breakers):
-			var random_index = random.randi() % breakers.size()
-			var connected_breaker = breakers[random_index]
+		# An extra link makes the cycle solvable when there is an odd number of breakers.
+		if randomized_breakers.size() > 2 and randomized_breakers.size() % 2 == 1 and i == 0:
+			connected_breakers.append(randomized_breakers[2])
 
-			if connected_breaker != breaker and connected_breaker not in breaker_connections[breaker]:
-				breaker_connections[breaker].append(connected_breaker)
+		breaker_connections[breaker] = connected_breakers
 
 func _on_breaker_interacted(interacted: Interactable):
 	#AudioManager.play_sfx(Switch flip sound)

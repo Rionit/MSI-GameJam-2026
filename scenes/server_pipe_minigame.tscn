@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://vsmlnsfpq43o" path="res://scripts/minigame_server.gd" id="1_odukx"]
 [ext_resource type="PackedScene" uid="uid://bdx4tfrtagqbx" path="res://models/server_w_laptop.blend" id="2_2yqs2"]
 [ext_resource type="PackedScene" uid="uid://c15pixuwrth25" path="res://scenes/triangular_pipe_minigame.tscn" id="3_odukx"]
-[ext_resource type="Material" uid="uid://dkmwl6wuwbb60" path="res://materials/emissive_green.tres" id="4_2yqs2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qyrgb"]
 cull_mode = 1
@@ -39,7 +38,7 @@ shape = SubResource("BoxShape3D_2d5gv")
 transform = Transform3D(-1.0000005, -2.9900345e-08, 8.215058e-08, 0, 0.9396925, 0.34202027, -8.742282e-08, 0.3420201, -0.9396931, -3.1638987e-08, 1.594393, -1.138092)
 
 [node name="TriangularPipeMinigame" parent="." unique_id=286985792 instance=ExtResource("3_odukx")]
-transform = Transform3D(-0.05, 2.5821802e-09, -7.0944823e-09, 0, 0.04698463, 0.017101007, 7.54979e-09, 0.017101007, -0.04698463, -8.277829e-08, 1.3738867, -0.7296258)
-success_path_material = ExtResource("4_2yqs2")
+transform = Transform3D(-0.05, -1.3507563e-09, 8.314399e-10, 0, 0.047552828, 0.0030901697, -4.371139e-09, 0.01545085, -0.009510565, -7.352139e-08, 1.3229712, -0.6840727)
+rows = 6
 
 [editable path="server_w_laptop"]

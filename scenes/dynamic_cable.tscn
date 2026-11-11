@@ -2,6 +2,90 @@
 
 [ext_resource type="Script" uid="uid://b1nopq4k63c5d" path="res://scripts/dynamic_cable.gd" id="1_6ciqk"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ciqk"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4fnie"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vf8ab"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4mvkg"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_enba6"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y0lmy"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_otfsa"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_x1a8g"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ltu8t"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2b8qo"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu70r"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tx3rs"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4bxh7"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_78xe7"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_njxbi"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_djm7s"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lcbuk"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_c7wj1"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0s5or"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_r556i"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d1py3"]
+radius = 0.05
+height = 0.3
+
 [node name="DynamicCable" type="Node3D" unique_id=1096061369]
 script = ExtResource("1_6ciqk")
 cable_collision_layer = 4
@@ -10,5 +94,265 @@ cable_collision_mask = 3
 [node name="Anchor" type="StaticBody3D" parent="." unique_id=624647733]
 
 [node name="LinkContainer" type="Node3D" parent="." unique_id=1857141049]
+
+[node name="Link_0" type="RigidBody3D" parent="LinkContainer" unique_id=2145699300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20073" type="MeshInstance3D" parent="LinkContainer/Link_0" unique_id=908658847]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_4fnie")
+
+[node name="@CollisionShape3D@20074" type="CollisionShape3D" parent="LinkContainer/Link_0" unique_id=623819312]
+shape = SubResource("CapsuleShape3D_vf8ab")
+
+[node name="Joint_to_Anchor" type="Generic6DOFJoint3D" parent="LinkContainer/Link_0" unique_id=561503733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../../Anchor")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
+
+[node name="Link_1" type="RigidBody3D" parent="LinkContainer" unique_id=466351320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20075" type="MeshInstance3D" parent="LinkContainer/Link_1" unique_id=598478629]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_4mvkg")
+
+[node name="@CollisionShape3D@20076" type="CollisionShape3D" parent="LinkContainer/Link_1" unique_id=411953305]
+shape = SubResource("CapsuleShape3D_enba6")
+
+[node name="Joint_to_Link_0" type="Generic6DOFJoint3D" parent="LinkContainer/Link_1" unique_id=1229011623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../Link_0")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
+
+[node name="Link_2" type="RigidBody3D" parent="LinkContainer" unique_id=1861192109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20077" type="MeshInstance3D" parent="LinkContainer/Link_2" unique_id=1983272701]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_y0lmy")
+
+[node name="@CollisionShape3D@20078" type="CollisionShape3D" parent="LinkContainer/Link_2" unique_id=1069669163]
+shape = SubResource("CapsuleShape3D_otfsa")
+
+[node name="Joint_to_Link_1" type="Generic6DOFJoint3D" parent="LinkContainer/Link_2" unique_id=424380707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../Link_1")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
+
+[node name="Link_3" type="RigidBody3D" parent="LinkContainer" unique_id=1520553996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20079" type="MeshInstance3D" parent="LinkContainer/Link_3" unique_id=1934484552]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_x1a8g")
+
+[node name="@CollisionShape3D@20080" type="CollisionShape3D" parent="LinkContainer/Link_3" unique_id=1303708714]
+shape = SubResource("CapsuleShape3D_ltu8t")
+
+[node name="Joint_to_Link_2" type="Generic6DOFJoint3D" parent="LinkContainer/Link_3" unique_id=2105392597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../Link_2")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
+
+[node name="Link_4" type="RigidBody3D" parent="LinkContainer" unique_id=782301378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20081" type="MeshInstance3D" parent="LinkContainer/Link_4" unique_id=562660290]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_2b8qo")
+
+[node name="@CollisionShape3D@20082" type="CollisionShape3D" parent="LinkContainer/Link_4" unique_id=2041787543]
+shape = SubResource("CapsuleShape3D_yu70r")
+
+[node name="Joint_to_Link_3" type="Generic6DOFJoint3D" parent="LinkContainer/Link_4" unique_id=1621322522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../Link_3")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
+
+[node name="Link_5" type="RigidBody3D" parent="LinkContainer" unique_id=451161224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20083" type="MeshInstance3D" parent="LinkContainer/Link_5" unique_id=507398087]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_tx3rs")
+
+[node name="@CollisionShape3D@20084" type="CollisionShape3D" parent="LinkContainer/Link_5" unique_id=1525079873]
+shape = SubResource("CapsuleShape3D_4bxh7")
+
+[node name="Joint_to_Link_4" type="Generic6DOFJoint3D" parent="LinkContainer/Link_5" unique_id=1782005293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../Link_4")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
+
+[node name="Link_6" type="RigidBody3D" parent="LinkContainer" unique_id=625363502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20085" type="MeshInstance3D" parent="LinkContainer/Link_6" unique_id=489022675]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_78xe7")
+
+[node name="@CollisionShape3D@20086" type="CollisionShape3D" parent="LinkContainer/Link_6" unique_id=2137840498]
+shape = SubResource("CapsuleShape3D_njxbi")
+
+[node name="Joint_to_Link_5" type="Generic6DOFJoint3D" parent="LinkContainer/Link_6" unique_id=222277245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../Link_5")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
+
+[node name="Link_7" type="RigidBody3D" parent="LinkContainer" unique_id=1489679087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20087" type="MeshInstance3D" parent="LinkContainer/Link_7" unique_id=1722306087]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_djm7s")
+
+[node name="@CollisionShape3D@20088" type="CollisionShape3D" parent="LinkContainer/Link_7" unique_id=1257713843]
+shape = SubResource("CapsuleShape3D_lcbuk")
+
+[node name="Joint_to_Link_6" type="Generic6DOFJoint3D" parent="LinkContainer/Link_7" unique_id=1807351514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../Link_6")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
+
+[node name="Link_8" type="RigidBody3D" parent="LinkContainer" unique_id=870378242]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20089" type="MeshInstance3D" parent="LinkContainer/Link_8" unique_id=549062622]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_c7wj1")
+
+[node name="@CollisionShape3D@20090" type="CollisionShape3D" parent="LinkContainer/Link_8" unique_id=1390733610]
+shape = SubResource("CapsuleShape3D_0s5or")
+
+[node name="Joint_to_Link_7" type="Generic6DOFJoint3D" parent="LinkContainer/Link_8" unique_id=585458770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../Link_7")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
+
+[node name="Link_9" type="RigidBody3D" parent="LinkContainer" unique_id=1114806435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9, 0)
+collision_layer = 4
+collision_mask = 3
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="@MeshInstance3D@20091" type="MeshInstance3D" parent="LinkContainer/Link_9" unique_id=2140873619]
+material_override = SubResource("StandardMaterial3D_6ciqk")
+mesh = SubResource("CapsuleMesh_r556i")
+
+[node name="@CollisionShape3D@20092" type="CollisionShape3D" parent="LinkContainer/Link_9" unique_id=1727105928]
+shape = SubResource("CapsuleShape3D_d1py3")
+
+[node name="Joint_to_Link_8" type="Generic6DOFJoint3D" parent="LinkContainer/Link_9" unique_id=1852100363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+node_a = NodePath("../../Link_8")
+node_b = NodePath("..")
+angular_limit_x/upper_angle = 0.5235988
+angular_limit_x/lower_angle = -0.5235988
+angular_limit_y/upper_angle = 0.2617994
+angular_limit_y/lower_angle = -0.2617994
+angular_limit_z/upper_angle = 0.5235988
+angular_limit_z/lower_angle = -0.5235988
 
 [node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="." unique_id=420506931]

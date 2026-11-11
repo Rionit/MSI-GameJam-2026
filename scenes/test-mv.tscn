@@ -15,11 +15,10 @@
 [ext_resource type="VideoStream" uid="uid://cy7tcpkdqofcu" path="res://videos/crt-off.ogv" id="13_73sxj"]
 [ext_resource type="PackedScene" uid="uid://b85cvdjn1nrdi" path="res://models/map.blend" id="14_ie23h"]
 [ext_resource type="Script" uid="uid://d1t40y48xkdyr" path="res://scripts/interactable.gd" id="15_lkqwf"]
-[ext_resource type="PackedScene" uid="uid://cg16nauw0oot2" path="res://scenes/matrix_minigame.tscn" id="16_ainhg"]
 [ext_resource type="Script" uid="uid://bhoupc1aclli0" path="res://scripts/split_screen_controller.gd" id="16_itxy7"]
 [ext_resource type="PackedScene" uid="uid://djfagpi4wf30r" path="res://scenes/first_person_player.tscn" id="17_2d6mp"]
 [ext_resource type="PackedScene" uid="uid://dn62i7rv7g06i" path="res://scenes/server_graetz_minigame.tscn" id="18_bjbt1"]
-[ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame.tscn" id="19_to470"]
+[ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame_6.tscn" id="19_to470"]
 [ext_resource type="PackedScene" uid="uid://3drommcgto4x" path="res://scenes/server_antivirus_minigame.tscn" id="20_aqtfj"]
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="20_bjbt1"]
 [ext_resource type="PackedScene" uid="uid://d1wn587kfoaqq" path="res://scenes/server_pipe_minigame.tscn" id="24_vusky"]
@@ -188,9 +187,6 @@ metadata/_custom_type_script = "uid://d1t40y48xkdyr"
 transform = Transform3D(1, 0, 0, 0, -0.025714234, 0.9996694, 0, -0.9996694, -0.025714234, -16.306875, 8.130662, -2.3432925)
 light_energy = 4.361
 
-[node name="MatrixMinigame" parent="Level" unique_id=2015886342 instance=ExtResource("16_ainhg")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -15.391636, 5.1039667, 1.3153844)
-
 [node name="SpotLight3D" type="SpotLight3D" parent="Level" unique_id=1319000771]
 transform = Transform3D(1, 0, 0, 0, -0.012858199, 0.9999173, 0, -0.9999173, -0.012858199, -15.943109, 7.86499, 1.6025653)
 light_energy = 4.361
@@ -238,6 +234,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.715311, 4.0994396, 2.3755
 
 [node name="Server Antivirus Minigame" parent="Level" unique_id=1464650673 instance=ExtResource("20_aqtfj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.232492, 3.9932694, 2.5751753)
+
+[node name="Server Pipe Minigame" parent="Level" unique_id=925070766 instance=ExtResource("24_vusky")]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, -16.377188, 3.9999998, -2.385315)
 
 [node name="SplitScreen" type="HBoxContainer" parent="." unique_id=321357396]
 unique_name_in_owner = true
@@ -293,8 +292,7 @@ omni_attenuation = 10.0
 
 [node name="StaticCameraParent" type="Node3D" parent="SplitScreen/SubViewportContainerRight/SubViewport" unique_id=1647961134]
 
-[node name="Server Pipe Minigame" parent="." unique_id=925070766 instance=ExtResource("24_vusky")]
-transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, -16.377188, 3.9999998, -2.385315)
-
 [editable path="map"]
+[editable path="Level/Server Matrix Minigame"]
+[editable path="Level/Server Matrix Minigame/server_w_laptop"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]
