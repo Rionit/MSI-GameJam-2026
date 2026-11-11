@@ -74,62 +74,93 @@ func _get_audio_music(_tag: String) -> Music:
 	printerr("Music track with tag [", _tag, "] not found!")
 	return null
 
-# --- SFX Playback ---
-func play_sfx(_tag: String) -> void:
+# --- SFX Playback & Control ---
+func play_sfx(_tag: String, bus_override: String = "") -> AudioStreamPlayer:
 	var sound_def = _get_audio_sfx(_tag)
 	if not sound_def:
-		return
+		return null
 		
 	var stream = sound_def.get_next_stream()
 	if not stream:
-		return
+		return null
 
 	var player = AudioStreamPlayer.new()
 	player.stream = stream
 	player.volume_db = sound_def.volume_db
 	player.pitch_scale = sound_def.pitch_scale + randf_range(-sound_def.pitch_randomness, sound_def.pitch_randomness)
-	player.bus = sfx_bus
+	player.bus = bus_override if not bus_override.is_empty() else sfx_bus
+
+	# Calculate random start offset if enabled and stream is long enough (> 0.5s)
+	var from_position: float = 0.0
+	if sound_def.random_start_offset and stream.get_length() > 0.5:
+		from_position = randf_range(0.0, stream.get_length() - 0.5)
 
 	var parent_node = get_tree().current_scene
 	if not parent_node:
 		parent_node = get_tree().root
 
 	parent_node.add_child(player)
-	if not player.is_inside_tree():
-		await player.tree_entered
+	
+	if player.is_inside_tree():
+		player.finished.connect(player.queue_free)
+		player.play(from_position)
+	else:
+		player.tree_entered.connect(func():
+			if is_instance_valid(player):
+				player.finished.connect(player.queue_free)
+				player.play(from_position)
+		, CONNECT_ONE_SHOT)
+	
+	return player
 
-	player.finished.connect(player.queue_free)
-	player.play()
+func play_sfx_at_2d(_tag: String, world_position: Vector2, bus_override: String = "") -> AudioStreamPlayer2D:
+	return _play_positional_sfx(_tag, world_position, AudioStreamPlayer2D, get_tree().root, bus_override) as AudioStreamPlayer2D
 
-func play_sfx_at_2d(_tag: String, world_position: Vector2) -> void:
-	_play_positional_sfx(_tag, world_position, AudioStreamPlayer2D, get_tree().root)
+func play_sfx_at_3d(_tag: String, world_position: Vector3, bus_override: String = "") -> AudioStreamPlayer3D:
+	return _play_positional_sfx(_tag, world_position, AudioStreamPlayer3D, get_tree().current_scene, bus_override) as AudioStreamPlayer3D
 
-func play_sfx_at_3d(_tag: String, world_position: Vector3) -> void:
-	_play_positional_sfx(_tag, world_position, AudioStreamPlayer3D, get_tree().current_scene)
-
-func _play_positional_sfx(_tag: String, world_position, player_class, parent_node: Node) -> void:
+func _play_positional_sfx(_tag: String, world_position, player_class, parent_node: Node, bus_override: String = "") -> Node:
 	var sound_def = _get_audio_sfx(_tag)
 	if not sound_def:
-		return
+		return null
 		
 	var stream = sound_def.get_next_stream()
 	if not stream:
-		return
+		return null
 
 	var player = player_class.new()
 	player.stream = stream
 	player.volume_db = sound_def.volume_db
-	print("randomness = ", str(sound_def.pitch_randomness))
 	player.pitch_scale = sound_def.pitch_scale + randf_range(-sound_def.pitch_randomness, sound_def.pitch_randomness)
-	player.bus = sfx_player.bus
+	player.bus = bus_override if not bus_override.is_empty() else sfx_bus
 
-	parent_node.add_child(player)
-	if not player.is_inside_tree():
-		await player.tree_entered
+	# Calculate random start offset if enabled and stream is long enough (> 0.5s)
+	var from_position: float = 0.0
+	if sound_def.random_start_offset and stream.get_length() > 0.5:
+		from_position = randf_range(0.0, stream.get_length() - 0.5)
 
-	player.global_position = world_position
-	player.finished.connect(player.queue_free)
-	player.play()
+	parent_node.add_child.call_deferred(player)
+	
+	if player.is_inside_tree():
+		player.global_position = world_position
+		player.finished.connect(player.queue_free)
+		player.play(from_position)
+	else:
+		player.tree_entered.connect(func():
+			if is_instance_valid(player):
+				player.global_position = world_position
+				player.finished.connect(player.queue_free)
+				player.play(from_position)
+		, CONNECT_ONE_SHOT)
+	
+	return player
+
+func stop_sfx(player: Node) -> void:
+	if is_instance_valid(player):
+		if player is AudioStreamPlayer or player is AudioStreamPlayer2D or player is AudioStreamPlayer3D:
+			if player.playing:
+				player.stop()
+			player.queue_free()
 
 # --- Smooth BGM Crossfading System ---
 func play_bgm(tag: String, fade_duration: float = 1.0) -> void:
@@ -186,7 +217,7 @@ func resume_bgm() -> void:
 	if active_bgm_player:
 		active_bgm_player.stream_paused = false
 
-# --- Bus Volume Helpers (Linear to dB for Options Menus) ---
+# --- Bus Volume Helpers (Linear to dB for Options Menus) ->
 func set_bus_volume_linear(bus_name: String, linear_value: float) -> void:
 	var bus_idx = AudioServer.get_bus_index(bus_name)
 	if bus_idx == -1:
@@ -203,3 +234,7 @@ func get_bus_volume_linear(bus_name: String) -> float:
 		return 0.0
 	
 	return db_to_linear(AudioServer.get_bus_volume_db(bus_idx))
+
+
+func _on_button_pressed() -> void:
+	get_tree().quit()

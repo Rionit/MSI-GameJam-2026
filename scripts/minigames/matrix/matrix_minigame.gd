@@ -24,7 +24,6 @@ func exit_game() -> void:
 	self.visible = false
 
 func _ready() -> void:
-
 	# Generate blocked cells (first, set random free cells s.t. each row and column has at least one free cell)
 	# Then, generate 1 to (grid_size/2) blocked cells randomly for each row, excluding the free cells in each row.
 	

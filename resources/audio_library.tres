@@ -4,14 +4,77 @@
 [ext_resource type="Script" uid="uid://bmxow6jhpxppg" path="res://scripts/audio/audio_library.gd" id="2_c4kn6"]
 [ext_resource type="Script" uid="uid://vamoav5galaq" path="res://scripts/audio/sfx.gd" id="3_geqqb"]
 [ext_resource type="AudioStream" uid="uid://ch2d7y1sa3557" path="res://audio/sfx/fart.mp3" id="4_c4kn6"]
+[ext_resource type="AudioStream" uid="uid://boijk512p8l06" path="res://audio/sfx/crt_powerup.mp3" id="5_geqqb"]
+[ext_resource type="AudioStream" uid="uid://6bb3fbcxaho6" path="res://audio/sfx/door.mp3" id="6_x3vvp"]
+[ext_resource type="AudioStream" uid="uid://c62op6axeslse" path="res://audio/sfx/crt_hum.mp3" id="7_abf41"]
+[ext_resource type="AudioStream" uid="uid://bi1vryihvbbfq" path="res://audio/sfx/laptop_hum.mp3" id="7_cbwqd"]
+[ext_resource type="AudioStream" uid="uid://dmcg8og3qtsyy" path="res://audio/sfx/server_hum.mp3" id="8_wdse5"]
+[ext_resource type="AudioStream" uid="uid://1gmw1wsijauf" path="res://audio/sfx/server_room_ambience.mp3" id="9_ym8em"]
+[ext_resource type="AudioStream" uid="uid://b62n3yxatcv0" path="res://audio/sfx/screen_room_ambience.mp3" id="10_jaogm"]
 
 [sub_resource type="Resource" id="Resource_k58g0"]
 script = ExtResource("3_geqqb")
 tag = "fart"
 streams = Array[AudioStream]([ExtResource("4_c4kn6")])
+random_start_offset = null
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_f1iyj"]
+script = ExtResource("3_geqqb")
+tag = "crt_powerup"
+streams = Array[AudioStream]([ExtResource("5_geqqb")])
+random_start_offset = null
+pitch_randomness = 0.05
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_wjdv7"]
+script = ExtResource("3_geqqb")
+tag = "door"
+streams = Array[AudioStream]([ExtResource("6_x3vvp")])
+random_start_offset = null
+pitch_randomness = 0.05
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_3lhes"]
+script = ExtResource("3_geqqb")
+tag = "crt_hum"
+streams = Array[AudioStream]([ExtResource("7_abf41")])
+random_start_offset = true
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_we8da"]
+script = ExtResource("3_geqqb")
+tag = "laptop_hum"
+streams = Array[AudioStream]([ExtResource("7_cbwqd")])
+random_start_offset = true
+pitch_randomness = 0.2
+volume_db = -12.0
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_x6c28"]
+script = ExtResource("3_geqqb")
+tag = "server_hum"
+streams = Array[AudioStream]([ExtResource("8_wdse5")])
+random_start_offset = true
+pitch_randomness = 0.39
+volume_db = -15.5
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_ym8em"]
+script = ExtResource("3_geqqb")
+tag = "server_room_ambience"
+streams = Array[AudioStream]([ExtResource("9_ym8em")])
+random_start_offset = true
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_jaogm"]
+script = ExtResource("3_geqqb")
+tag = "screen_room_ambience"
+streams = Array[AudioStream]([ExtResource("10_jaogm")])
+random_start_offset = null
 metadata/_custom_type_script = "uid://vamoav5galaq"
 
 [resource]
 script = ExtResource("2_c4kn6")
-sound_effects = Array[ExtResource("3_geqqb")]([SubResource("Resource_k58g0")])
+sound_effects = Array[ExtResource("3_geqqb")]([SubResource("Resource_k58g0"), SubResource("Resource_f1iyj"), SubResource("Resource_wjdv7"), SubResource("Resource_3lhes"), SubResource("Resource_we8da"), SubResource("Resource_x6c28"), SubResource("Resource_ym8em"), SubResource("Resource_jaogm")])
 metadata/_custom_type_script = "uid://bmxow6jhpxppg"

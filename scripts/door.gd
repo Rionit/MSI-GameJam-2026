@@ -12,6 +12,7 @@ func open():
 	is_open = true
 	print("opening")
 	animation_player.play("open")
+	AudioManager.play_sfx_at_3d("door", global_position)
 
 func close():
 	is_open = false

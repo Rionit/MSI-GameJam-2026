@@ -134,6 +134,9 @@ func _activate_screen(mesh_instance: MeshInstance3D, pair: VideoMeshPair) -> voi
 	
 	mesh_instance.add_child(viewport)
 	
+	AudioManager.play_sfx_at_3d("crt_powerup", mesh_instance.global_position, "SFX_ScreenRoom")
+	AudioManager.play_sfx_at_3d("crt_hum", mesh_instance.global_position, "SFX_ScreenRoom")
+	
 	# 5. Create an unshaded, emissive StandardMaterial3D to map the Viewport texture onto the 3D mesh
 	var material := StandardMaterial3D.new()
 	material.albedo_texture = viewport.get_texture()

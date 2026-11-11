@@ -15,6 +15,7 @@ enum VariationMode {
 		notify_property_list_changed()
 
 @export_group("Variation Settings")
+@export var random_start_offset: bool = false
 @export var variation_mode: VariationMode = VariationMode.RANDOM
 @export_range(0.0, 0.5, 0.01) var pitch_randomness: float = 0.0
 

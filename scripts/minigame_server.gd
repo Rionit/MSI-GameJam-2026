@@ -8,7 +8,11 @@ var minigame_completed = false
 @export var cameraPosition : Marker3D
 @onready var gameManager : GameManager = get_node("/root/Main")
 
+var laptop_hum : AudioStreamPlayer3D
+
 func _ready() -> void:
+	laptop_hum = AudioManager.play_sfx_at_3d("laptop_hum", global_position)
+	
 	interacted.connect(on_interacted)
 	minigame.minigame_completed.connect(on_minigame_completed)
 
@@ -45,6 +49,7 @@ func on_minigame_completed(minigame: Minigame) -> void:
 	gameManager.player.can_walk = true
 	gameManager.player.can_jump = true
 	
+	AudioManager.stop_sfx(laptop_hum)
 
 
 func animate_camera(to_game: bool) -> void:

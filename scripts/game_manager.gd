@@ -5,9 +5,12 @@ class_name GameManager
 @onready var screen_manager: ScreenManager = %ScreenManager
 @onready var split_screen: SplitScreen = %SplitScreen
 @onready var player: PlayerController = %FirstPersonPlayer
+@onready var screen_room: Node3D = $Level/ScreenRoom
+@onready var map: Node3D = $map
 
 @export var static_camera_parent: Node3D 
 @export var doors: Array[Door]
+@export var rooms: Array[Node3D]
 
 @export_group("Debug")
 @export_tool_button("Connect Screen", "Add")
@@ -19,10 +22,21 @@ var disconnect_screen = on_screen_disconnected
 var next_door_index : int = 0
 
 func _ready() -> void:
+	# Disable the default root window audio listener to prevent conflicts
+	get_tree().get_root().audio_listener_enable_3d = false
+	play_sounds()
 	# on_screen_connected()
 	#open_all_doors()
 	pass
 
+func play_sounds() -> void:
+	for child in map.get_children():
+		if child is MeshInstance3D and child.name.begins_with("server_row"):
+			AudioManager.play_sfx_at_3d("server_hum", child.global_position)
+	AudioManager.play_sfx_at_3d("screen_room_ambience", screen_room.global_position)
+	for room in rooms:
+		AudioManager.play_sfx_at_3d("server_room_ambience", room.global_position)
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		on_screen_connected()
