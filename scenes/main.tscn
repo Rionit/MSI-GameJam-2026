@@ -454,7 +454,6 @@ far = 100.0
 [node name="SubViewportContainerRight" type="SubViewportContainer" parent="SplitScreen" unique_id=493460797]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerRight" unique_id=964279091]
