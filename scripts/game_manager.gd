@@ -108,7 +108,8 @@ func endgame_animation() -> void:
 	tween.tween_property(red_light, "attenuation", -3.0, 4.0)
 	# TODO: ADD AUDIO TWEEN
 	await tween.finished
-
+	AudioManager.set_bus_volume_linear("SFX", -100.0)
+	AudioManager.set_bus_volume_linear("SFX_ScreenRoom", -100.0)
 	game_over_screen.visible = true
 	# TODO: Animate text
 
