@@ -49,28 +49,28 @@ lower_right_diode = NodePath("GraetzDiodeLL")
 metadata/_custom_type_script = "uid://c1e1tlxg12ycp"
 
 [node name="GraetzDiodeUL" parent="GraetzMinigame" unique_id=1615434137 node_paths=PackedStringArray("left_junction", "right_junction", "mesh", "mesh_instance") instance=ExtResource("9_m8dj0")]
-transform = Transform3D(-0.035355333, -3.730999e-09, -0.035355333, -0.035355333, -1.5454309e-09, 0.035355333, -3.7309995e-09, 0.04999999, -1.5454309e-09, 0.16177464, 1.365992, -0.29782748)
+transform = Transform3D(-0.035355333, -3.730999e-09, -0.035355333, -0.035355333, -1.5454309e-09, 0.035355333, -3.7309995e-09, 0.04999999, -1.5454309e-09, 0.15808561, 1.369681, -0.29782748)
 left_junction = NodePath("../Junctions/JunctionLeft")
 right_junction = NodePath("../Junctions/JunctionUp")
 mesh = NodePath("../../server_w_graetz/server/diodeUL")
 mesh_instance = NodePath("../../server_w_graetz/server/diodeUL")
 
 [node name="GraetzDiodeUR" parent="GraetzMinigame" unique_id=1685662731 node_paths=PackedStringArray("left_junction", "right_junction", "mesh", "mesh_instance") instance=ExtResource("9_m8dj0")]
-transform = Transform3D(0.035355333, -3.731e-09, -0.035355333, -0.035355333, 1.5454309e-09, -0.035355333, 3.731e-09, 0.049999997, -1.5454312e-09, 0.10097349, 1.377716, -0.29782748)
+transform = Transform3D(0.035355333, -3.731e-09, -0.035355333, -0.035355333, 1.5454309e-09, -0.035355333, 3.731e-09, 0.049999997, -1.5454312e-09, 0.09820673, 1.3726436, -0.29782748)
 left_junction = NodePath("../Junctions/JunctionUp")
 right_junction = NodePath("../Junctions/JunctionRight")
 mesh = NodePath("../../server_w_graetz/server/diodeUR")
 mesh_instance = NodePath("../../server_w_graetz/server/diodeUR")
 
 [node name="GraetzDiodeLR" parent="GraetzMinigame" unique_id=325232602 node_paths=PackedStringArray("left_junction", "right_junction", "mesh", "mesh_instance") instance=ExtResource("9_m8dj0")]
-transform = Transform3D(-0.035355337, -6.401381e-10, -0.03535533, -0.03535533, 1.5454309e-09, 0.035355337, 6.4013844e-10, 0.04999999, -1.545431e-09, 0.102319784, 1.3054953, -0.29782748)
+transform = Transform3D(-0.035355337, -6.401381e-10, -0.03535533, -0.03535533, 1.5454309e-09, 0.035355337, 6.4013844e-10, 0.04999999, -1.545431e-09, 0.09816963, 1.309876, -0.29782748)
 left_junction = NodePath("../Junctions/JunctionDown")
 right_junction = NodePath("../Junctions/JunctionRight")
 mesh = NodePath("../../server_w_graetz/server/diodeLR")
 mesh_instance = NodePath("../../server_w_graetz/server/diodeLR")
 
 [node name="GraetzDiodeLL" parent="GraetzMinigame" unique_id=1712857754 node_paths=PackedStringArray("left_junction", "right_junction", "mesh", "mesh_instance") instance=ExtResource("9_m8dj0")]
-transform = Transform3D(0.035355337, -6.401383e-10, -0.035355337, -0.035355337, -1.5454307e-09, -0.035355337, -6.401384e-10, 0.04999999, -1.5454309e-09, 0.16196935, 1.3173244, -0.29782748)
+transform = Transform3D(0.035355337, -6.401383e-10, -0.035355337, -0.035355337, -1.5454307e-09, -0.035355337, -6.401384e-10, 0.04999999, -1.5454309e-09, 0.15828033, 1.3131742, -0.29782748)
 left_junction = NodePath("../Junctions/JunctionLeft")
 right_junction = NodePath("../Junctions/JunctionDown")
 mesh = NodePath("../../server_w_graetz/server/diodeLL")
@@ -143,7 +143,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.0
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.08730832, 0.079946764, -0.30967638)
 
 [node name="TestButton" type="StaticBody3D" parent="GraetzMinigame" unique_id=1757934901 node_paths=PackedStringArray("mesh_instance")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.18961237, 1.3941622, -0.37907627)
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.02287329, 1.3457946, -0.3773706)
 script = ExtResource("11_5n3np")
 outline_material = ExtResource("2_ocepy")
 mesh_instance = NodePath("../../server_w_graetz/server/button")
