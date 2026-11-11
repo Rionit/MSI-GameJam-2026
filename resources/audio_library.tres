@@ -73,6 +73,7 @@ script = ExtResource("3_geqqb")
 tag = "server_room_ambience"
 streams = Array[AudioStream]([ExtResource("9_ym8em")])
 random_start_offset = true
+volume_db = -20.5
 metadata/_custom_type_script = "uid://vamoav5galaq"
 
 [sub_resource type="Resource" id="Resource_jaogm"]

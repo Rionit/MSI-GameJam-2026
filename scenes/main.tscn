@@ -48,6 +48,8 @@
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="42_chjal"]
 [ext_resource type="PackedScene" uid="uid://dn62i7rv7g06i" path="res://scenes/server_graetz_minigame.tscn" id="43_chjal"]
 [ext_resource type="PackedScene" uid="uid://3drommcgto4x" path="res://scenes/server_antivirus_minigame.tscn" id="44_cjqg0"]
+[ext_resource type="PackedScene" uid="uid://d1op6ppra1b23" path="res://scenes/server_breakers_minigame_12.tscn" id="46_j2jfr"]
+[ext_resource type="PackedScene" uid="uid://d1wn587kfoaqq" path="res://scenes/server_pipe_minigame.tscn" id="48_ty1g6"]
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 ambient_light_source = 2
@@ -285,10 +287,11 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.0
 
-[node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("static_camera_parent", "doors")]
+[node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("static_camera_parent", "doors", "rooms")]
 script = ExtResource("1_muem4")
 static_camera_parent = NodePath("SplitScreen/SubViewportContainerRight/SubViewport/StaticCameraParent")
 doors = [NodePath("Doors/sliding_door_1"), NodePath("Doors/sliding_door_2"), NodePath("Doors/sliding_door_3"), NodePath("Doors/sliding_door_4"), NodePath("Doors/sliding_door_5")]
+rooms = [NodePath("Level/Room1"), NodePath("Level/Room2"), NodePath("Level/Room3"), NodePath("Level/Room4"), NodePath("Level/Room5")]
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="." unique_id=583295302]
 occluder = ExtResource("2_kmb1v")
@@ -392,10 +395,10 @@ mesh = SubResource("PrismMesh_qaqv0")
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
-[node name="instruction_screen" parent="map" index="57" unique_id=1321167243]
+[node name="instruction_screen" parent="map" index="57" unique_id=859420835]
 material_override = SubResource("StandardMaterial3D_j2jfr")
 
-[node name="instruction_screen_001" parent="map" index="58" unique_id=836650466]
+[node name="instruction_screen_001" parent="map" index="58" unique_id=608810706]
 material_override = SubResource("StandardMaterial3D_bjg73")
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
@@ -511,18 +514,21 @@ game = NodePath("../../..")
 [node name="CableMinigame2" parent="Minigames/Cables" unique_id=839617449 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -95.79736, 11.345698, -35.541767)
 type = 6
+screen_override = 2
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="CableMinigame3" parent="Minigames/Cables" unique_id=316587700 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -95.79736, 11.345698, -9.909572)
 type = 1
+screen_override = 3
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="CableMinigame4" parent="Minigames/Cables" unique_id=303172722 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.121254, 11.345698, -4.67083)
 type = 2
+screen_override = 3
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
@@ -537,20 +543,73 @@ game = NodePath("../../..")
 [node name="Server Matrix Minigame" parent="Minigames/Matrixes" unique_id=2068626685 instance=ExtResource("42_chjal")]
 transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, -117.09963, 9.501364, -47.91872)
 
+[node name="Server Matrix Minigame2" parent="Minigames/Matrixes" unique_id=138525281 instance=ExtResource("42_chjal")]
+transform = Transform3D(1.3113416e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 1.3113416e-07, -97.29652, 9.501364, -42.47936)
+
+[node name="Server Matrix Minigame3" parent="Minigames/Matrixes" unique_id=965175211 instance=ExtResource("42_chjal")]
+transform = Transform3D(0.99999994, 0, -1.7484554e-07, 0, 1, 0, 1.7484554e-07, 0, 0.99999994, -101.001144, 9.501364, -16.097017)
+
+[node name="Server Matrix Minigame4" parent="Minigames/Matrixes" unique_id=242769375 instance=ExtResource("42_chjal")]
+transform = Transform3D(-2.1855692e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -2.1855692e-07, -100.14065, 9.501364, -1.4273403)
+
+[node name="Server Matrix Minigame5" parent="Minigames/Matrixes" unique_id=1681713248 instance=ExtResource("42_chjal")]
+transform = Transform3D(-0.99999994, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -0.99999994, -67.22716, 9.501364, -3.143962)
+
 [node name="Breakers" type="Node" parent="Minigames" unique_id=301712362]
 
 [node name="Server Breakers Minigame" parent="Minigames/Breakers" unique_id=1111946063 instance=ExtResource("41_2cjbq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.07368, 9.501364, -39.440407)
+
+[node name="Server Breakers Minigame2" parent="Minigames/Breakers" unique_id=960904793 instance=ExtResource("41_2cjbq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -96.02742, 9.501364, -44.49071)
+
+[node name="Server Breakers Minigame3" parent="Minigames/Breakers" unique_id=1096678940 instance=ExtResource("41_2cjbq")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -101.17044, 9.501364, 2.231621)
+
+[node name="Server Breakers Minigame4" parent="Minigames/Breakers" unique_id=617339069 instance=ExtResource("46_j2jfr")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -78.200615, 9.501364, 4.3248973)
 
 [node name="Greatzs" type="Node" parent="Minigames" unique_id=2093071292]
 
 [node name="Server Graetz Minigame" parent="Minigames/Greatzs" unique_id=1996921154 instance=ExtResource("43_chjal")]
 transform = Transform3D(0.9999439, 0, -0.010591678, 0, 1, 0, 0.010591678, 0, 0.9999439, -114.88889, 9.501364, -49.143425)
 
+[node name="Server Graetz Minigame2" parent="Minigames/Greatzs" unique_id=1937596838 instance=ExtResource("43_chjal")]
+transform = Transform3D(-0.9999439, 0, 0.010591766, 0, 1, 0, -0.010591766, 0, -0.9999439, -80.14111, 9.501364, -3.1709633)
+
+[node name="GraetzDiodeUR" parent="Minigames/Greatzs/Server Graetz Minigame2/GraetzMinigame" parent_id_path=PackedInt32Array(1937596838, 1122441378) index="1" unique_id=1685662731]
+direction = 1
+
+[node name="GraetzDiodeLR" parent="Minigames/Greatzs/Server Graetz Minigame2/GraetzMinigame" parent_id_path=PackedInt32Array(1937596838, 1122441378) index="2" unique_id=325232602]
+direction = 1
+
+[node name="GraetzDiodeLL" parent="Minigames/Greatzs/Server Graetz Minigame2/GraetzMinigame" parent_id_path=PackedInt32Array(1937596838, 1122441378) index="3" unique_id=1712857754]
+direction = 1
+
 [node name="Antiviruses" type="Node" parent="Minigames" unique_id=1651013413]
 
 [node name="Server Antivirus Minigame" parent="Minigames/Antiviruses" unique_id=1464650673 instance=ExtResource("44_cjqg0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.11362, 9.501364, -49.148262)
+
+[node name="Server Antivirus Minigame2" parent="Minigames/Antiviruses" unique_id=2069677036 instance=ExtResource("44_cjqg0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -103.02608, 9.501364, -39.492817)
+
+[node name="Server Antivirus Minigame3" parent="Minigames/Antiviruses" unique_id=349890231 instance=ExtResource("44_cjqg0")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -103.700195, 9.501364, -20.562296)
+
+[node name="Server Antivirus Minigame4" parent="Minigames/Antiviruses" unique_id=1214345252 instance=ExtResource("44_cjqg0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.93051, 9.501364, 3.1454425)
+
+[node name="Pipes" type="Node" parent="Minigames" unique_id=475199427]
+
+[node name="Server Pipe Minigame" parent="Minigames/Pipes" unique_id=743344617 instance=ExtResource("48_ty1g6")]
+transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, -97.980484, 9.501364, -24.704443)
+
+[node name="Server Pipe Minigame2" parent="Minigames/Pipes" unique_id=1726093484 instance=ExtResource("48_ty1g6")]
+transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, -98.02527, 9.501364, -4.604355)
+
+[node name="Server Pipe Minigame3" parent="Minigames/Pipes" unique_id=48201459 instance=ExtResource("48_ty1g6")]
+transform = Transform3D(0.99999994, 0, -1.7484554e-07, 0, 1, 0, 1.7484554e-07, 0, 0.99999994, -66.31658, 9.501364, -4.562094)
 
 [node name="Instructions" type="SubViewportContainer" parent="." unique_id=1352330359]
 anchors_preset = 15
@@ -608,3 +667,6 @@ mouse_filter = 2
 [editable path="Minigames/Greatzs/Server Graetz Minigame"]
 [editable path="Minigames/Greatzs/Server Graetz Minigame/GraetzMinigame/GraetzDiodeUL"]
 [editable path="Minigames/Greatzs/Server Graetz Minigame/server_w_graetz"]
+[editable path="Minigames/Greatzs/Server Graetz Minigame2"]
+[editable path="Minigames/Greatzs/Server Graetz Minigame2/GraetzMinigame/GraetzDiodeUL"]
+[editable path="Minigames/Greatzs/Server Graetz Minigame2/server_w_graetz"]

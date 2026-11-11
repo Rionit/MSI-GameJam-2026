@@ -14,6 +14,7 @@ class_name CableMinigame
 		type = value
 		if Engine.is_editor_hint():
 			_set_type()
+@export var screen_override := 1
 
 @export_category("Exports")
 @export var connector_types: Array[MeshInstance3D]
@@ -114,7 +115,10 @@ func check_cable():
 	if is_equal_approx(current_angle, target_angle):
 		print("yippee its correct")
 		AudioManager.play_sfx_at_3d("zap", connector_insert_position.global_position)
-		game.on_screen_connected()
+		
+		for i in range(screen_override):
+			game.on_screen_connected()
+			await get_tree().create_timer(2.0).timeout
 		
 		# 1. Disable interaction hitbox so it can't be triggered again
 		if hitbox:
