@@ -72,6 +72,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	if main_viewport and event is InputEventMouseMotion:
 		main_viewport.push_input(event)
+	if main_viewport and event is InputEventMouseButton and split_ratio > 0.5:
+		main_viewport.push_input(event)
 
 func _on_test_button_pressed() -> void:
 	# Cycles between 0.5, 0.8, and 0.2 for quick testing
