@@ -41,10 +41,11 @@ size = Vector3(0.7, 0.7, 0.8)
 
 [node name="Server Antivirus Minigame" type="StaticBody3D" unique_id=1464650673 node_paths=PackedStringArray("minigame", "collider", "cameraPosition", "mesh_instance")]
 script = ExtResource("1_7px8i")
+tutorial_id = "antivirus"
+outline_material = SubResource("StandardMaterial3D_kvj3l")
 minigame = NodePath("AntivirusMinigame")
 collider = NodePath("Collider")
 cameraPosition = NodePath("CameraPos")
-outline_material = SubResource("StandardMaterial3D_kvj3l")
 mesh_instance = NodePath("server_w_laptop/server/outline_mesh")
 metadata/_custom_type_script = "uid://vsmlnsfpq43o"
 

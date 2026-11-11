@@ -8,6 +8,7 @@ class_name TriangularPipeMinigame
 @export var test_button: Interactable
 @export var result_label: Label3D
 @export var success_label: Label3D
+@export var success_side_label : Label3D
 @export var start_active: bool = true
 @export var success_path_material: Material
 
@@ -245,7 +246,9 @@ func _side_direction(cell: Interactable, side: int) -> Vector3:
 
 func _on_cell_interacted(_cell: Interactable) -> void:
 	pass
+
 func _on_test_button_interacted(_button: Interactable) -> void:
+	AudioManager.play_sfx_at_3d("text", global_position)
 	result_label.text = ""
 	success_label.text = ""
 	if _completed:
@@ -268,11 +271,16 @@ func _on_test_button_interacted(_button: Interactable) -> void:
 		var path := find_input_output_path()
 		for cell in path:
 			cell.highlight_pipe(success_path_material)
+		label_tween.set_parallel()
+		label_tween.tween_property(success_side_label, "text", "Knowledge data\nflow connected", 1.0)
+		await label_tween.finished
+		AudioManager.play_sfx_at_3d("antivirus_pass", global_position)
 		await get_tree().create_timer(2.0).timeout
 		_completed = true
 		exit_game()		
 		minigame_completed.emit(self)
 	else:
+		AudioManager.play_sfx_at_3d("error", global_position)
 		await get_tree().create_timer(2.0).timeout
 		result_label.text = ""
 		success_label.text = ""

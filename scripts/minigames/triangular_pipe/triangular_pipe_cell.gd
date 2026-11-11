@@ -87,6 +87,7 @@ func rotate_pipe() -> void:
 	if connections == SIDE_MASKS[PipeShape.ALL]:
 		return
 	rotation_index = (rotation_index + 1) % 3
+	AudioManager.play_sfx_at_3d("text", global_position)
 	connections = _rotate_mask(connections, 1)
 	_update_pipe_visual()
 

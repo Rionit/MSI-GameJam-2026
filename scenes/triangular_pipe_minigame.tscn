@@ -6,12 +6,13 @@
 [ext_resource type="Material" uid="uid://dkmwl6wuwbb60" path="res://materials/emissive_green.tres" id="3_c31rd"]
 [ext_resource type="FontFile" uid="uid://bb2wq8b5xcdxt" path="res://fonts/Consolas-Font/CONSOLA.TTF" id="4_qun1q"]
 
-[node name="TriangularPipeMinigame" type="Node3D" unique_id=286985792 node_paths=PackedStringArray("test_button", "result_label", "success_label")]
+[node name="TriangularPipeMinigame" type="Node3D" unique_id=286985792 node_paths=PackedStringArray("test_button", "result_label", "success_label", "success_side_label")]
 script = ExtResource("1_minigame")
 cell_scene = ExtResource("2_cell")
 test_button = NodePath("TestButton")
 result_label = NodePath("Result")
 success_label = NodePath("Result2")
+success_side_label = NodePath("Result3")
 success_path_material = ExtResource("3_c31rd")
 
 [node name="TestButton" parent="." unique_id=23451333 instance=ExtResource("3_button")]
@@ -26,6 +27,14 @@ horizontal_alignment = 0
 
 [node name="Result2" type="Label3D" parent="." unique_id=330545247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 3.7202163, 0)
+pixel_size = 0.01
+font = ExtResource("4_qun1q")
+font_size = 48
+outline_size = 0
+horizontal_alignment = 0
+
+[node name="Result3" type="Label3D" parent="." unique_id=46714964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9004407, 4.73977, 1)
 pixel_size = 0.01
 font = ExtResource("4_qun1q")
 font_size = 48

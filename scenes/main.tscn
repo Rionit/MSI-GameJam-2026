@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bo6ltlt8a2gxq"]
+[gd_scene format=4 uid="uid://bo6ltlt8a2gxq"]
 
 [ext_resource type="PackedScene" uid="uid://b85cvdjn1nrdi" path="res://models/map.blend" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://ceb4oqhyn0hg" path="res://scripts/game_manager.gd" id="1_muem4"]
@@ -50,6 +50,12 @@
 [ext_resource type="PackedScene" uid="uid://3drommcgto4x" path="res://scenes/server_antivirus_minigame.tscn" id="44_cjqg0"]
 [ext_resource type="PackedScene" uid="uid://d1op6ppra1b23" path="res://scenes/server_breakers_minigame_12.tscn" id="46_j2jfr"]
 [ext_resource type="PackedScene" uid="uid://d1wn587kfoaqq" path="res://scenes/server_pipe_minigame.tscn" id="48_ty1g6"]
+[ext_resource type="FontFile" uid="uid://bb2wq8b5xcdxt" path="res://fonts/Consolas-Font/CONSOLA.TTF" id="50_0loja"]
+[ext_resource type="FontFile" uid="uid://hkgretgvnvc8" path="res://fonts/Consolas-Font/CONSOLAB.TTF" id="51_ids8r"]
+[ext_resource type="FontFile" uid="uid://s4amdany0qga" path="res://fonts/Consolas-Font/consolaz.ttf" id="52_dnhof"]
+[ext_resource type="FontFile" uid="uid://b2s4lj0qotgh1" path="res://fonts/Consolas-Font/consolai.ttf" id="53_1v6qk"]
+[ext_resource type="Script" uid="uid://bw4arucueukx1" path="res://scripts/oneshot_text_area.gd" id="55_ids8r"]
+[ext_resource type="Script" uid="uid://i7qgf6q741m4" path="res://scripts/room_cable_enabler.gd" id="56_dnhof"]
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 ambient_light_source = 2
@@ -247,20 +253,59 @@ height = 1.1376953
 [sub_resource type="PrismMesh" id="PrismMesh_qaqv0"]
 material = ExtResource("34_vchkt")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ty1g6"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ids8r"]
 viewport_path = NodePath("../Instructions/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2jfr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnhof"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_ty1g6")
+emission_texture = SubResource("ViewportTexture_ids8r")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjg73"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1v6qk"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
-emission_texture = SubResource("ViewportTexture_ty1g6")
+emission_texture = SubResource("ViewportTexture_ids8r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tb35h"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xtk58"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 3.2806516, 2),
+"format": 34359742465,
+"index_count": 504,
+"index_data": PackedByteArray("IgACACMAIgAAAAIAAAABAAIAAAAiACQAAAAEAAEAAAAkAAQABAAlAAEABAAkACUACQACAAEACwABACUACQABAAsACwAPAAkAJgACAAkAJgAjAAIACQAPACcACQAnACYACwARAA8AEQAnAA8ACwAlACgAKAARAAsAKAAlACkAJAApACUAKAAqABEAEQAqACcAKAApACsAKwAqACgAJAAsACkAIgAsACQAKwApAC0ALAAtACkAIgAuACwALgAiACMALAAvAC0ALgAvACwAKwAtADAALgAjADEALwAGAC0AMAAtAAYALgAyAC8AMgAuADEALwAFAAYAMgAFAC8AMgADAAUABQAHAAYABQADAAcAAwAyADMAMgAxADMAAwAzAAcACAAGAAcAMAAGAAgACgAHADMACAAHAAoANAAzADEACgAzADQACgAMAAgANAAxADUANQAxACMANQAjACYANAANAAoACgANAAwANQA2ADQANAA2AA0AJgAQADUANQAQADYAJgAnABAANwAMAA0ACAAMADcANwANADYACAA3ADAAMAA3AA4AMAAOACsAKwAOACoANgATADcANwATACEANwAhAA4ANgAcABMAEAAcADYAHAAdABMAEwAgACEAEwAdACAAIQAgAB8AIAAdAB4AHAAeAB0AIAAeAB8AGwAeABwAGwAfAB4AIQAfABsAEAAbABwADgAhABsADgAbABAAEAAaAA4ADgAUACoADgAaABQAEAAVABoAJwAVABAAKgASACcAJwASABUAKgAUABIAFQAYABoAFAAWABIAEgAXABUAFQAXABgAEgAWABcAGgAYABkAGgAZABQAGQAYABcAFAAZABYAGQAXABYAOAA5ADoAOAA7ADkAOgA8ADgAOAA9ADsAOAA8AD0AOwA+ADkAOwA9AD4AOQA/ADoAOgA/ADwAOQA+AD8APABAAD0APQBBAD4APABCAEAAPQBAAEMAQgBDAEAARABCADwAPwBEADwAQgBFAEMARABFAEIAPQBDAEYARgBDAEUARgBFAEQAPQBGAEEARABBAEYAPwBHAEQARABHAEEASABHAD8ASQBBAEcASQBHAEgASgBBAEkASgA+AEEASwA/AD4ASwA+AEoASAA/AEsASABMAEkASgBJAEwATQBIAEsATgBLAEoATwBLAE4ATwBNAEsATgBKAFAATgBRAE8ATgBQAFEAUQBNAE8AUABKAFIAUABSAFEAUQBSAE0ASgBMAFIAUgBTAE0ASABUAEwATQBUAEgATABVAFIAUgBVAFMAVABWAEwATABWAFUATQBXAFQATQBTAFcAVABXAFYAVQBXAFMAVQBWAFcA"),
+"lods": [0.9006662, PackedByteArray("AAABAAIAAwAAAAIAAAADAAQAAAAEAAEAAwAFAAQABAAFAAYABAAGAAEABQADAAcAAwACAAcABQAHAAYACAABAAYACAAGAAcACQACAAEACgAHAAIACAAHAAoACgACAAkACwABAAgACQABAAsACgAMAAgACQANAAoACgANAAwACAAOAAsACAAMAA4ACwAPAAkACQAQAA0ACQAPABAACwARAA8ACwAOABEAEQASAA8ADQATAAwAEQAUABIADgAUABEADwASABUADwAVABAAFAAWABIAEgAXABUAEgAWABcAFQAXABgAGQAXABYAFAAZABYAGQAYABcAGgAZABQAGgAYABkAFQAYABoADgAaABQAEAAVABoAEAAaAA4ADgAbABAAEAAcAA0AEAAbABwADQAcABMAHAAdABMAGwAeABwAHAAeAB0AGwAfAB4AIAAdAB4AEwAdACAAIAAeAB8AEwAgACEAIQAgAB8AIQAfABsADgAhABsADAATACEADAAhAA4A")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 88,
+"vertex_data": PackedByteArray("AACAvwAAgL8AAIC/AACAP5A2CkAAAIC/AACAvwAAgD8AAIC/AACAvwAAgL8AAIA/AACAPwAAgL8AAIC/AACAPwAAgL8AAIA/AACAP5A2CkAAAIA/AACAvwAAgD8AAIA/KFg+P0+yAEBwGzQ/KFg+v4MIkz9wGzS/KFg+v4MIkz9wGzQ/KFg+P0+yAEBwGzS/aLUvP98BB0BwGzQ/6PpMv6Snnz9wGzQ/aLUvP98BB0AAAACA6PpMv6Snnz9wGzS/6PpMv6Snnz8AAACAaLUvP98BB0BwGzS/Wtc8v1xVpD/ty46+2pEfPwOrBEDty44+2pEfPwOrBEDty46+Wtc8v1xVpD8LPpW93uUmvyQeSD/ty46+3uUmvyQeSD8LPpW9VoM1P7wPyT8LPpW9VoM1P7wPyT/ty46+2pEfPwOrBEALPpW9Wtc8v1xVpD8LPpU9Wtc8v1xVpD/ty44+VoM1P7wPyT/ty44+3uUmvyQeSD/ty44+3uUmvyQeSD8LPpU9VoM1P7wPyT8LPpU92pEfPwOrBEALPpU9AACAvwAAgL8AAAC/AACAvwAAgD8AAAC/AACAPwAAgL8AAAC/AACAP5A2CkAAAAC/KFg+v4MIkz9wG7S+6PpMv6Snnz9wG7S+KFg+P0+yAEBwG7S+AACAP5A2CkAAAACAaLUvP98BB0BwG7S+KFg+P0+yAEAAAACAAACAPwAAgL8AAACAAACAP5A2CkAAAAA/AACAvwAAgL8AAACAAACAPwAAgL8AAAA/KFg+P0+yAEBwG7Q+AACAvwAAgD8AAACAAACAvwAAgL8AAAA/AACAvwAAgD8AAAA/KFg+v4MIkz9wG7Q+KFg+v4MIkz8AAACA6PpMv6Snnz9wG7Q+aLUvP98BB0BwG7Q+3WXiPWylnD/ty46+Hv1avXd5kD8LPpW93WXiPWylnD8LPpW9Hv1avXd5kD/ty46+Px/fvjChCkDty46+LYwZvzaLBEDty46+LYwZvzaLBEALPpW9Px/fvjChCkALPpW9LYwZvzaLBEAqswW/Qo0qvzjgC0ALPpW9Px/fvjChCkAqswW/Qo0qvzjgC0AqswW/tJAAvzL2EUDty46+tJAAvzL2EUAqswW/Qo0qvzjgC0Dty46+tJAAvzL2EUALPpW9tJAAvzL2EUALPpU9Qo0qvzjgC0ALPpU9LYwZvzaLBEALPpU9Px/fvjChCkALPpU9Qo0qvzjgC0Dty44+Px/fvjChCkDty44+3WXiPWylnD8LPpU93WXiPWylnD/ty44+Hv1avXd5kD8LPpU9Hv1avXd5kD/ty44+LYwZvzaLBEDty44+Px/fvjChCkAqswU/tJAAvzL2EUDty44+LYwZvzaLBEAqswU/Qo0qvzjgC0AqswU/tJAAvzL2EUAqswU/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ok7l8"]
+resource_name = "map_Cube_033"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 3.2806516, 2),
+"attribute_data": PackedByteArray("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"),
+"format": 34359742487,
+"index_count": 504,
+"index_data": PackedByteArray("ZAAzAGUAZAA1ADMAZgBkAGUAZgBlAGcAaABmAGcAaABnAGkAMgBoAGkAMgBpADQAAAABAAIAAAADAAEAagAFAGsAagAHAAUAbABqAGsAbABrAG0AbgBsAG0AbgBtAG8ABABuAG8ABABvAAYACAAJAAoACAALAAkAcAANAHEAcAAMAA0AcgBwAHEAcgBxAHMAdAByAHMAdABzAHUADwB0AHUADwB1AA4AdgAwAC8AdgB3ADAAeAB3AHYAeAAuAHcAeQAuAHgAeQB6AC4ALQB6AHkALQAxAHoAewAUABAAEAAUABEAewB8ABQAEAARABIAfQB8AHsAEgARAH4AfQB/AHwAEgB+AIAAgQB/AH0AgAB+AIIAgQCDAH8AgACCAIQAFgCDAIEAhACCAIUAFgAXAIMAhACFAIYAEwAXABYAhgCFABUAEwAVABcAhgAVABMAhwBBAIgAhwBCAEEAiABDAIcAhwBDAEAAiAA/AEMAhwBAADwAOwA/AIgAPABAAD4AOwA+AD8APAA+ADsAOwA9ADwAPAA9ADoAOwA5AD0APAA6AIkAigA5ADsAiQA6ADcAigA3ADkAiQA3AIoANgCJAIoANgCKADgAiwAjACQAiwCMACMAjQCMAIsAjQAiAIwAjgAiAI0AjgCPACIAIACPAI4AIAAhAI8AGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AJQAmACcAJQAoACYAKQAqACsAKQAsACoARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmQCbAJoAmQCcAJsAmACdAJkAngCYAJoAngCaAJ8AmACgAJ0AmAChAKAAogChAKMAogCkAKEApACgAKEApAClAKAApACmAKUApACnAKYAqACpAKoAqQCrAKoAqQCsAKsAqACtAKkArgCoAKoArgCqAK8AsACtAKgAsACoALEAsgCxALMAsgC0ALEAtACwALEAtAC1ALAAtAC2ALUAtAC3ALYAuAC5ALoAuAC7ALkAvAC9AL4AvAC/AL0AwADBAMIAwADDAMEAxADFAMYAxADHAMUAyADJAMoAyADLAMkAzADJAMsAzADLAM0AzQDOAMwAzQDPAM4A0ADRANIA0ADTANEA1ADVANYA1ADXANUA2ADZANoA2ADbANkA3ADdAN4A3ADfAN0A4ADhAOIA4ADjAOEA5ADlAOYA5ADnAOUA6ADpAOoA6ADrAOkA"),
+"lods": [0.9006662, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADwAMAA4AEAARABIAEgARABMAEAAUABEAEwARABUAFgAUABAAEwAVABcAFgAXABQAEwAXABYAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAiACMAIAAjACQAJQAmACcAJQAoACYAKQAqACsAKQAsACoALQAuAC8ALwAuADAALQAxAC4AMgAzADQAMgA1ADMANgA3ADgAOAA3ADkANgA6ADcAOAA5ADsAPAA6ADYAOwA5AD0APAA9ADoAOwA9ADwAPAA+ADsAOwA+AD8APABAAD4AOwA/AEEAQgBAADwAQQA/AEMAQgBDAEAAQQBDAEIARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEA")],
+"material": SubResource("StandardMaterial3D_tb35h"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 236,
+"vertex_data": PackedByteArray("AACAvwAAgL8AAIC/AACAP5A2CkAAAIC/AACAvwAAgD8AAIC/AACAPwAAgL8AAIC/AACAPwAAgL8AAIC/AACAP5A2CkAAAIA/AACAP5A2CkAAAIC/AACAPwAAgL8AAIA/AACAPwAAgL8AAIA/AACAvwAAgD8AAIA/AACAP5A2CkAAAIA/AACAvwAAgL8AAIA/AACAvwAAgL8AAIA/AACAPwAAgL8AAIA/AACAPwAAgL8AAIC/AACAvwAAgL8AAIC/KFg+v4MIkz9wGzS/AACAP5A2CkAAAIC/KFg+P0+yAEBwGzS/KFg+P0+yAEBwGzQ/AACAvwAAgD8AAIC/AACAP5A2CkAAAIA/KFg+v4MIkz9wGzQ/AACAvwAAgD8AAIA/KFg+v4MIkz9wGzQ/aLUvP98BB0BwGzQ/KFg+P0+yAEBwGzQ/6PpMv6Snnz9wGzQ/KFg+P0+yAEBwGzS/6PpMv6Snnz9wGzS/KFg+v4MIkz9wGzS/aLUvP98BB0BwGzS/KFg+v4MIkz9wGzS/6PpMv6Snnz9wGzS/6PpMv6Snnz8AAACA6PpMv6Snnz9wGzQ/KFg+v4MIkz9wGzQ/Wtc8v1xVpD/ty46+3uUmvyQeSD8LPpW9Wtc8v1xVpD8LPpW93uUmvyQeSD/ty46+2pEfPwOrBEALPpU93uUmvyQeSD8LPpU9Wtc8v1xVpD8LPpU9VoM1P7wPyT8LPpU9KFg+P0+yAEBwGzQ/aLUvP98BB0AAAACAKFg+P0+yAEBwGzS/aLUvP98BB0BwGzS/aLUvP98BB0BwGzQ/AACAvwAAgL8AAIA/AACAvwAAgD8AAIC/AACAvwAAgD8AAIA/AACAvwAAgL8AAIC/aLUvP98BB0BwGzS/Wtc8v1xVpD/ty46+6PpMv6Snnz9wGzS/Wtc8v1xVpD8LPpW92pEfPwOrBEDty46+6PpMv6Snnz8AAACAaLUvP98BB0AAAACA2pEfPwOrBEALPpW9Wtc8v1xVpD8LPpU9Wtc8v1xVpD/ty44+2pEfPwOrBEALPpU96PpMv6Snnz9wGzQ/aLUvP98BB0BwGzQ/2pEfPwOrBEDty44+VoM1P7wPyT/ty46+3uUmvyQeSD8LPpW93uUmvyQeSD/ty46+VoM1P7wPyT8LPpW9VoM1P7wPyT8LPpU93uUmvyQeSD/ty44+3uUmvyQeSD8LPpU9VoM1P7wPyT/ty44+Wtc8v1xVpD/ty44+VoM1P7wPyT/ty44+2pEfPwOrBEDty44+3uUmvyQeSD/ty44+2pEfPwOrBEDty46+3uUmvyQeSD/ty46+Wtc8v1xVpD/ty46+VoM1P7wPyT/ty46+2pEfPwOrBEDty44+VoM1P7wPyT8LPpU92pEfPwOrBEALPpU9VoM1P7wPyT/ty44+Wtc8v1xVpD8LPpW9VoM1P7wPyT8LPpW92pEfPwOrBEALPpW93uUmvyQeSD8LPpW92pEfPwOrBEALPpW9VoM1P7wPyT/ty46+2pEfPwOrBEDty46+VoM1P7wPyT8LPpW9Wtc8v1xVpD8LPpU93uUmvyQeSD/ty44+Wtc8v1xVpD/ty44+3uUmvyQeSD8LPpU9AACAvwAAgL8AAAC/AACAvwAAgD8AAAC/AACAvwAAgL8AAACAAACAvwAAgD8AAACAAACAvwAAgL8AAAA/AACAvwAAgD8AAAA/AACAPwAAgL8AAAA/AACAP5A2CkAAAAA/AACAPwAAgL8AAACAAACAP5A2CkAAAACAAACAPwAAgL8AAAC/AACAP5A2CkAAAAC/AACAvwAAgL8AAAA/AACAPwAAgL8AAAA/AACAvwAAgL8AAACAAACAPwAAgL8AAACAAACAvwAAgL8AAAC/AACAPwAAgL8AAAC/KFg+P0+yAEBwG7S+aLUvP98BB0BwG7S+KFg+P0+yAEAAAACAKFg+P0+yAEBwG7Q+aLUvP98BB0BwG7Q+KFg+v4MIkz9wG7S+AACAvwAAgD8AAAC/KFg+v4MIkz8AAACAAACAP5A2CkAAAAC/AACAvwAAgD8AAACAKFg+P0+yAEBwG7S+KFg+v4MIkz9wG7Q+AACAP5A2CkAAAACAAACAvwAAgD8AAAA/KFg+P0+yAEAAAACAAACAP5A2CkAAAAA/KFg+P0+yAEBwG7Q+aLUvP98BB0BwG7Q+6PpMv6Snnz9wG7Q+aLUvP98BB0BwG7S+6PpMv6Snnz9wG7S+KFg+v4MIkz9wG7Q+6PpMv6Snnz9wG7Q+KFg+v4MIkz8AAACAKFg+v4MIkz9wG7S+6PpMv6Snnz9wG7S+3WXiPWylnD/ty46+Hv1avXd5kD8LPpW93WXiPWylnD8LPpW9Hv1avXd5kD/ty46+3WXiPWylnD8LPpU9Hv1avXd5kD/ty44+3WXiPWylnD/ty44+Hv1avXd5kD8LPpU9LYwZvzaLBEALPpU9Qo0qvzjgC0Dty44+LYwZvzaLBEDty44+LYwZvzaLBEAqswU/Qo0qvzjgC0AqswU/Qo0qvzjgC0ALPpU9Hv1avXd5kD8LPpU9Hv1avXd5kD/ty44+Qo0qvzjgC0ALPpW9LYwZvzaLBEALPpW9Hv1avXd5kD/ty46+Hv1avXd5kD8LPpW9LYwZvzaLBEDty46+Qo0qvzjgC0Dty46+Qo0qvzjgC0AqswW/LYwZvzaLBEAqswW/Px/fvjChCkALPpW9tJAAvzL2EUDty46+Px/fvjChCkDty46+Px/fvjChCkAqswW/tJAAvzL2EUAqswW/tJAAvzL2EUALPpW93WXiPWylnD8LPpW93WXiPWylnD/ty46+tJAAvzL2EUALPpU9Px/fvjChCkALPpU93WXiPWylnD/ty44+3WXiPWylnD8LPpU9Px/fvjChCkDty44+tJAAvzL2EUDty44+tJAAvzL2EUAqswU/Px/fvjChCkAqswU/Hv1avXd5kD/ty44+Px/fvjChCkDty44+3WXiPWylnD/ty44+LYwZvzaLBEDty44+Hv1avXd5kD8LPpW9Px/fvjChCkALPpW93WXiPWylnD8LPpW9LYwZvzaLBEALPpW93WXiPWylnD8LPpU9LYwZvzaLBEALPpU9Hv1avXd5kD8LPpU9Px/fvjChCkALPpU93WXiPWylnD/ty46+LYwZvzaLBEDty46+Hv1avXd5kD/ty46+Px/fvjChCkDty46+tJAAvzL2EUDty46+Qo0qvzjgC0ALPpW9Qo0qvzjgC0Dty46+tJAAvzL2EUALPpW9Qo0qvzjgC0ALPpU9tJAAvzL2EUALPpU9Qo0qvzjgC0Dty44+tJAAvzL2EUDty44+tJAAvzL2EUDty44+Qo0qvzjgC0AqswU/Qo0qvzjgC0Dty44+tJAAvzL2EUAqswU/Px/fvjChCkALPpU9LYwZvzaLBEALPpW9LYwZvzaLBEALPpU9Px/fvjChCkALPpW9Px/fvjChCkAqswW/Qo0qvzjgC0AqswW/LYwZvzaLBEAqswW/tJAAvzL2EUAqswW/LYwZvzaLBEAqswU/tJAAvzL2EUAqswU/Px/fvjChCkAqswU/Qo0qvzjgC0AqswU/Px/fvjChCkDty46+LYwZvzaLBEAqswW/LYwZvzaLBEDty46+Px/fvjChCkAqswW/LYwZvzaLBEDty44+Px/fvjChCkAqswU/Px/fvjChCkDty44+LYwZvzaLBEAqswU/Qo0qvzjgC0Dty46+tJAAvzL2EUAqswW/tJAAvzL2EUDty46+Qo0qvzjgC0AqswW///////9//////////3//////////f/////////9///////9//3///////3//f///////f/9///////9//3////9//3//f////3//f/9/////f/9//3////9//3//f////38AAP///7//fwAA////v/9/AAD///+//38AAP///78FUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKo/3//f////z//f/9/////P/9//3////8//3//f////z//////////P/////////8//////////z//////////P/ouBVH///8/+i4FUf///z/6LgVR////P/ouBVH///8/+i4FUf///z9U7aqS////P1TtqpL///8/VO2qkv///z9U7aqS////P/9//3////8//3//f////z//f/9/////P/9//3////8/BNH5rv///z8E0fmu////PwTR+a7///8/BNH5rv///z8E0fmu////PwAA/3//f///AAD/f/9///8AAP9//3///wAA/3//f///BVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqj/////////P/////////8//////////z//////////P/9//3////8//3//f////z//f/9/////P/9//3////8/qhJUbf///z+qElRt////P6oSVG3///8/qhJUbf///z//////////P/////////8//////////z//////////P6oSVG3///8/qhJUbf///z+qElRt////P6oSVG3///8/VO2qkv///z9U7aqS////P1TtqpL///8/VO2qkv///z8AAP9//3///wAA/3//f///AAD/f/9///8AAP9//3///wAA/3//f///AAD/f/9///////9//3///////3//f///////f/9///////9//3///////3//f///////f/9/////fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///78E0fmu////PwTR+a7///8/BNH5rv///z8E0fmu////PwTR+a7///8/BVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqj6LgVR////P/ouBVH///8/+i4FUf///z/6LgVR////P/ouBVH///8/+a76LvoufFf5rvou+i58V/mu+i76LnxX+a76LvoufFf5rvou+i58V/mu+i76LnxX+a76LvoufFf5rvou+i58V/ouBVH///8/+i4FUf///z/6LgVR////P/ouBVH///8/+i4FUf///z/6LgVR////P/ouBVH///8/+i4FUf///z/6LgVR////P/ouBVH///8/+i4FUf///z/6LgVR////P/ouBVH///8/+i4FUf///z/6LgVR////P/ouBVH///8/BNH5rv///z8E0fmu////PwTR+a7///8/BNH5rv///z8E0fmu////PwTR+a7///8/BNH5rv///z8E0fmu////PwTR+a7///8/BNH5rv///z8E0fmu////PwTR+a7///8/BNH5rv///z8E0fmu////PwTR+a7///8/BNH5rv///z//f/9/////P/9//3////8//3//f////z//f/9/////P/9//3////8//3//f////z//f/9/////P/9//3////8//////////z//////////P/////////8//////////z//////////P/////////8//////////z//////////PwVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR+i6CqAVRBNH6LoKoBVEE0fougqgFUQTR////PwVRBNH///8/BVEE0f///z8FUQTR////P/mu+i76LnxX+a76LvoufFf5rvou+i58V/mu+i76LnxX/////////z//////////P/////////8//////////z//f/9/////P/9//3////8//3//f////z//f/9/////P/mu+i7///8/+a76Lv///z/5rvou////P/mu+i7///8/+a76Lv///z/5rvou////P/mu+i7///8/+a76Lv///z8FUQTR////PwVRBNH///8/BVEE0f///z8FUQTR////Pw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_xtk58")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v0vv6"]
+points = PackedVector3Array(-1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 0.9999901, -1, 1, -1, 1, 1, 2.159265, -1, -1, 0.9999901, 1, -0.6664057, 2.1852765, -0.52231795, 1, 2.159265, 1, -0.50234926, 2.2803304, -0.52231795, -0.6664057, 2.1852765, 0.52212214, -0.50234926, 2.2803304, 0.52212214)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dnhof"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vchkt"]
 shader = ExtResource("36_vchkt")
@@ -286,6 +331,9 @@ shader_parameter/warp_amount = 0.250000011875
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2d5gv"]
+radius = 4.0
 
 [node name="Main" type="Node" unique_id=848906251 node_paths=PackedStringArray("static_camera_parent", "doors", "rooms")]
 script = ExtResource("1_muem4")
@@ -328,30 +376,35 @@ spot_angle = 45.42925
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Lights" unique_id=543111420]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -114.83451, 14.43574, -44.967907)
+visible = false
 light_bake_mode = 1
 spot_range = 19.010784
 spot_angle = 89.99
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="Lights" unique_id=133144673]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -100.82874, 14.43574, -43.93985)
+visible = false
 light_bake_mode = 1
 spot_range = 19.010784
 spot_angle = 89.99
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="Lights" unique_id=216251571]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -99.34942, 14.43574, -22.674503)
+visible = false
 light_bake_mode = 1
 spot_range = 19.010784
 spot_angle = 89.99
 
 [node name="SpotLight3D5" type="SpotLight3D" parent="Lights" unique_id=771002761]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -97.59272, 14.43574, -1.2242413)
+visible = false
 light_bake_mode = 1
 spot_range = 19.010784
 spot_angle = 89.99
 
 [node name="SpotLight3D6" type="SpotLight3D" parent="Lights" unique_id=2025519024]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -74.57067, 14.43574, -0.114746094)
+visible = false
 light_bake_mode = 1
 spot_range = 19.010784
 spot_angle = 89.99
@@ -395,11 +448,28 @@ mesh = SubResource("PrismMesh_qaqv0")
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
-[node name="instruction_screen" parent="map" index="57" unique_id=859420835]
-material_override = SubResource("StandardMaterial3D_j2jfr")
+[node name="instruction_screen" parent="map" index="64" unique_id=1625503402]
+material_override = SubResource("StandardMaterial3D_dnhof")
 
-[node name="instruction_screen_001" parent="map" index="58" unique_id=608810706]
-material_override = SubResource("StandardMaterial3D_bjg73")
+[node name="instruction_screen_001" parent="map" index="68" unique_id=1024913984]
+material_override = SubResource("StandardMaterial3D_1v6qk")
+
+[node name="server_row_043" parent="map" index="115" unique_id=844398413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.20011, 10.66703, -49.441982)
+
+[node name="BigassSwitch2" type="MeshInstance3D" parent="map" unique_id=1791780354]
+transform = Transform3D(0.4979296, 0, 0, 0, 0.4979296, 0, 0, 0, 0.4979296, -15.133383, 4.4626036, 0)
+mesh = SubResource("ArrayMesh_ok7l8")
+metadata/extras = {
+"ant_landscape": {},
+"wire52": {},
+"wire52_owner": {}
+}
+
+[node name="StaticBody3D" type="StaticBody3D" parent="map/BigassSwitch2" unique_id=2027600683]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/BigassSwitch2/StaticBody3D" unique_id=840896846]
+shape = SubResource("ConvexPolygonShape3D_v0vv6")
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
 
@@ -457,6 +527,94 @@ script = null
 [node name="Camera3D" parent="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer/Camera" parent_id_path=PackedInt32Array(752721606, 347107271) index="0" unique_id=1008336844]
 far = 100.0
 
+[node name="VHS" parent="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer" index="3" unique_id=1604721172]
+visible = true
+
+[node name="EndgameScreen" type="ColorRect" parent="SplitScreen/SubViewportContainerLeft/SubViewport" unique_id=269682890]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 958.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SplitScreen/SubViewportContainerLeft/SubViewport/EndgameScreen" unique_id=1347327140]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = 46.0
+offset_right = -1104.0
+offset_bottom = -329.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("50_0loja")
+theme_override_fonts/bold_font = ExtResource("51_ids8r")
+theme_override_fonts/bold_italics_font = ExtResource("52_dnhof")
+theme_override_fonts/italics_font = ExtResource("53_1v6qk")
+theme_override_fonts/mono_font = ExtResource("50_0loja")
+theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/bold_font_size = 128
+theme_override_font_sizes/bold_italics_font_size = 128
+theme_override_font_sizes/italics_font_size = 128
+theme_override_font_sizes/mono_font_size = 128
+text = "Keep connecting"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="SplitScreen/SubViewportContainerLeft/SubViewport/EndgameScreen" unique_id=876484721]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 195.0
+offset_right = 800.0
+offset_bottom = 360.0
+theme_override_fonts/normal_font = ExtResource("50_0loja")
+theme_override_fonts/bold_font = ExtResource("51_ids8r")
+theme_override_fonts/bold_italics_font = ExtResource("52_dnhof")
+theme_override_fonts/italics_font = ExtResource("53_1v6qk")
+theme_override_fonts/mono_font = ExtResource("50_0loja")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+text = "A game by
+
+Filip Doležal
+Arina Doležalová
+Martin Vener"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="QuitButton" type="Button" parent="SplitScreen/SubViewportContainerLeft/SubViewport/EndgameScreen" unique_id=1422036221]
+layout_mode = 0
+offset_left = 716.0
+offset_top = 459.0
+offset_right = 798.0
+offset_bottom = 500.0
+theme_override_fonts/font = ExtResource("50_0loja")
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
+icon = SubResource("ViewportTexture_dnhof")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="SplitScreen/SubViewportContainerLeft/SubViewport/EndgameScreen" unique_id=645753792]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 459.0
+offset_right = 451.0
+offset_bottom = 503.0
+theme_override_fonts/normal_font = ExtResource("50_0loja")
+theme_override_fonts/bold_font = ExtResource("51_ids8r")
+theme_override_fonts/bold_italics_font = ExtResource("52_dnhof")
+theme_override_fonts/italics_font = ExtResource("53_1v6qk")
+theme_override_fonts/mono_font = ExtResource("50_0loja")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+text = "Thanks for playing!"
+fit_content = true
+
 [node name="SubViewportContainerRight" type="SubViewportContainer" parent="SplitScreen" unique_id=493460797]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -488,7 +646,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -120
 
 [node name="sliding_door_1" parent="Doors" unique_id=1914055593 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -108.900116, 9.5, -44.76178)
-number_of_games_to_open = 5
+number_of_games_to_open = 2
 
 [node name="sliding_door_2" parent="Doors" unique_id=2073990098 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -99.33677, 9.5, -35.195328)
@@ -501,6 +659,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.774376, 9.5, 0)
 
 [node name="sliding_door_5" parent="Doors" unique_id=108000251 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.61906, 9.5, 0)
+number_of_games_to_open = 9
 
 [node name="Minigames" type="Node" parent="." unique_id=829302286]
 
@@ -535,13 +694,11 @@ game = NodePath("../../..")
 [node name="CableMinigame5" parent="Minigames/Cables" unique_id=458089844 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.981514, 11.345698, -5.187783)
 type = 7
+screen_override = 4
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
 [node name="Matrixes" type="Node" parent="Minigames" unique_id=571694237]
-
-[node name="Server Matrix Minigame" parent="Minigames/Matrixes" unique_id=2068626685 instance=ExtResource("42_chjal")]
-transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, -117.09963, 9.501364, -47.91872)
 
 [node name="Server Matrix Minigame2" parent="Minigames/Matrixes" unique_id=138525281 instance=ExtResource("42_chjal")]
 transform = Transform3D(1.3113416e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 1.3113416e-07, -97.29652, 9.501364, -42.47936)
@@ -571,9 +728,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -78.
 
 [node name="Greatzs" type="Node" parent="Minigames" unique_id=2093071292]
 
-[node name="Server Graetz Minigame" parent="Minigames/Greatzs" unique_id=1996921154 instance=ExtResource("43_chjal")]
-transform = Transform3D(0.9999439, 0, -0.010591678, 0, 1, 0, 0.010591678, 0, 0.9999439, -114.88889, 9.501364, -49.143425)
-
 [node name="Server Graetz Minigame2" parent="Minigames/Greatzs" unique_id=1937596838 instance=ExtResource("43_chjal")]
 transform = Transform3D(-0.9999439, 0, 0.010591766, 0, 1, 0, -0.010591766, 0, -0.9999439, -80.14111, 9.501364, -3.1709633)
 
@@ -587,9 +741,6 @@ direction = 1
 direction = 1
 
 [node name="Antiviruses" type="Node" parent="Minigames" unique_id=1651013413]
-
-[node name="Server Antivirus Minigame" parent="Minigames/Antiviruses" unique_id=1464650673 instance=ExtResource("44_cjqg0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.11362, 9.501364, -49.148262)
 
 [node name="Server Antivirus Minigame2" parent="Minigames/Antiviruses" unique_id=2069677036 instance=ExtResource("44_cjqg0")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -103.02608, 9.501364, -39.492817)
@@ -643,10 +794,13 @@ color = Color(0, 0, 0, 1)
 [node name="RichTextLabel" type="RichTextLabel" parent="Instructions/SubViewport/Container" unique_id=1392359404]
 layout_mode = 2
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("50_0loja")
+theme_override_fonts/bold_font = ExtResource("51_ids8r")
+theme_override_fonts/bold_italics_font = ExtResource("52_dnhof")
+theme_override_fonts/italics_font = ExtResource("53_1v6qk")
+theme_override_fonts/mono_font = ExtResource("50_0loja")
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
-text = "hello
-this is a [shake]long ass[/shake] test text"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -662,11 +816,70 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="OneShotTextAreas" type="Node3D" parent="." unique_id=1263336926]
+
+[node name="OneShotTextArea" type="Area3D" parent="OneShotTextAreas" unique_id=826789226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.23718, 10.406486, -41.910465)
+collision_mask = 2
+script = ExtResource("55_ids8r")
+metadata/_custom_type_script = "uid://bw4arucueukx1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OneShotTextAreas/OneShotTextArea" unique_id=321915110]
+shape = SubResource("SphereShape3D_2d5gv")
+
+[node name="OneShotTextArea2" type="Area3D" parent="OneShotTextAreas" unique_id=1556194129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.161191, 4.7162414, -0.040675998)
+collision_mask = 2
+script = ExtResource("55_ids8r")
+metadata/_custom_type_script = "uid://bw4arucueukx1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OneShotTextAreas/OneShotTextArea2" unique_id=1224533513]
+shape = SubResource("SphereShape3D_2d5gv")
+
+[node name="RoomEnablers" type="Node3D" parent="." unique_id=1686311960]
+
+[node name="Room1" type="Node3D" parent="RoomEnablers" unique_id=140352632 node_paths=PackedStringArray("enabling_cable_minigame", "lights_to_enable", "servers_to_enable")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.07435, 11.466733, -44.826675)
+script = ExtResource("56_dnhof")
+enabling_cable_minigame = NodePath("../../Minigames/Cables/CableMinigame")
+lights_to_enable = [NodePath("../../Lights/SpotLight3D2")]
+servers_to_enable = [NodePath("../../Minigames/Breakers/Server Breakers Minigame")]
+metadata/_custom_type_script = "uid://i7qgf6q741m4"
+
+[node name="Room2" type="Node3D" parent="RoomEnablers" unique_id=1448660317 node_paths=PackedStringArray("enabling_cable_minigame", "lights_to_enable", "servers_to_enable")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.848526, 11.612547, -43.242264)
+script = ExtResource("56_dnhof")
+enabling_cable_minigame = NodePath("../../Minigames/Cables/CableMinigame2")
+lights_to_enable = [NodePath("../../Lights/SpotLight3D3")]
+servers_to_enable = [NodePath("../../Minigames/Breakers/Server Breakers Minigame2"), NodePath("../../Minigames/Antiviruses/Server Antivirus Minigame2"), NodePath("../../Minigames/Matrixes/Server Matrix Minigame2")]
+metadata/_custom_type_script = "uid://i7qgf6q741m4"
+
+[node name="Room3" type="Node3D" parent="RoomEnablers" unique_id=777724166 node_paths=PackedStringArray("enabling_cable_minigame", "lights_to_enable", "servers_to_enable")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.098274, 9.2666025, -27.307804)
+script = ExtResource("56_dnhof")
+enabling_cable_minigame = NodePath("../../Minigames/Cables/CableMinigame3")
+lights_to_enable = [NodePath("../../Lights/SpotLight3D4")]
+servers_to_enable = [NodePath("../../Minigames/Pipes/Server Pipe Minigame"), NodePath("../../Minigames/Matrixes/Server Matrix Minigame3"), NodePath("../../Minigames/Antiviruses/Server Antivirus Minigame3")]
+metadata/_custom_type_script = "uid://i7qgf6q741m4"
+
+[node name="Room4" type="Node3D" parent="RoomEnablers" unique_id=876716210 node_paths=PackedStringArray("enabling_cable_minigame", "lights_to_enable", "servers_to_enable")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.89874, 11.736816, 0)
+script = ExtResource("56_dnhof")
+enabling_cable_minigame = NodePath("../../Minigames/Cables/CableMinigame4")
+lights_to_enable = [NodePath("../../Lights/SpotLight3D5")]
+servers_to_enable = [NodePath("../../Minigames/Matrixes/Server Matrix Minigame4"), NodePath("../../Minigames/Pipes/Server Pipe Minigame2"), NodePath("../../Minigames/Breakers/Server Breakers Minigame3")]
+metadata/_custom_type_script = "uid://i7qgf6q741m4"
+
+[node name="Room5" type="Node3D" parent="RoomEnablers" unique_id=257713103 node_paths=PackedStringArray("enabling_cable_minigame", "lights_to_enable", "servers_to_enable")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 9, 0)
+script = ExtResource("56_dnhof")
+enabling_cable_minigame = NodePath("../../Minigames/Cables/CableMinigame5")
+lights_to_enable = [NodePath("../../Lights/SpotLight3D6")]
+servers_to_enable = [NodePath("../../Minigames/Matrixes/Server Matrix Minigame5"), NodePath("../../Minigames/Greatzs/Server Graetz Minigame2"), NodePath("../../Minigames/Antiviruses/Server Antivirus Minigame4"), NodePath("../../Minigames/Pipes/Server Pipe Minigame3"), NodePath("../../Minigames/Breakers/Server Breakers Minigame4")]
+metadata/_custom_type_script = "uid://i7qgf6q741m4"
+
 [editable path="map"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]
-[editable path="Minigames/Greatzs/Server Graetz Minigame"]
-[editable path="Minigames/Greatzs/Server Graetz Minigame/GraetzMinigame/GraetzDiodeUL"]
-[editable path="Minigames/Greatzs/Server Graetz Minigame/server_w_graetz"]
 [editable path="Minigames/Greatzs/Server Graetz Minigame2"]
 [editable path="Minigames/Greatzs/Server Graetz Minigame2/GraetzMinigame/GraetzDiodeUL"]
 [editable path="Minigames/Greatzs/Server Graetz Minigame2/server_w_graetz"]
