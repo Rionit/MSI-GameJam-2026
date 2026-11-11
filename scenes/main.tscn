@@ -41,7 +41,7 @@
 [ext_resource type="Material" uid="uid://bbptyvtgk0cd4" path="res://materials/emissive_red.tres" id="34_vchkt"]
 [ext_resource type="Shader" uid="uid://cagqp2p777hrv" path="res://shaders/vhs.gdshader" id="36_vchkt"]
 [ext_resource type="PackedScene" uid="uid://wh4j7hrx1y44" path="res://scenes/cable_minigame.tscn" id="40_5he1u"]
-[ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame.tscn" id="41_2cjbq"]
+[ext_resource type="PackedScene" uid="uid://bpd0l3s4nttih" path="res://scenes/server_breakers_minigame_6.tscn" id="41_2cjbq"]
 [ext_resource type="PackedScene" uid="uid://ci27p53exo2b1" path="res://scenes/server_matrix_minigame.tscn" id="42_chjal"]
 [ext_resource type="PackedScene" uid="uid://dn62i7rv7g06i" path="res://scenes/server_graetz_minigame.tscn" id="43_chjal"]
 [ext_resource type="PackedScene" uid="uid://3drommcgto4x" path="res://scenes/server_antivirus_minigame.tscn" id="44_cjqg0"]
@@ -251,6 +251,12 @@ albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
 emission_texture = SubResource("ViewportTexture_vchkt")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vc5cj"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_vchkt")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vchkt"]
 shader = ExtResource("36_vchkt")
 shader_parameter/overlay = true
@@ -383,8 +389,11 @@ mesh = SubResource("PrismMesh_qaqv0")
 
 [node name="map" parent="." unique_id=648918426 instance=ExtResource("1_jyhfs")]
 
-[node name="instruction_screen" parent="map" index="55" unique_id=852126996]
+[node name="instruction_screen" parent="map" index="57" unique_id=1321167243]
 material_override = SubResource("StandardMaterial3D_txyw0")
+
+[node name="instruction_screen_001" parent="map" index="58" unique_id=836650466]
+material_override = SubResource("StandardMaterial3D_vc5cj")
 
 [node name="Level" type="Node3D" parent="." unique_id=1648374199]
 
@@ -425,11 +434,13 @@ script = ExtResource("2_sugp2")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0001
+mouse_filter = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerLeft" unique_id=1764969003]
 handle_input_locally = false
 audio_listener_enable_3d = true
+gui_disable_input = true
 size = Vector2i(2, 540)
 render_target_update_mode = 4
 
@@ -443,6 +454,7 @@ far = 100.0
 [node name="SubViewportContainerRight" type="SubViewportContainer" parent="SplitScreen" unique_id=493460797]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreen/SubViewportContainerRight" unique_id=964279091]
@@ -546,9 +558,11 @@ offset_left = -960.0
 offset_right = -960.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="Instructions" unique_id=233541085]
 handle_input_locally = false
+gui_disable_input = true
 size = Vector2i(960, 124)
 render_target_update_mode = 4
 
@@ -558,13 +572,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="Instructions/SubViewport/Container" unique_id=1252699545]
 layout_mode = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Instructions/SubViewport/Container" unique_id=1392359404]
 layout_mode = 2
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "hello
@@ -582,6 +599,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [editable path="map"]
 [editable path="SplitScreen/SubViewportContainerLeft/SubViewport/UnmovablePlayer"]
