@@ -50,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="InteractRayCast3D" type="RayCast3D" parent="Camera/Camera3D" unique_id=284567336]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -1.5)
-collision_mask = 15
+collision_mask = 13
 
 [node name="ObjectHolder" type="Marker3D" parent="Camera" unique_id=1157575664]
 unique_name_in_owner = true
