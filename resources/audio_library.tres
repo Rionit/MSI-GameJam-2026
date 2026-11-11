@@ -11,6 +11,14 @@
 [ext_resource type="AudioStream" uid="uid://dmcg8og3qtsyy" path="res://audio/sfx/server_hum.mp3" id="8_wdse5"]
 [ext_resource type="AudioStream" uid="uid://1gmw1wsijauf" path="res://audio/sfx/server_room_ambience.mp3" id="9_ym8em"]
 [ext_resource type="AudioStream" uid="uid://b62n3yxatcv0" path="res://audio/sfx/screen_room_ambience.mp3" id="10_jaogm"]
+[ext_resource type="AudioStream" uid="uid://bm0rji5yfbh6p" path="res://audio/sfx/breaker_flip_1.mp3" id="12_ikubc"]
+[ext_resource type="AudioStream" uid="uid://cobvfkvx58p2c" path="res://audio/sfx/breaker_flip_2.mp3" id="13_q7acc"]
+[ext_resource type="AudioStream" uid="uid://c0mon7evrtrn4" path="res://audio/sfx/breaker_flip_3.mp3" id="14_hvytk"]
+[ext_resource type="AudioStream" uid="uid://ymcvcnk1r12g" path="res://audio/sfx/cable_plug_in.mp3" id="15_72jes"]
+[ext_resource type="AudioStream" uid="uid://c4v8vdodonhh3" path="res://audio/sfx/zap.mp3" id="16_qmcs3"]
+[ext_resource type="AudioStream" uid="uid://dbdntln4ep60e" path="res://audio/sfx/antivirus_pass.wav" id="17_jgf1q"]
+[ext_resource type="AudioStream" uid="uid://c603p3kvj8ebm" path="res://audio/sfx/bounce.wav" id="18_n52gk"]
+[ext_resource type="AudioStream" uid="uid://u461x5t6cbwg" path="res://audio/sfx/error.wav" id="19_wpbyn"]
 
 [sub_resource type="Resource" id="Resource_k58g0"]
 script = ExtResource("3_geqqb")
@@ -70,7 +78,51 @@ tag = "screen_room_ambience"
 streams = Array[AudioStream]([ExtResource("10_jaogm")])
 metadata/_custom_type_script = "uid://vamoav5galaq"
 
+[sub_resource type="Resource" id="Resource_abf41"]
+script = ExtResource("3_geqqb")
+tag = "breaker_flip"
+streams = Array[AudioStream]([ExtResource("12_ikubc"), ExtResource("13_q7acc"), ExtResource("14_hvytk")])
+variation_mode = 2
+pitch_randomness = 0.05
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_vchkt"]
+script = ExtResource("3_geqqb")
+tag = "cable_plug_in"
+streams = Array[AudioStream]([ExtResource("15_72jes")])
+pitch_randomness = 0.1
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_txyw0"]
+script = ExtResource("3_geqqb")
+tag = "zap"
+streams = Array[AudioStream]([ExtResource("16_qmcs3")])
+pitch_randomness = 0.1
+volume_db = -6.5
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_vc5cj"]
+script = ExtResource("3_geqqb")
+tag = "antivirus_pass"
+streams = Array[AudioStream]([ExtResource("17_jgf1q")])
+pitch_randomness = 0.04
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_nvyfr"]
+script = ExtResource("3_geqqb")
+tag = "bounce"
+streams = Array[AudioStream]([ExtResource("18_n52gk")])
+pitch_randomness = 0.1
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
+[sub_resource type="Resource" id="Resource_ty1g6"]
+script = ExtResource("3_geqqb")
+tag = "error"
+streams = Array[AudioStream]([ExtResource("19_wpbyn")])
+pitch_randomness = 0.05
+metadata/_custom_type_script = "uid://vamoav5galaq"
+
 [resource]
 script = ExtResource("2_c4kn6")
-sound_effects = Array[ExtResource("3_geqqb")]([SubResource("Resource_k58g0"), SubResource("Resource_f1iyj"), SubResource("Resource_wjdv7"), SubResource("Resource_3lhes"), SubResource("Resource_we8da"), SubResource("Resource_x6c28"), SubResource("Resource_ym8em"), SubResource("Resource_jaogm")])
+sound_effects = Array[ExtResource("3_geqqb")]([SubResource("Resource_k58g0"), SubResource("Resource_f1iyj"), SubResource("Resource_wjdv7"), SubResource("Resource_3lhes"), SubResource("Resource_we8da"), SubResource("Resource_x6c28"), SubResource("Resource_ym8em"), SubResource("Resource_jaogm"), SubResource("Resource_abf41"), SubResource("Resource_vchkt"), SubResource("Resource_txyw0"), SubResource("Resource_vc5cj"), SubResource("Resource_nvyfr"), SubResource("Resource_ty1g6")])
 metadata/_custom_type_script = "uid://bmxow6jhpxppg"

@@ -104,13 +104,15 @@ func check_cable():
 	insert_tween.tween_property(connector, "global_transform", connector_insert_position.global_transform, 0.5)
 	await insert_tween.finished
 	
+	AudioManager.play_sfx_at_3d("cable_plug_in", connector_insert_position.global_position)
+	
 	# 2. Modulated rotation check (handles full 360-degree wraps using TAU / 2*PI)
 	var current_angle = fposmod(rotating_part.rotation.x, TAU)
 	var target_angle = fposmod(deg_to_rad(45 * type), TAU)
 	
 	if is_equal_approx(current_angle, target_angle):
 		print("yippee its correct")
-		
+		AudioManager.play_sfx_at_3d("zap", connector_insert_position.global_position)
 		game.on_screen_connected()
 		
 		# 1. Disable interaction hitbox so it can't be triggered again

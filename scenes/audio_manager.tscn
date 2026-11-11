@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cu8ammm0bpxls" path="res://scripts/audio/audio_settings.gd" id="3_3asnw"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_fceot"]
+polyphony = 128
 
 [node name="AudioManager" type="Node" unique_id=1351915469]
 script = ExtResource("1_8qd8g")
