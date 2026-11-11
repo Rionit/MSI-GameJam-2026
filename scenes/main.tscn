@@ -514,7 +514,7 @@ game = NodePath("../../..")
 [node name="CableMinigame2" parent="Minigames/Cables" unique_id=839617449 node_paths=PackedStringArray("player", "game") instance=ExtResource("40_5he1u")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -95.79736, 11.345698, -35.541767)
 type = 6
-screen_override = 2
+screen_override = 3
 player = NodePath("../../../SplitScreen/SubViewportContainerRight/SubViewport/FirstPersonPlayer")
 game = NodePath("../../..")
 
